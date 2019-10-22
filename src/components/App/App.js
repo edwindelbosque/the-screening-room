@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 
-function App() {
-  return (
-    <h1>Screening Room</h1>
-  );
+class App extends Component {
+  constructor() {
+    super();
+  }
+  
+  render() {
+    return (
+      <>
+        <h1>Screening Room</h1>
+        <Nav />
+        <LoginForm />
+        <Container />
+      </>
+    );
+  }
 }
 
 export default App;
