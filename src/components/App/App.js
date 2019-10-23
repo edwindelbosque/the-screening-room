@@ -7,12 +7,14 @@ import { getMovies } from '../../apiCalls/apiCalls';
 import './App.scss';
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
+  
   componentDidMount = async () => {
-     getMovies()
+    try {
+      console.log(await getMovies())
+      return await getMovies();
+    } catch(error) {
+      console.log(error);
+    }
   }
 
   render() {
