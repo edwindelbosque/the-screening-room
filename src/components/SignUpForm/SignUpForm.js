@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { selectUser } from '../../apiCalls/apiCalls';
-import './LoginForm.scss';
+import { createUser } from '../../apiCalls/apiCalls';
+import './SignUpForm.scss';
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   constructor() {
     super();
     this.state = {
+      name: '',
       email: '',
       password: ''
     };
@@ -18,7 +19,7 @@ class LoginForm extends Component {
   }
 
   handleClick = async () => {
-    await selectUser(this.state)
+    await createUser(this.state);
     this.clearInputs();
   }
 
@@ -37,6 +38,17 @@ class LoginForm extends Component {
     const { name, email, password } = this.state;
     return (
       <form className='Form' onSubmit={(e) => this.handleSubmit(e)}>
+        <label htmlFor='email' className='Form__label'>
+          Name
+        </label>
+        <input
+          id='name'
+          type='text'
+          className='Form__input'
+          name='name'
+          value={name}
+          onChange={(e) => this.handleChange(e)}
+        ></input>
         <label htmlFor='email' className='Form__label'>
           Email
         </label>
@@ -76,5 +88,5 @@ class LoginForm extends Component {
 //   password: state.password
 // });
 
-export default LoginForm;
+export default SignUpForm;
 // export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
