@@ -13,7 +13,7 @@ class LoginForm extends Component {
   render() {
     return (
       <form className='Form'>
-        <label for='email' className='Form__label'>
+        <label htmlFor='email' className='Form__label'>
           Email
         </label>
         <input
@@ -23,7 +23,7 @@ class LoginForm extends Component {
           name='email'
           value={this.state.email}
         ></input>
-        <label for='password' className='Form__label'>
+        <label htmlFor='password' className='Form__label'>
           Password
         </label>
         <input
