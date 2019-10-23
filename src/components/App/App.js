@@ -4,7 +4,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import Container from '../Container/Container';
 import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import { getMovies } from '../../apiCalls/apiCalls';
-import { setMovies } from '../../actions';
+import { setMovies, isLoading, hasErrored } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
@@ -14,10 +14,13 @@ class App extends Component {
   componentDidMount = async () => {
     try {
       const { setMovies } = this.props
+      isLoading(true);
       let movieData = await getMovies();
+      isLoading(false);
       setMovies(movieData);
-    } catch(error) {
-      console.log(error);
+    } catch({message}) {
+      isLoading(false);
+      hasErrored(message);
     }
   } 
 
@@ -34,13 +37,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  movies: state.movies
+const mapStateToProps = ({ movies, hasError, isLoading }) => ({
+  movies,
+  hasError,
+  isLoading
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   setMovies: (data) => dispatch(setMovies(data))
-// });
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({ setMovies }, dispatch)

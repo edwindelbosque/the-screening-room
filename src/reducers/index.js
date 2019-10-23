@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux';
-import { moviesReducer } from './moviesReducer';
+import { movies } from './movies';
+import { hasError } from './hasError';
+import { setLoading } from './setLoading';
+
 
 const rootReducer = combineReducers({
-  movies: moviesReducer
+  movies,
+  hasError,
+  setLoading
 });
 
 export default rootReducer;
