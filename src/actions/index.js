@@ -12,3 +12,8 @@ export const hasErrored = errMsg => ({
   type: 'HAS_ERROR',
   errMsg
 });
+
+export const addUserInfo = event => ({
+  type: 'ADD_USER_INFO',
+  event
+});
