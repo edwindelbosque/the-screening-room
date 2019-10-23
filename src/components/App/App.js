@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import LoginForm from '../LoginForm/LoginForm';
 import Container from '../Container/Container';
-import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import { getMovies } from '../../apiCalls/apiCalls';
 import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
@@ -25,10 +25,11 @@ class App extends Component {
     return (
       <>
         <h1>Screening Room</h1>
-        <Nav />
-        <LoginForm />
-        <Container />
-        <SelectedMovie />
+        <Nav>
+          <NavLink to='/' render={() => <Container />} />
+          <NavLink to='/login' render={() => <LoginForm />} />
+          <NavLink to='/favorites' render={() => <Container />} />
+        </Nav>
       </>
     );
   }
