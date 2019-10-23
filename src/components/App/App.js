@@ -30,17 +30,4 @@ class App extends Component {
   }
 }
 
-  render() {
-    return (
-      <>
-        <h1>Screening Room</h1>
-        <Nav />
-        <LoginForm />
-        <Container />
-        <SelectedMovie />
-      </>
-    );
-  }
-}
-
 export default App;
