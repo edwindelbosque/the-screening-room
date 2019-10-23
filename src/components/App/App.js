@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import LoginForm from '../LoginForm/LoginForm';
 import Container from '../Container/Container';
-import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import { getMovies } from '../../apiCalls/apiCalls';
 import { setMovies, isLoading, hasErrored } from '../../actions';
 import { connect } from 'react-redux';
@@ -29,9 +29,9 @@ class App extends Component {
       <>
         <h1>Screening Room</h1>
         <Nav />
-        <LoginForm />
-        <Container />
-        <SelectedMovie />
+          <Route exact path='/' render={() => <Container />} />
+          <Route exact path='/login' render={() => <LoginForm />} />
+          <Route exact path='/favorites' render={() => <Container />} />
       </>
     );
   }
