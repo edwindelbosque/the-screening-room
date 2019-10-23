@@ -13,9 +13,9 @@ class LoginForm extends Component {
   render() {
     return (
       <form>
-        <label for='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input id='email' type='text' name='email' value={this.state.email}></input>
-        <label for='password'>Password</label>
+        <label htmlFor='password'>Password</label>
         <input id='password' type='text' name='password' value={this.state.password}></input>
         <button type='submit'>Submit</button>
       </form>
