@@ -7,13 +7,28 @@ import { getMovies } from '../../apiCalls/apiCalls';
 import './App.scss';
 
 class App extends Component {
-  constructor() {
-    super();
+  
+  componentDidMount = async () => {
+    try {
+      console.log(await getMovies())
+      return await getMovies();
+    } catch(error) {
+      console.log(error);
+    }
   }
 
-  componentDidMount = async () => {
-     getMovies()
+  render() {
+    return (
+      <>
+        <h1>Screening Room</h1>
+        <Nav />
+        <LoginForm />
+        <Container />
+        <SelectedMovie />
+      </>
+    );
   }
+}
 
   render() {
     return (
