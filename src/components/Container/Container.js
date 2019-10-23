@@ -3,7 +3,9 @@ import './Container.scss';
 
 const Container = () => {
   return(
-    <p>Container</p>
+    <main className="Container">
+      {}
+    </main>
   )
 }
 
