@@ -26,13 +26,12 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        <h1>Screening Room</h1>
+      <main className='main'>
         <Nav />
           <Route exact path='/' render={() => <Container />} />
           <Route exact path='/login' render={() => <LoginForm />} />
           <Route exact path='/favorites' render={() => <Container />} />
-      </>
+      </main>
     );
   }
 }
