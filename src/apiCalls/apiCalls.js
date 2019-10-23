@@ -36,3 +36,33 @@ const getGenres = async (id) => {
   const data = await response.json();
   return await data.name;
 }
+
+export const createUser = async newUser => {
+  const url = 'http://localhost:3001/api/v1/users';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newUser)
+  };
+  const response = await fetch(url, options);
+  const userDetails = await response.json();
+  console.log(userDetails);
+  return userDetails;
+}
+
+export const selectUser = async recurrentUser => {
+  const url = 'http://localhost:3001/api/v1/login';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(recurrentUser)
+  };
+  const response = await fetch(url, options);
+  const userDetails = await response.json();
+  console.log(userDetails);
+  return userDetails;
+}
