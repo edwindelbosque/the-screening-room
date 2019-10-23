@@ -20,13 +20,13 @@ const SelectedMovie = () => {
         <h3 className="SelectedMovie__h3">Movie.title</h3>
         <img
           className="SelectedMovie__img--poster"
-          src={movie.poster}
+          // src={movie.poster}
           alt="Official movie poster"
         />
-        <p className="SelectedMovie__p--overview">{movie.overview}</p>
-        <p className="SelectedMovie__p--genre">{movie.genre}</p>
-        <p className="SelectedMovie__p--release_date">{movie.release_date}</p>
-        <p className="SelectedMovie__p--rating">{movie.rating}</p>
+        {/* <p className="SelectedMovie__p--overview">{movie.overview}</p> */}
+        {/* <p className="SelectedMovie__p--genre">{movie.genre}</p> */}
+        {/* <p className="SelectedMovie__p--release_date">{movie.release_date}</p> */}
+        {/* <p className="SelectedMovie__p--rating">{movie.rating}</p> */}
       </div>
     </main>
   );

@@ -1,12 +1,12 @@
-import React from 'react';
-import './Container.scss';
+import React from "react";
+import "./Container.scss";
 
 const Container = () => {
-  return(
+  return (
     <main className="Container">
-      {}
+      <h3>Hello, I am a container</h3>
     </main>
-  )
-}
+  );
+};
 
 export default Container;

@@ -9,9 +9,9 @@ const MovieCard = () => {
         src="#"
         alt="Official movie poster"
       />
-      <p className="MovieCard__p--title">{movie.title}</p>
-      <p className="MovieCard__p--rRated">{movie.rRated}</p>
-      <p className="MovieCard__p--release_date">{movie.release_date}</p>
+      {/* <p className="MovieCard__p--title">{movie.title}</p> */}
+      {/* <p className="MovieCard__p--rRated">{movie.rRated}</p> */}
+      {/* <p className="MovieCard__p--release_date">{movie.release_date}</p> */}
       <img
         className="MovieCard__img--favorite-icon"
         src="#"
