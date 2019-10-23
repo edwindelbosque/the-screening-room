@@ -1,0 +1,43 @@
+.MovieCard__div--container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 350px;
+  width: 350px;
+}
+
+.MovieCard__img--poster {
+  width: 350px;
+}
+
+.MovieCard__footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  justify-content: center;
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+}
+
+.MovieCard__footer--div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.MovieCard__p--title {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.MovieCard__img--favorite-icon {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 30px;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
+import addFavorite from '../../Images/addFavorite.png';
 import './MovieCard.scss';
 
 const MovieCard = movie => {
-  const { title, release_date, poster } = movie;
+  const { title, poster } = movie;
   return (
     <div className='MovieCard__div--container'>
       <img
@@ -10,13 +11,16 @@ const MovieCard = movie => {
         src={poster}
         alt='Official movie poster'
       />
-      <p className='MovieCard__p--title'>{title}</p>
-      <p className='MovieCard__p--release_date'>{release_date}</p>
-      <img
-        className='MovieCard__img--favorite-icon'
-        src='#'
-        alt='Favorite icon'
-      />
+      <footer className='MovieCard__footer'>
+        <h3 className='MovieCard__p--title'>{title}</h3>
+        <div className='MovieCard__footer--div'>
+          <img
+            className='MovieCard__img--favorite-icon'
+            src={addFavorite}
+            alt='Favorite icon'
+          />
+        </div>
+      </footer>
     </div>
   );
 };
