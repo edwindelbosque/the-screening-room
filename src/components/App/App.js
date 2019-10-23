@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import LoginForm from '../LoginForm/LoginForm';
 import Container from '../Container/Container';
@@ -25,11 +25,10 @@ class App extends Component {
     return (
       <>
         <h1>Screening Room</h1>
-        <Nav>
-          <NavLink to='/' render={() => <Container />} />
-          <NavLink to='/login' render={() => <LoginForm />} />
-          <NavLink to='/favorites' render={() => <Container />} />
-        </Nav>
+        <Nav />
+          <Route exact path='/' render={() => <Container />} />
+          <Route exact path='/login' render={() => <LoginForm />} />
+          <Route exact path='/favorites' render={() => <Container />} />
       </>
     );
   }
