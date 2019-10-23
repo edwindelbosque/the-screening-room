@@ -13,13 +13,11 @@ const MovieCard = movie => {
       />
       <footer className='MovieCard__footer'>
         <h3 className='MovieCard__p--title'>{title}</h3>
-        <div className='MovieCard__footer--div'>
           <img
             className='MovieCard__img--favorite-icon'
             src={addFavorite}
             alt='Favorite icon'
           />
-        </div>
       </footer>
     </div>
   );
