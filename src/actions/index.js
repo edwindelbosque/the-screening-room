@@ -12,3 +12,8 @@ export const hasErrored = errMsg => ({
   type: 'HAS_ERROR',
   errMsg
 });
+
+export const addFavorite = newFavorite => ({
+  type: 'ADD_FAVORITE',
+  newFavorite
+});
