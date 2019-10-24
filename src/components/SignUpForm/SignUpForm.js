@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { selectUser } from '../../apiCalls/apiCalls';
-import './LoginForm.scss';
+import { createUser } from '../../apiCalls/apiCalls';
+import './SignUpForm.scss';
 import { Link } from 'react-router-dom';
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   constructor() {
     super();
     this.state = {
+      name: '',
       email: '',
       password: ''
     };
@@ -19,7 +20,7 @@ class LoginForm extends Component {
   }
 
   handleClick = async () => {
-    await selectUser(this.state)
+    await createUser(this.state);
     this.clearInputs();
   }
 
@@ -35,10 +36,24 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { name, email, password } = this.state;
     return (
       <form className='form-model' onSubmit={(e) => this.handleSubmit(e)}>
-        <p className="login-message">Sign in with your email to keep track of your favorite movies.</p>
+        <p className="signup-message">Create an account with your email to keep track of your favorite movies.</p>
+        <div>
+        <label htmlFor='email' className='Form__label'>
+          Your name
+        </label>
+        <input
+          id='name'
+          type='text'
+          placeholder='Walter White'
+          className='Form__input'
+          name='name'
+          value={name}
+          onChange={(e) => this.handleChange(e)}
+        ></input>
+        </div>
         <div>
         <label htmlFor='email' className='Form__label'>
           Your email
@@ -60,21 +75,21 @@ class LoginForm extends Component {
         <input
           id='password'
           type='password'
+          placeholder='Must have at least 8 characters'
           className='Form__input'
           name='password'
-          placeholder='Must have at least 8 characters'
           value={password}
           onChange={(e) => this.handleChange(e)}
         ></input>
         </div>
         <Link to='/'>
-        <button 
-          type='submit' 
-          className='Form__button'
-          onClick={(e) => this.handleClick(e)}
-        >
-          Continue
-        </button>
+          <button 
+            type='submit' 
+            className='Form__button'
+            onClick={(e) => this.handleClick(e)}
+          >
+            Continue
+          </button>
         </Link>
       </form>
     );
@@ -86,5 +101,5 @@ class LoginForm extends Component {
 //   password: state.password
 // });
 
-export default LoginForm;
+export default SignUpForm;
 // export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

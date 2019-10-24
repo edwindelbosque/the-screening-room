@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
-import LoginForm from '../LoginForm/LoginForm';
+import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import { getMovies } from '../../apiCalls/apiCalls';
 import { setMovies, isLoading, hasErrored } from '../../actions';
@@ -21,7 +21,8 @@ class App extends Component {
       isLoading(false);
       hasErrored(message);
     }
-  };
+  }
+
 
   render() {
     // const { movies, hasError, setLoading } = this.props;
@@ -29,7 +30,7 @@ class App extends Component {
       <main className='main'>
         <Nav />
           <Route exact path='/' render={() => <Container />} />
-          <Route exact path='/login' render={() => <LoginForm />} />
+          <Route path='/login' render={() => <AccessModal />} />
           <Route exact path='/favorites' render={() => <Container />} />
       </main>
     );
