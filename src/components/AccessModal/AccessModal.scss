@@ -4,9 +4,9 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  content: url('https://i.pinimg.com/originals/6a/90/86/6a9086949c9b9451026f0095d97c7c2c.jpg');
+  content: url(https://i.imgur.com/YMveHhd.png);
   transform: translate3d(-50%, -50%, 0);
-  opacity: 0.05;
+  object-fit: cover;
 }
 
 .modal-backdrop-white {
