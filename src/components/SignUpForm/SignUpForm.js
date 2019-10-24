@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createUser } from '../../apiCalls/apiCalls';
 import './SignUpForm.scss';
+import { Link } from 'react-router-dom';
 
 class SignUpForm extends Component {
   constructor() {
@@ -38,7 +39,7 @@ class SignUpForm extends Component {
     const { name, email, password } = this.state;
     return (
       <form className='form-model' onSubmit={(e) => this.handleSubmit(e)}>
-        <p className="signup-message">Create an account with your email to keep track of your favorite movies!</p>
+        <p className="signup-message">Create an account with your email to keep track of your favorite movies.</p>
         <div>
         <label htmlFor='email' className='Form__label'>
           Your name
@@ -73,21 +74,23 @@ class SignUpForm extends Component {
         </label>
         <input
           id='password'
-          type='text'
-          placeholder='secure-password123'
+          type='password'
+          placeholder='Must have at least 8 characters'
           className='Form__input'
           name='password'
           value={password}
           onChange={(e) => this.handleChange(e)}
         ></input>
         </div>
-        <button 
-          type='submit' 
-          className='Form__button'
-          onClick={(e) => this.handleClick(e)}
-        >
-          Continue
-        </button>
+        <Link to='/'>
+          <button 
+            type='submit' 
+            className='Form__button'
+            onClick={(e) => this.handleClick(e)}
+          >
+            Continue
+          </button>
+        </Link>
       </form>
     );
   }

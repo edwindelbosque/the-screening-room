@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { selectUser } from '../../apiCalls/apiCalls';
 import './LoginForm.scss';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
   constructor() {
@@ -58,14 +59,15 @@ class LoginForm extends Component {
         </label>
         <input
           id='password'
-          type='text'
+          type='password'
           className='Form__input'
           name='password'
-          placeholder='secure-password123'
+          placeholder='Must have at least 8 characters'
           value={password}
           onChange={(e) => this.handleChange(e)}
         ></input>
         </div>
+        <Link to='/'>
         <button 
           type='submit' 
           className='Form__button'
@@ -73,6 +75,7 @@ class LoginForm extends Component {
         >
           Continue
         </button>
+        </Link>
       </form>
     );
   }
