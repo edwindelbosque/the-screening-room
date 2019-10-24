@@ -101,7 +101,7 @@ class SignUpForm extends Component {
           <button
             type='submit'
             className='Form__button'
-            onClick={e => this.handleClick(e)}
+            onClick={this.handleClick}
           >
             Continue
           </button>

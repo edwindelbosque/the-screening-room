@@ -23,14 +23,13 @@ class App extends Component {
     }
   }
 
-
   render() {
     // const { movies, hasError, setLoading } = this.props;
     return (
       <main className='main'>
         <Nav />
           <Route exact path='/' render={() => <Container />} />
-          <Route path='/login' render={() => <AccessModal />} />
+          <Route path='/(login|signup)' render={() => <AccessModal />} />
           <Route exact path='/favorites' render={() => <Container />} />
       </main>
     );
