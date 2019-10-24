@@ -1,8 +1,9 @@
 .Container {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
-  height: 100vh;
+  grid-gap: 50px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-rows: auto;
+  justify-items: center;
   overflow: scroll;
   padding: 35px;
 }

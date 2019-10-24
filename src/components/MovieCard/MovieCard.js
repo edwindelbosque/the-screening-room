@@ -12,12 +12,12 @@ const MovieCard = movie => {
         alt='Official movie poster'
       />
       <footer className='MovieCard__footer'>
-        <h3 className='MovieCard__p--title'>{title}</h3>
-          <img
-            className='MovieCard__img--favorite-icon'
-            src={addFavorite}
-            alt='Favorite icon'
-          />
+        <h3 className='MovieCard__h3--title'>{title}</h3>
+        <img
+          className='MovieCard__img--favorite-icon'
+          src={addFavorite}
+          alt='Favorite icon'
+        />
       </footer>
     </div>
   );
