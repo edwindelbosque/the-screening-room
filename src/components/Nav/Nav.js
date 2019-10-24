@@ -14,7 +14,7 @@ const Nav = () => {
           <Link to='/favorites'>
             <li className='Nav__li'>Favorites</li>
           </Link>
-          <Link to='/login'>
+          <Link to='/login/register'>
             <li className='Nav__li'>Account</li>
           </Link>
         </ul>

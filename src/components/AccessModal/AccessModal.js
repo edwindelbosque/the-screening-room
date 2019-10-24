@@ -6,15 +6,16 @@ import { Route, NavLink } from 'react-router-dom';
 
 const AccessModal = () => {
   return (
-    <div className="modal-container">
-    <h1>modal!</h1>
-    <NavLink to='/login'>
-      <li className='login_tab'>Log In</li>
-    </NavLink>
-    <NavLink to='/login/register'>
-      <li className='login_tab'>Sign Up</li>
-    </NavLink>
-    <Route exact path='/login' render={() => <LoginForm />} />
+    <div className='modal-container'>
+    <ul className='modal-tabs'>
+      <NavLink to='/login/access' className='form-navlink'>
+        <li className='login_tab'>Log in</li>
+      </NavLink>
+      <NavLink to='/login/register' className='form-navlink'>
+        <li className='login_tab'>Sign up</li>
+      </NavLink>
+    </ul>
+    <Route exact path='/login/access' render={() => <LoginForm />} />
     <Route exact path='/login/register' render={() => <SignUpForm />} />
     </div>
   )

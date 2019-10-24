@@ -34,37 +34,44 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { name, email, password } = this.state;
+    const { email, password } = this.state;
     return (
-      <form className='Form' onSubmit={(e) => this.handleSubmit(e)}>
+      <form className='form-model' onSubmit={(e) => this.handleSubmit(e)}>
+        <p className="login-message">Sign in with your email to keep track of your favorite movies.</p>
+        <div>
         <label htmlFor='email' className='Form__label'>
-          Email
+          Your email
         </label>
         <input
           id='email'
           type='text'
+          placeholder='your@email.com'
           className='Form__input'
           name='email'
           value={email}
           onChange={(e) => this.handleChange(e)}
         ></input>
+        </div>
+        <div>
         <label htmlFor='password' className='Form__label'>
-          Password
+          Your password
         </label>
         <input
           id='password'
           type='text'
           className='Form__input'
           name='password'
+          placeholder='secure-password123'
           value={password}
           onChange={(e) => this.handleChange(e)}
         ></input>
+        </div>
         <button 
           type='submit' 
           className='Form__button'
           onClick={(e) => this.handleClick(e)}
         >
-          Submit
+          Continue
         </button>
       </form>
     );
