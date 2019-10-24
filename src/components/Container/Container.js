@@ -1,12 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
 
-const Container = () => {
-  return (
-    <main className='Container'>
-      <h3>Hello, I am a container</h3>
-    </main>
-  );
+const Container = ({ movies }) => {
+  // const { movies, hasError, setLoading } = this.props;
+  const allMovies = movies.map(movie => (
+    <MovieCard {...movie} key={movie.id} />
+  ));
+  return <main className='Container'>{allMovies}</main>;
 };
 
-export default Container;
+const mapStateToProps = ({ movies }) => ({
+  movies
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Container);

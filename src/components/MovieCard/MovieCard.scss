@@ -1,0 +1,40 @@
+.MovieCard__div--container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2% 1%;
+  min-width: 350px;
+  width: 350px;
+}
+
+.MovieCard__img--poster {
+  height: 525px;
+  max-width: 350px;
+  min-width: 350px;
+  width: 350px;
+}
+
+.MovieCard__footer {
+  text-align: center;
+  height: 60px;
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+}
+
+.MovieCard__p--title {
+  margin: 0;
+  margin-top: 2%;
+  padding: 0;
+  z-index: 1;
+}
+
+.MovieCard__img--favorite-icon {
+  float: right;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  z-index: 2;
+}

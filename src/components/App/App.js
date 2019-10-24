@@ -10,29 +10,29 @@ import { bindActionCreators } from 'redux';
 import './App.scss';
 
 class App extends Component {
-
   componentDidMount = async () => {
     try {
-      const { setMovies } = this.props
+      const { setMovies } = this.props;
       isLoading(true);
       let movieData = await getMovies();
       isLoading(false);
       setMovies(movieData);
-    } catch({message}) {
+    } catch ({ message }) {
       isLoading(false);
       hasErrored(message);
     }
   }
 
+
   render() {
+    // const { movies, hasError, setLoading } = this.props;
     return (
-      <>
-        <h1>Screening Room</h1>
+      <main className='main'>
         <Nav />
           <Route exact path='/' render={() => <Container />} />
           <Route exact path='/login' render={() => <AccessModal />} />
           <Route exact path='/favorites' render={() => <Container />} />
-      </>
+      </main>
     );
   }
 }
@@ -43,9 +43,10 @@ const mapStateToProps = ({ movies, hasError, isLoading }) => ({
   isLoading
 });
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ setMovies }, dispatch);
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({ setMovies }, dispatch)
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
