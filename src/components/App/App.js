@@ -30,7 +30,7 @@ class App extends Component {
       <main className='main'>
         <Nav />
           <Route exact path='/' render={() => <Container />} />
-          <Route exact path='/login' render={() => <AccessModal />} />
+          <Route path='/login' render={() => <AccessModal />} />
           <Route exact path='/favorites' render={() => <Container />} />
       </main>
     );
