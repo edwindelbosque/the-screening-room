@@ -82,11 +82,9 @@ class SignUpForm extends Component {
           onChange={(e) => this.handleChange(e)}
         ></input>
         </div>
-        <Link to='/'>
+        <Link to='/' onClick={this.handleClick}>
           <button 
-            type='submit' 
             className='Form__button'
-            onClick={(e) => this.handleClick(e)}
           >
             Continue
           </button>
