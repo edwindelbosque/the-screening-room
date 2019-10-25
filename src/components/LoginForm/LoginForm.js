@@ -56,7 +56,7 @@ class LoginForm extends Component {
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
         {errMsg ? (
-          <p className='email-error'>{errMsg}</p>
+          <p className='login-message login-error'>{errMsg}</p>
         ) : (
           <p className='login-message'>
             Sign in with your email to keep track of your favorite movies.
@@ -66,29 +66,53 @@ class LoginForm extends Component {
           <label htmlFor='email' className='Form__label'>
             Your email
           </label>
-          <input
-            id='email'
-            type='text'
-            placeholder='your@email.com'
-            className='Form__input'
-            name='email'
-            value={email}
-            onChange={e => this.handleChange(e)}
-          ></input>
+          {errMsg ? (
+            <input
+              id='email'
+              type='text'
+              placeholder='your@email.com'
+              className='Form__input--error Form__input'
+              name='email'
+              value={email}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          ) : (
+            <input
+              id='email'
+              type='text'
+              placeholder='your@email.com'
+              className='Form__input'
+              name='email'
+              value={email}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          )}
         </div>
         <div>
           <label htmlFor='password' className='Form__label'>
             Your password
           </label>
-          <input
-            id='password'
-            type='password'
-            className='Form__input'
-            name='password'
-            placeholder='Must have at least 8 characters'
-            value={password}
-            onChange={e => this.handleChange(e)}
-          ></input>
+          {errMsg ? (
+            <input
+              id='password'
+              type='password'
+              className='Form__input--error Form__input'
+              name='password'
+              placeholder='Must have at least 8 characters'
+              value={password}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          ) : (
+            <input
+              id='password'
+              type='password'
+              className='Form__input'
+              name='password'
+              placeholder='Must have at least 8 characters'
+              value={password}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          )}
         </div>
         <button
           type='submit'
