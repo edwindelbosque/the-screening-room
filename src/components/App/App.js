@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
+import Footer from '../Footer/Footer';
 import { getMovies, getFavorites, postFavorite } from '../../apiCalls/apiCalls';
 import { setMovies, isLoading, hasError, addFavorite, setFavorites } from '../../actions';
 import { connect } from 'react-redux';
@@ -37,9 +38,10 @@ class App extends Component {
     return (
       <main className='main'>
         <Nav />
-        <Route exact path='/' render={() => <Container />} />
-        <Route path='/(login|signup)' render={() => <AccessModal />} />
-        <Route exact path='/favorites' render={() => <Container />} />
+          <Route path='/(|movies|signup|login)' render={() => <Container />} />
+          <Route path='/(login|signup)' render={() => <AccessModal />} />
+          <Route exact path='/favorites' render={() => <Container />} />
+        <Footer />
       </main>
     );
   }

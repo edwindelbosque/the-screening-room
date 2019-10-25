@@ -10,6 +10,7 @@ export const getMovies = async () => {
   const cleanedMovies = await results.map(async result => {
     const {
       adult,
+      id,
       backdrop_path,
       genre_ids,
       title,
@@ -23,6 +24,7 @@ export const getMovies = async () => {
       wallpaper: `${imageBaseUrl}${backdrop_path}`,
       genre: await getGenresData(genre_ids),
       title,
+      id,
       overview,
       poster: `${imageBaseUrl}${poster_path}`,
       release_date,

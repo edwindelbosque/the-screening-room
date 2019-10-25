@@ -1,18 +1,18 @@
-import React from 'react';
-import Container from '../Container/Container';
-import Nav from '../Nav/Nav';
-import './Movies.scss';
+// import React from 'react';
+// import Container from '../Container/Container';
+// import Nav from '../Nav/Nav';
+// import './Movies.scss';
 
-const Movies = () => {
-  return (
-    <section className='movies-section'>
-      <Nav />
-      <div>
+// const Movies = () => {
+//   return (
+//     <section className='movies-section'>
+//       <Nav />
+//       <div>
 
-      </div>
-      <Container />
-    </section>
-  )
-}
+//       </div>
+//       <Container />
+//     </section>
+//   )
+// }
 
-export default Movies;
+// export default Movies;

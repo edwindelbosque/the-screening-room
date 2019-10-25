@@ -11,7 +11,7 @@ const Nav = ({ movies }) => {
         <header className='Nav'>
           <h1>The Screening Room</h1>
           <ul className='Nav__ul'>
-            <Link to='/' className='Nav__li link-wrapper'>
+            <Link to='/movies' className='Nav__li link-wrapper'>
               <li className='link hover-home'>Home</li>
             </Link>
             <Link to='/favorites' className='Nav__li link-wrapper'>
