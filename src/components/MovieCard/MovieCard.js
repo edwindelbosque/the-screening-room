@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addFavorite } from '../../actions';
 
-const MovieCard = (movie, user, favorites) => {
+const MovieCard = (movie) => {
   const { title, poster } = movie;
-  // let isFavorite = favorites.map(movie => movie.title).includes(title) ? 'favorite' : '';
 
   return (
     <div className={`MovieCard__div--container`}>
