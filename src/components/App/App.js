@@ -4,7 +4,7 @@ import Nav from '../Nav/Nav';
 import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import { getMovies, getFavorites, postFavorite } from '../../apiCalls/apiCalls';
-import { setMovies, isLoading, hasErrored, addFavorite, setFavorites } from '../../actions';
+import { setMovies, isLoading, hasError, addFavorite, setFavorites } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
@@ -19,7 +19,7 @@ class App extends Component {
       setMovies(movieData);
     } catch ({ message }) {
       isLoading(false);
-      hasErrored(message);
+      hasError(message);
       }
     }
 
@@ -29,7 +29,7 @@ class App extends Component {
       addFavorite(favoritesData)
 
     } catch ({message}){
-      hasErrored(message)
+      hasError(message)
     }
   }
 

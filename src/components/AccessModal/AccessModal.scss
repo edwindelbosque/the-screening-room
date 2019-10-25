@@ -4,19 +4,11 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  content: url(https://i.imgur.com/YMveHhd.png);
+  background-image: url(https://i.imgur.com/z1Mkm3O.jpg);
+  background-position: center top;
+  background-size: cover;
   transform: translate3d(-50%, -50%, 0);
   object-fit: cover;
-}
-
-.modal-backdrop-white {
-  background: white;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
 }
 
 .modal-container {

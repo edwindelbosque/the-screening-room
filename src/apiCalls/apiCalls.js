@@ -57,7 +57,7 @@ export const createUser = async newUser => {
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw Error('Email address already in use')
+    throw new Error('Email address already in use');
   }
   return response.json();
 };
@@ -72,10 +72,12 @@ export const selectUser = async recurrentUser => {
     body: JSON.stringify(recurrentUser)
   };
   const response = await fetch(url, options);
-  const userDetails = await response.json();
-  console.log(userDetails);
-  return userDetails;
 }
+  if (!response.ok) {
+    throw new Error('Login credentials are invalid');
+  }
+  return response.json();
+};
 
 export const getFavorites = async userId => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;

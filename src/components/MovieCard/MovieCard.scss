@@ -6,6 +6,13 @@
   justify-content: center;
   margin: 2% 1%;
   width: 350px;
+  transition: .15s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+    transition: .15s;
+  }
 }
 
 .MovieCard__img--poster {
@@ -18,6 +25,11 @@
     -0.25turn,
     #f8c60e,
     #fadb42,
+    #fadb42,
+    white,
+    white,
+    white,
+    white,
     white,
     white,
     white,
@@ -58,4 +70,51 @@
   padding: 0;
   width: 30px;
   z-index: 2;
+}
+
+.button-container {
+  width: 45px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    width: 4px;
+    border-radius: 1px;
+  }
+}
+
+.stick-1 {
+  transform: rotate(90deg);
+  height: 22px;
+  background-color: rgb(223, 152, 0);
+  position: absolute;
+  transition: .2s;
+}
+
+.stick-2 {
+  background-color: rgb(223, 134, 0);
+  height: 22px;
+  transition: .2s;
+}
+
+.stick-1-active {
+  transform: rotate(40deg);
+  height: 23px;
+  background-color: rgba(223, 119, 0, 0.329);
+  position: absolute;
+  margin-left: 5px;
+  transition: .2s;
+  border-radius: 0px;
+}
+
+.stick-2-active {
+  height: 8px;
+  margin-right: 11px;
+  background-color: rgba(223, 119, 0, 0.329);
+  transform: rotate(-49deg);
+  margin-top: 7px;
+  transition: .2s;
+  border-radius: 0px;
 }

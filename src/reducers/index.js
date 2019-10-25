@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { movies } from './movies';
-import { hasError } from './hasError';
+import { errMsg } from './errMsg';
 import { setLoading } from './setLoading';
 import { favorites } from './favorites';
 import { setUser } from './user';
