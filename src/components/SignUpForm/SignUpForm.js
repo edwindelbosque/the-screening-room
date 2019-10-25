@@ -64,10 +64,6 @@ class SignUpForm extends Component {
             movies.
           </p>
         )}
-        {/* <p className='signup-message'>
-          Create an account with your email to keep track of your favorite
-          movies.
-        </p> */}
         <div>
           <label htmlFor='email' className='Form__label'>
             Your name

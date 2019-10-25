@@ -53,7 +53,6 @@ class LoginForm extends Component {
     }
     const { email, password } = this.state;
     const { errMsg } = this.props;
-    console.log(errMsg);
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
         {errMsg ? (
