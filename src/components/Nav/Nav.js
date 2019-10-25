@@ -5,19 +5,20 @@ import { connect } from 'react-redux';
 
 const Nav = ({ movies }) => {
 
+
   return (
-    <div className='Nav__container' style={{ backgroundImage: `${movies.length ? `linear-gradient(to top, #00000000, black), url(${movies[Math.floor(Math.random() * Math.floor(19))].wallpaper})` : 'none' }` }} >
+    <div className='Nav__container' style={{ backgroundImage: `${movies.length ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${movies[Math.floor(Math.random() * Math.floor(19))].wallpaper})` : 'none' }` }} >
         <header className='Nav'>
           <h1>The Screening Room</h1>
           <ul className='Nav__ul'>
-            <Link to='/' className='Nav__li'>
-              <li>Home</li>
+            <Link to='/' className='Nav__li link-wrapper'>
+              <li className='link hover-home'>Home</li>
             </Link>
-            <Link to='/favorites' className='Nav__li'>
-              <li>Favorites</li>
+            <Link to='/favorites' className='Nav__li link-wrapper'>
+              <li className='link hover-1'>Favorites</li>
             </Link>
-            <Link to='/signup' className='Nav__li'>
-              <li>Account</li>
+            <Link to='/signup' className='Nav__li link-wrapper'>
+              <li className='link hover-1'>Account</li>
             </Link>
           </ul>
         </header>

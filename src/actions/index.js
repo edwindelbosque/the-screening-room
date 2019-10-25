@@ -13,6 +13,11 @@ export const hasErrored = errMsg => ({
   errMsg
 });
 
+export const toggleFavorite = title => ({
+  type: 'TOGGLE_FAVORITE',
+  title
+});
+
 export const setUser = user => ({
   type: 'USER',
   user
