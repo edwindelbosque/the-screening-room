@@ -6,6 +6,13 @@
   justify-content: center;
   margin: 2% 1%;
   width: 350px;
+  transition: .15s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+    transition: .15s;
+  }
 }
 
 .MovieCard__img--poster {
@@ -18,6 +25,14 @@
     -0.25turn,
     #f8c60e,
     #fadb42,
+    #fadb42,
+    white,
+    white,
+    white,
+    white,
+    white,
+    white,
+    white,
     white,
     white,
     white,

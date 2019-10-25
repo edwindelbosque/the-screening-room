@@ -5,7 +5,7 @@ import './Movies.scss';
 
 const Movies = () => {
   return (
-    <section>
+    <section className='movies-section'>
       <Nav />
       <div>
 
