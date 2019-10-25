@@ -1,9 +1,9 @@
 import React from 'react';
-// import addFavorite from '../../Images/addFavorite.png';
+import addFavoriteImg from '../../Images/addFavorite.png';
 import './MovieCard.scss';
-import { toggleFavorite } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { addFavorite, toggleFavorite } from '../../actions';
 
 const MovieCard = movie => {
   const { title, poster, favorite, toggleFavorite } = movie;
@@ -13,7 +13,7 @@ const MovieCard = movie => {
   }
 
   return (
-    <div className='MovieCard__div--container'>
+    <div className={`MovieCard__div--container`}>
       <img
         className='MovieCard__img--poster'
         src={poster}
@@ -23,7 +23,7 @@ const MovieCard = movie => {
         <h3 className='MovieCard__h3--title'>{title}</h3>
         {/* <img
           className='MovieCard__img--favorite-icon'
-          src={addFavorite}
+          src={addFavoriteImg}
           alt='Favorite icon'
         /> */}
         <div className='button-container' onClick={handleClick}>
@@ -35,11 +35,14 @@ const MovieCard = movie => {
   );
 };
 
-const mapStateToProps = ({ movies }) => ({
-  movies
+const mapStateToProps = ({ movies, favorites, user }) => ({
+  movies,
+  favorites,
+  user
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ toggleFavorite }, dispatch);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addFavorite, toggleFavorite }, dispatch)
+} 
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

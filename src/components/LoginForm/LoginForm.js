@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { selectUser } from '../../apiCalls/apiCalls';
-import { setUser, hasError } from '../../actions/index';
+import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
+import { setUser, hasError, setFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import './LoginForm.scss';
 import { Redirect } from 'react-router-dom';
@@ -26,7 +26,9 @@ class LoginForm extends Component {
     const { setUser, hasError } = this.props;
     try {
       let foundUser = await selectUser(this.state);
+      console.log('foundUser', foundUser)
       setUser(foundUser);
+      this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });
     } catch ({ message }) {
       hasError(message);
@@ -46,6 +48,21 @@ class LoginForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
   };
+
+  findUserFavorites = async (user) => {
+    const { setFavorites } = this.props;
+    console.log(user.id)
+    if (user.id) {
+      try {
+        console.log('inside try favorites')
+        let favorites = await getFavorites(user.id)
+        console.log('favorite-favorite', favorites.favorites)
+        setFavorites(favorites.favorites);
+      } catch ({ message }) {
+        hasErrored(message)
+      }
+    }
+  } 
 
   render() {
     if (this.state.isLoggedIn) {
@@ -133,10 +150,7 @@ const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, hasError }, dispatch);
+  return bindActionCreators({ setUser, setFavorites, hasError }, dispatch);
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

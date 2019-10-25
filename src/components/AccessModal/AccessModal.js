@@ -4,7 +4,8 @@ import LoginForm from '../LoginForm/LoginForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import { Route, NavLink, Link } from 'react-router-dom';
 
-const AccessModal = () => {
+const AccessModal = ({findUserFavorites}) => {
+ 
   return (
     <>
     <Link to='/'>
