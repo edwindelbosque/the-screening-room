@@ -85,8 +85,8 @@ export const getFavorites = async userId => {
   return favorites;
 }
 
-export const postFavorite = async (movie, id) => {
-  const url = `/api/v1/users/${id}/:favorites_type`;
+export const postFavorite = async (movie, userId) => {
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
     headers: {
