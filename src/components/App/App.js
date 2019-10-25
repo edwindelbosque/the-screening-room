@@ -3,8 +3,8 @@ import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
-import { getMovies } from '../../apiCalls/apiCalls';
-import { setMovies, isLoading, hasErrored } from '../../actions';
+import { getMovies, postFavorite } from '../../apiCalls/apiCalls';
+import { setMovies, isLoading, hasErrored, addFavorite } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
@@ -23,6 +23,15 @@ class App extends Component {
     }
   }
 
+  toggleFavorites = async(movie) => {
+    try {
+      let favoritesData = await postFavorite(movie)//post Favorite
+      addFavorite(favoritesData)
+
+    } catch ({message}){
+      hasErrored(message)
+    }
+  }
 
   render() {
     // const { movies, hasError, setLoading } = this.props;
@@ -31,7 +40,7 @@ class App extends Component {
         <Nav />
           <Route exact path='/' render={() => <Container />} />
           <Route path='/login' render={() => <AccessModal />} />
-          <Route exact path='/favorites' render={() => <Container />} />
+          <Route exact path='/favorites' render={() => <Container toggleFavorites={toggleFavorites}/>} />
       </main>
     );
   }
@@ -43,9 +52,9 @@ const mapStateToProps = ({ movies, hasError, isLoading }) => ({
   isLoading
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ setMovies }, dispatch);
-
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ setMovies }, dispatch)
+}
 export default connect(
   mapStateToProps,
   mapDispatchToProps
