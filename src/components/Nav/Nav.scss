@@ -1,6 +1,9 @@
 .Nav__container {
   height: 500px;
-  background-color: green;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  background-image: linear-gradient(to bottom, white, black)
 }
 
 .Nav {
@@ -24,10 +27,12 @@
   a {    
     text-decoration: none;
     font-size: 1.4em;
+    color: white;
   }
 
   h1 {
     margin-left: 25px;
     font-size: 2em;
+    color: white;
   }
 }

@@ -39,8 +39,8 @@ class App extends Component {
       <main className='main'>
         <Nav />
           <Route exact path='/' render={() => <Container />} />
-          <Route path='/login' render={() => <AccessModal />} />
-          <Route exact path='/favorites' render={() => <Container toggleFavorites={toggleFavorites}/>} />
+          <Route path='/(login|signup)' render={() => <AccessModal />} />
+          <Route exact path='/favorites' render={() => <Container />} />
       </main>
     );
   }

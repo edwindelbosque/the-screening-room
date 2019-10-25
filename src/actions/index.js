@@ -17,3 +17,8 @@ export const addFavorite = newFavorite => ({
   type: 'ADD_FAVORITE',
   newFavorite
 });
+
+export const setUser = user => ({
+  type: 'USER',
+  user
+})
