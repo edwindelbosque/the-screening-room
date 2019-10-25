@@ -4,16 +4,16 @@ import Nav from '../Nav/Nav';
 import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import Footer from '../Footer/Footer';
-import { getMovies } from '../../apiCalls/apiCalls';
-import { setMovies, isLoading, hasError } from '../../actions';
+import { getMovies, getFavorites, postFavorite } from '../../apiCalls/apiCalls';
+import { setMovies, isLoading, hasError, addFavorite, setFavorites } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
 
 class App extends Component {
   componentDidMount = async () => {
+    const { setMovies } = this.props;
     try {
-      const { setMovies } = this.props;
       isLoading(true);
       let movieData = await getMovies();
       isLoading(false);
@@ -21,8 +21,18 @@ class App extends Component {
     } catch ({ message }) {
       isLoading(false);
       hasError(message);
+      }
     }
-  }
+
+  toggleFavorites = async(movie) => {
+    try {
+      let favoritesData = await postFavorite(movie)
+      addFavorite(favoritesData)
+
+    } catch ({message}){
+      hasError(message)
+    }
+  };
 
   render() {
     return (
@@ -37,15 +47,17 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ movies, hasError, isLoading }) => ({
+const mapStateToProps = ({ movies, hasError, isLoading, user, favorites }) => ({
   movies,
   hasError,
-  isLoading
+  isLoading,
+  user,
+  favorites
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ setMovies }, dispatch);
-
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ setMovies }, dispatch)
+}
 export default connect(
   mapStateToProps,
   mapDispatchToProps

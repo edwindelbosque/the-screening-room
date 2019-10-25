@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { selectUser } from '../../apiCalls/apiCalls';
-import { setUser, hasError } from '../../actions/index';
+import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
+import { setUser, hasError, setFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import './LoginForm.scss';
 import { Redirect } from 'react-router-dom';
@@ -26,7 +26,9 @@ class LoginForm extends Component {
     const { setUser, hasError } = this.props;
     try {
       let foundUser = await selectUser(this.state);
+      console.log('foundUser', foundUser)
       setUser(foundUser);
+      this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });
     } catch ({ message }) {
       hasError(message);
@@ -47,6 +49,21 @@ class LoginForm extends Component {
     event.preventDefault();
   };
 
+  findUserFavorites = async (user) => {
+    const { setFavorites } = this.props;
+    console.log(user.id)
+    if (user.id) {
+      try {
+        console.log('inside try favorites')
+        let favorites = await getFavorites(user.id)
+        console.log('favorite-favorite', favorites.favorites)
+        setFavorites(favorites.favorites);
+      } catch ({ message }) {
+        hasErrored(message)
+      }
+    }
+  } 
+
   render() {
     if (this.state.isLoggedIn) {
       return <Redirect to='/' />;
@@ -56,7 +73,7 @@ class LoginForm extends Component {
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
         {errMsg ? (
-          <p className='email-error'>{errMsg}</p>
+          <p className='login-message login-error'>{errMsg}</p>
         ) : (
           <p className='login-message'>
             Sign in with your email to keep track of your favorite movies.
@@ -66,29 +83,53 @@ class LoginForm extends Component {
           <label htmlFor='email' className='Form__label'>
             Your email
           </label>
-          <input
-            id='email'
-            type='text'
-            placeholder='your@email.com'
-            className='Form__input'
-            name='email'
-            value={email}
-            onChange={e => this.handleChange(e)}
-          ></input>
+          {errMsg ? (
+            <input
+              id='email'
+              type='text'
+              placeholder='your@email.com'
+              className='Form__input--error Form__input'
+              name='email'
+              value={email}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          ) : (
+            <input
+              id='email'
+              type='text'
+              placeholder='your@email.com'
+              className='Form__input'
+              name='email'
+              value={email}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          )}
         </div>
         <div>
           <label htmlFor='password' className='Form__label'>
             Your password
           </label>
-          <input
-            id='password'
-            type='password'
-            className='Form__input'
-            name='password'
-            placeholder='Must have at least 8 characters'
-            value={password}
-            onChange={e => this.handleChange(e)}
-          ></input>
+          {errMsg ? (
+            <input
+              id='password'
+              type='password'
+              className='Form__input--error Form__input'
+              name='password'
+              placeholder='Must have at least 8 characters'
+              value={password}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          ) : (
+            <input
+              id='password'
+              type='password'
+              className='Form__input'
+              name='password'
+              placeholder='Must have at least 8 characters'
+              value={password}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          )}
         </div>
         <button
           type='submit'
@@ -109,10 +150,7 @@ const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, hasError }, dispatch);
+  return bindActionCreators({ setUser, setFavorites, hasError }, dispatch);
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

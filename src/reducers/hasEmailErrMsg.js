@@ -1,6 +1,6 @@
-export const errMsg = (state = '', action) => {
+export const emailErrMsg = (state = '', action) => {
   switch (action.type) {
-    case 'HAS_ERROR':
+    case 'HAS_EMAIL_ERROR':
       return action.error;
     default:
       return state;
