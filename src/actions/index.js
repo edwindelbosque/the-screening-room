@@ -13,6 +13,11 @@ export const hasErrored = errMsg => ({
   errMsg
 });
 
+export const setFavorites = favorites => ({
+  type: 'SET_FAVORITES',
+  favorites
+});
+
 export const addFavorite = newFavorite => ({
   type: 'ADD_FAVORITE',
   newFavorite

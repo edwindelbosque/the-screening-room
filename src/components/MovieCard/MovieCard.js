@@ -1,11 +1,16 @@
 import React from 'react';
-import addFavorite from '../../Images/addFavorite.png';
+import addFavoriteImg from '../../Images/addFavorite.png';
 import './MovieCard.scss';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addFavorite } from '../../actions';
 
-const MovieCard = movie => {
+const MovieCard = (movie, user, favorites) => {
   const { title, poster } = movie;
+  // let isFavorite = favorites.map(movie => movie.title).includes(title) ? 'favorite' : '';
+
   return (
-    <div className='MovieCard__div--container'>
+    <div className={`MovieCard__div--container`}>
       <img
         className='MovieCard__img--poster'
         src={poster}
@@ -15,7 +20,7 @@ const MovieCard = movie => {
         <h3 className='MovieCard__h3--title'>{title}</h3>
         <img
           className='MovieCard__img--favorite-icon'
-          src={addFavorite}
+          src={addFavoriteImg}
           alt='Favorite icon'
         />
       </footer>
@@ -23,4 +28,13 @@ const MovieCard = movie => {
   );
 };
 
-export default MovieCard;
+const mapStateToProps = ({ favorites, user }) => ({
+  favorites,
+  user
+});
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addFavorite }, dispatch)
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

@@ -77,6 +77,14 @@ export const selectUser = async recurrentUser => {
   return userDetails;
 }
 
+export const getFavorites = async userId => {
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  const response = await fetch(url);
+  const favorites = await response.json();
+  console.log(favorites)
+  return favorites;
+}
+
 export const postFavorite = async (movie, id) => {
   const url = `/api/v1/users/${id}/:favorites_type`;
   const options = {
