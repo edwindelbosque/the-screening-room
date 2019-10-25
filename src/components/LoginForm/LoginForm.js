@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { selectUser } from '../../apiCalls/apiCalls';
-import { setUser, hasErrored } from '../../actions/index';
+import { setUser, hasError } from '../../actions/index';
 import { connect } from 'react-redux';
 import './LoginForm.scss';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 class LoginForm extends Component {
@@ -12,7 +12,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
-      hasErrored: false
+      isLoggedIn: false
     };
   }
 
@@ -23,12 +23,13 @@ class LoginForm extends Component {
   };
 
   handleClick = async () => {
-    const { setUser } = this.props;
+    const { setUser, hasError } = this.props;
     try {
       let foundUser = await selectUser(this.state);
       setUser(foundUser);
+      this.setState({ isLoggedIn: true });
     } catch ({ message }) {
-      hasErrored(message);
+      hasError(message);
     }
     this.clearInputs();
   };
@@ -47,12 +48,21 @@ class LoginForm extends Component {
   };
 
   render() {
+    if (this.state.isLoggedIn) {
+      return <Redirect to='/' />;
+    }
     const { email, password } = this.state;
+    const { errMsg } = this.props;
+    console.log(errMsg);
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
-        <p className='login-message'>
-          Sign in with your email to keep track of your favorite movies.
-        </p>
+        {errMsg ? (
+          <p className='email-error'>{errMsg}</p>
+        ) : (
+          <p className='login-message'>
+            Sign in with your email to keep track of your favorite movies.
+          </p>
+        )}
         <div>
           <label htmlFor='email' className='Form__label'>
             Your email
@@ -81,26 +91,29 @@ class LoginForm extends Component {
             onChange={e => this.handleChange(e)}
           ></input>
         </div>
-        <Link to='/'>
-          <button
-            type='submit'
-            className='Form__button'
-            onClick={e => this.handleClick(e)}
-          >
-            Continue
-          </button>
-        </Link>
+        <button
+          type='submit'
+          className='Form__button'
+          onClick={e => this.handleClick(e)}
+        >
+          Continue
+        </button>
       </form>
     );
   }
 }
 
+const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
+  movies,
+  errMsg,
+  isLoading
+});
+
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser }, dispatch);
+  return bindActionCreators({ setUser, hasError }, dispatch);
 };
 
-// export default LoginForm;
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
