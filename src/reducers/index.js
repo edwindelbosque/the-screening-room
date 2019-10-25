@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { movies } from './movies';
-import { hasError } from './hasError';
+import { errMsg } from './errMsg';
 import { setLoading } from './setLoading';
 import { setUser } from './user';
 
 const rootReducer = combineReducers({
   movies,
-  hasError,
+  errMsg,
   setLoading,
   user: setUser
 });

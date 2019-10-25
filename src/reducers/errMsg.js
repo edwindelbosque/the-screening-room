@@ -1,7 +1,7 @@
-export const hasError = (state='', action) => {
+export const errMsg = (state='', action) => {
   switch(action.type) {
     case 'HAS_ERROR':
-      return action.hasError
+      return action.error
     default:
       return state  
   }

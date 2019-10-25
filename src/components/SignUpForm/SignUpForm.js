@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { createUser } from '../../apiCalls/apiCalls';
-import { setUser, hasErrored } from '../../actions/index';
+import { setUser, hasError } from '../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './SignUpForm.scss';
-import { Link } from 'react-router-dom';
 
 class SignUpForm extends Component {
   constructor() {
@@ -12,7 +12,8 @@ class SignUpForm extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      isLoggedIn: false
     };
   }
 
@@ -23,12 +24,13 @@ class SignUpForm extends Component {
   };
 
   handleClick = async () => {
-    const { setUser } = this.props;
+    const { setUser, hasError } = this.props;
     try {
       let newUser = await createUser(this.state);
       setUser(newUser);
+      this.setState({ isLoggedIn: true });
     } catch ({ message }) {
-      hasErrored(message);
+      hasError(message);
     }
     this.clearInputs();
   };
@@ -47,14 +49,21 @@ class SignUpForm extends Component {
   };
 
   render() {
+    if (this.state.isLoggedIn) {
+      return <Redirect to='/' />;
+    }
     const { name, email, password } = this.state;
+    const { errMsg } = this.props;
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
-        {/* {emailError ? <p className="email-error">{emailError}</p> : <p className="signup-message">Create an account with your email to keep track of your favorite movies.</p>} */}
-        <p className='signup-message'>
-          Create an account with your email to keep track of your favorite
-          movies.
-        </p>
+        {errMsg ? (
+          <p className='email-error'>{errMsg}</p>
+        ) : (
+          <p className='signup-message'>
+            Create an account with your email to keep track of your favorite
+            movies.
+          </p>
+        )}
         <div>
           <label htmlFor='email' className='Form__label'>
             Your name
@@ -97,25 +106,29 @@ class SignUpForm extends Component {
             onChange={e => this.handleChange(e)}
           ></input>
         </div>
-        <Link to='/'>
-          <button
-            type='submit'
-            className='Form__button'
-            onClick={this.handleClick}
-          >
-            Continue
-          </button>
-        </Link>
+        <button
+          type='submit'
+          className='Form__button'
+          onClick={this.handleClick}
+        >
+          Continue
+        </button>
       </form>
     );
   }
 }
 
+const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
+  movies,
+  errMsg,
+  isLoading
+});
+
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser }, dispatch);
+  return bindActionCreators({ setUser, hasError }, dispatch);
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SignUpForm);

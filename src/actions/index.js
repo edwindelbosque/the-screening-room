@@ -8,9 +8,9 @@ export const isLoading = bool => ({
   bool
 });
 
-export const hasErrored = errMsg => ({
+export const hasError = (error) => ({
   type: 'HAS_ERROR',
-  errMsg
+  error
 });
 
 export const toggleFavorite = title => ({
