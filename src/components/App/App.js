@@ -31,7 +31,7 @@ class App extends Component {
     } catch ({message}){
       hasError(message)
     }
-  }
+  };
 
   render() {
     return (

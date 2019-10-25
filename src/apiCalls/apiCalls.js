@@ -74,7 +74,7 @@ export const selectUser = async recurrentUser => {
   const response = await fetch(url, options);
 }
   if (!response.ok) {
-    throw new Error('Login credentials are invalid');
+    throw new Error('Email and password do not match');
   }
   return response.json();
 };

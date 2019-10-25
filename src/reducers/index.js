@@ -4,13 +4,15 @@ import { errMsg } from './errMsg';
 import { setLoading } from './setLoading';
 import { favorites } from './favorites';
 import { setUser } from './user';
+import { emailErrMsg } from './hasEmailErrMsg';
 
 
 const rootReducer = combineReducers({
   movies,
-  error: hasError,
+  errMsg,
   isLoading: setLoading,
   favorites,
+  emailErrMsg,
   user: setUser
 }) 
 
