@@ -87,32 +87,34 @@
 
 .stick-1 {
   transform: rotate(90deg);
-  height: 25px;
-  background-color: rgb(51, 51, 51);
+  height: 22px;
+  background-color: rgb(223, 152, 0);
   position: absolute;
   transition: .2s;
 }
 
 .stick-2 {
-  background-color: rgb(51, 51, 51);
-  height: 25px;
+  background-color: rgb(223, 134, 0);
+  height: 22px;
   transition: .2s;
 }
 
 .stick-1-active {
   transform: rotate(40deg);
   height: 23px;
-  background-color: rgb(43, 109, 73);
+  background-color: rgba(223, 119, 0, 0.329);
   position: absolute;
   margin-left: 5px;
   transition: .2s;
+  border-radius: 0px;
 }
 
 .stick-2-active {
-  height: 11px;
-  margin-right: 9px;
-  background-color: rgb(43, 109, 73);
-  transform: rotate(-40deg);
+  height: 8px;
+  margin-right: 11px;
+  background-color: rgba(223, 119, 0, 0.329);
+  transform: rotate(-49deg);
   margin-top: 7px;
   transition: .2s;
+  border-radius: 0px;
 }
