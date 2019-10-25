@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { selectUser } from '../../apiCalls/apiCalls';
-import { setUser, hasErrored } from '../../actions/index';
+import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
+import { setUser, hasErrored, setFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import './LoginForm.scss';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,9 @@ class LoginForm extends Component {
     const { setUser } = this.props;
     try {
       let foundUser = await selectUser(this.state);
+      console.log('foundUser', foundUser)
       setUser(foundUser);
+      this.findUserFavorites(foundUser);
     } catch ({ message }) {
       hasErrored(message);
     }
@@ -45,6 +47,21 @@ class LoginForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
   };
+
+  findUserFavorites = async (user) => {
+    const { setFavorites } = this.props;
+    console.log(user.id)
+    if (user.id) {
+      try {
+        console.log('inside try favorites')
+        let favorites = await getFavorites(user.id)
+        console.log('favorite-favorite', favorites.favorites)
+        setFavorites(favorites.favorites);
+      } catch ({ message }) {
+        hasErrored(message)
+      }
+    }
+  } 
 
   render() {
     const { email, password } = this.state;
@@ -96,11 +113,7 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser }, dispatch);
+  return bindActionCreators({ setUser, setFavorites }, dispatch);
 };
 
-// export default LoginForm;
-export default connect(
-  null,
-  mapDispatchToProps
-)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);
