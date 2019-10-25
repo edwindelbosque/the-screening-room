@@ -74,7 +74,6 @@ export const selectUser = async recurrentUser => {
     body: JSON.stringify(recurrentUser)
   };
   const response = await fetch(url, options);
-}
   if (!response.ok) {
     throw new Error('Email and password do not match');
   }
@@ -85,7 +84,6 @@ export const getFavorites = async userId => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const response = await fetch(url);
   const favorites = await response.json();
-  console.log(favorites)
   return favorites;
 }
 

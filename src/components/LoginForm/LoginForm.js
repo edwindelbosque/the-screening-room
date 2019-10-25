@@ -26,7 +26,6 @@ class LoginForm extends Component {
     const { setUser, hasError } = this.props;
     try {
       let foundUser = await selectUser(this.state);
-      console.log('foundUser', foundUser)
       setUser(foundUser);
       this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });
@@ -51,15 +50,12 @@ class LoginForm extends Component {
 
   findUserFavorites = async (user) => {
     const { setFavorites } = this.props;
-    console.log(user.id)
     if (user.id) {
       try {
-        console.log('inside try favorites')
         let favorites = await getFavorites(user.id)
-        console.log('favorite-favorite', favorites.favorites)
         setFavorites(favorites.favorites);
       } catch ({ message }) {
-        hasErrored(message)
+        hasError(message)
       }
     }
   } 
