@@ -76,7 +76,28 @@ export const selectUser = async recurrentUser => {
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error('Login credentials are invalid');
+    throw new Error('Email and password do not match');
   }
   return response.json();
 };
+
+export const getFavorites = async userId => {
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  const response = await fetch(url);
+  const favorites = await response.json();
+  return favorites;
+}
+
+export const postFavorite = async (movie, userId) => {
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(movie)
+  }
+  const response = await fetch(url, options)
+  const newFavorite = await response.json();
+  return newFavorite;
+}

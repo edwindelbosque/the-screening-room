@@ -8,8 +8,13 @@ export const isLoading = bool => ({
   bool
 });
 
-export const hasError = (error) => ({
+export const hasError = error => ({
   type: 'HAS_ERROR',
+  error
+});
+
+export const hasEmailError = error => ({
+  type: 'HAS_EMAIL_ERROR',
   error
 });
 
@@ -18,7 +23,17 @@ export const toggleFavorite = title => ({
   title
 });
 
+export const setFavorites = favorites => ({
+  type: 'SET_FAVORITES',
+  favorites
+});
+
+export const addFavorite = newFavorite => ({
+  type: 'ADD_FAVORITE',
+  newFavorite
+});
+
 export const setUser = user => ({
   type: 'USER',
   user
-})
+});

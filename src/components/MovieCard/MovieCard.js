@@ -1,10 +1,10 @@
 import React from 'react';
-// import addFavorite from '../../Images/addFavorite.png';
+import addFavoriteImg from '../../Images/addFavorite.png';
 import './MovieCard.scss';
-import { toggleFavorite } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import { addFavorite, toggleFavorite } from '../../actions';
 
 const MovieCard = movie => {
   const { title, poster, favorite, toggleFavorite, id } = movie;
@@ -33,11 +33,14 @@ const MovieCard = movie => {
   );
 };
 
-const mapStateToProps = ({ movies }) => ({
-  movies
+const mapStateToProps = ({ movies, favorites, user }) => ({
+  movies,
+  favorites,
+  user
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ toggleFavorite }, dispatch);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addFavorite, toggleFavorite }, dispatch)
+} 
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
