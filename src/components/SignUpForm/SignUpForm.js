@@ -82,15 +82,27 @@ class SignUpForm extends Component {
           <label htmlFor='email' className='Form__label'>
             Your email
           </label>
-          <input
-            id='email'
-            type='text'
-            placeholder='your@email.com'
-            className='Form__input'
-            name='email'
-            value={email}
-            onChange={e => this.handleChange(e)}
-          ></input>
+          {emailErrMsg ? (
+            <input
+              id='email'
+              type='text'
+              placeholder='your@email.com'
+              className='Form__input--error Form__input'
+              name='email'
+              value={email}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          ) : (
+            <input
+              id='email'
+              type='text'
+              placeholder='your@email.com'
+              className='Form__input'
+              name='email'
+              value={email}
+              onChange={e => this.handleChange(e)}
+            ></input>
+          )}
         </div>
         <div>
           <label htmlFor='password' className='Form__label'>

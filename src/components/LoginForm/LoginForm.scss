@@ -66,6 +66,10 @@
       transition: 0.15s;
     }
   }
+
+  .Form__input--error {
+    border-bottom: 1px solid red;
+  }
 }
 
 .login-message {
