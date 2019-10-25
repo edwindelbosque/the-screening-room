@@ -7,7 +7,7 @@ import { setLoading } from './setLoading';
 const rootReducer = combineReducers({
   movies,
   hasError,
-  setLoading
+  setLoading,
 });
 
 export default rootReducer;

@@ -12,3 +12,8 @@ export const hasErrored = errMsg => ({
   type: 'HAS_ERROR',
   errMsg
 });
+
+export const toggleFavorite = title => ({
+  type: 'TOGGLE_FAVORITE',
+  title
+});
