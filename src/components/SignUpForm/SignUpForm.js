@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../../apiCalls/apiCalls';
-import { setUser, hasError } from '../../actions/index';
+import { setUser, hasEmailError } from '../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './SignUpForm.scss';
@@ -24,13 +24,13 @@ class SignUpForm extends Component {
   };
 
   handleClick = async () => {
-    const { setUser, hasError } = this.props;
+    const { setUser, hasEmailError } = this.props;
     try {
       let newUser = await createUser(this.state);
       setUser(newUser);
       this.setState({ isLoggedIn: true });
     } catch ({ message }) {
-      hasError(message);
+      hasEmailError(message);
     }
     this.clearInputs();
   };
@@ -53,11 +53,11 @@ class SignUpForm extends Component {
       return <Redirect to='/' />;
     }
     const { name, email, password } = this.state;
-    const { errMsg } = this.props;
+    const { emailErrMsg } = this.props;
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
-        {errMsg ? (
-          <p className='email-error'>{errMsg}</p>
+        {emailErrMsg ? (
+          <p className='email-error signup-message'>{emailErrMsg}</p>
         ) : (
           <p className='signup-message'>
             Create an account with your email to keep track of your favorite
@@ -118,14 +118,14 @@ class SignUpForm extends Component {
   }
 }
 
-const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
+const mapStateToProps = ({ movies, emailErrMsg, isLoading }) => ({
   movies,
-  errMsg,
+  emailErrMsg,
   isLoading
 });
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, hasError }, dispatch);
+  return bindActionCreators({ setUser, hasEmailError }, dispatch);
 };
 
 export default connect(

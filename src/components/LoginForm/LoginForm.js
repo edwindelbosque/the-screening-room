@@ -56,7 +56,7 @@ class LoginForm extends Component {
     return (
       <form className='form-model' onSubmit={e => this.handleSubmit(e)}>
         {errMsg ? (
-          <p className='email-error'>{errMsg}</p>
+          <p className='login-message login-error'>{errMsg}</p>
         ) : (
           <p className='login-message'>
             Sign in with your email to keep track of your favorite movies.
