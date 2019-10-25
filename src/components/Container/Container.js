@@ -4,7 +4,6 @@ import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
 
 const Container = ({ movies, toggleFavorites }) => {
-  console.log(toggleFavorites);
   const allMovies = movies.map(movie => (
     <MovieCard {...movie} key={movie.id} toggleFavorites={toggleFavorites} />
   ));
