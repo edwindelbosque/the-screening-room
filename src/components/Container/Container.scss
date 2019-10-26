@@ -1,9 +1,16 @@
 .Container {
   display: grid;
-  grid-gap: 50px 20px;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-gap: 50px 40px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   grid-template-rows: auto;
   justify-items: center;
-  overflow: scroll;
-  padding: 35px;
+  padding: 40px 100px;
+}
+
+@media only screen and (max-width: 902px) {
+  .Container {
+    grid-gap: 20px 0px;
+    grid-template-columns: (300px, 500px);
+    padding: 25px 0;
+  }
 }
