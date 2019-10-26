@@ -1,11 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { LoginForm, mapStateToProps, mapDispatchToProps } from './LoginForm';
+import { setUser, hasError, setFavorites } from '../../actions/index';
 
 describe('LoginForm', () => {
   let wrapper;
-  let email = 'vanessa.randall@doane.edu';
-  let password = 'Password123';
   let errMsg = jest.fn();
 
   beforeEach(() => {
@@ -34,5 +33,24 @@ describe('mapStateToProps', () => {
     const mappedProps = mapStateToProps(mockState);
 
     expect(mappedProps).toEqual(expected);
+  });
+});
+
+describe('mapDispatchToProps', () => {
+  let user = {
+    name: 'Vanessa Randall',
+    email: 'vanessa.randall@doane.edu',
+    password: 'Password123',
+    id: 2
+  };
+
+  it('calls dispatch with a setUser action when handleClick is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = setUser(user);
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.setUser(user);
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
 });

@@ -78,6 +78,7 @@ export const selectUser = async recurrentUser => {
   if (!response.ok) {
     throw new Error('Email and password do not match');
   }
+  console.log(response);
   return response.json();
 };
 
