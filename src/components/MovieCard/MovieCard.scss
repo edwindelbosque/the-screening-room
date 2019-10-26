@@ -1,11 +1,13 @@
 .MovieCard__div--container {
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.301);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 2% 1%;
   width: 320px;
+  background: linear-gradient(to left, #02BF67, rgb(85, 216, 140), rgb(236, 236, 236));
+  border-radius: 4px;
   transition: .15s;
   cursor: pointer;
 
@@ -18,6 +20,7 @@
 .MovieCard__img--poster {
   height: 490px;
   object-fit: cover;
+  border-radius: 4px 4px 0 0;
   width: 320px;
 }
 
@@ -49,6 +52,7 @@
   height: 60px;
   margin: 0%;
   display: flex;
+  border-radius: 0 4px 4px 4px;
   justify-content: space-between;
   align-items: center;
   padding: 0%;
