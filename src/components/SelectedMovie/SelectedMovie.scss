@@ -2,11 +2,12 @@
   width: 100%;
   position: relative;
   -webkit-filter: brightness(20%);
-  filter:brightness(75%);
+  filter:brightness(80%);
   border-radius: 4px 4px 0 0;
   object-fit: cover;
   height: 400px;
-  border-bottom: 2px solid rgb(105, 105, 105);
+  border-bottom: 1px solid rgb(172, 172, 172);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.281);
 }
 
 .SelectedMovie__img--close {
@@ -14,7 +15,9 @@
   position: absolute;
   bottom: 110px;
   left: 32px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.712);
+  border-radius: 4px;
+  border: 1px solid rgba(58, 58, 58, 0.863);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.712);
 }
 
 .movie-modal {
@@ -28,12 +31,12 @@
   background-color: white;
   border-radius: 4px;
   border: none;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.301);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.479);
   min-width: 20rem;
   max-width: 60rem;
   width: 800px;
   height: 660px;
-  background: rgb(54, 54, 54);
+  background: rgb(196, 196, 196);
 
   h2 {
     color: rgb(255, 255, 255);
@@ -44,7 +47,7 @@
   h3 {
     margin-top: 30px;
     font-size: 17px;
-    color: rgb(233, 233, 233);
+    color: rgb(48, 48, 48);
     font-weight: 400;
   }
 
@@ -54,12 +57,11 @@
     margin-left: 32px;
     position: relative;
     top: 160px;
-    color: rgb(218, 218, 218);
     font-weight: 300;
   }
 
   h4 {
-    color: rgb(216, 216, 216);
+    color: rgb(0, 0, 0);
     font-weight: 400;
     padding-bottom: 5px;
     width: 200px;
