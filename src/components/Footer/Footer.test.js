@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { App, mapStateToProps, mapDispatchToProps } from './App';
+import Footer from './Footer';
 
-describe('App', () => {
+describe('Footer', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = shallow(<Footer />);
   });
 
   it('should match the snapshot', () => {

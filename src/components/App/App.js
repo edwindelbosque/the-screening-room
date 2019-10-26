@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
 
-class App extends Component {
+export class App extends Component {
   componentDidMount = async () => {
     const { setMovies } = this.props;
     try {
@@ -54,7 +54,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ movies, hasError, isLoading, user, favorites }) => ({
+export const mapStateToProps = ({ movies, hasError, isLoading, user, favorites }) => ({
   movies,
   hasError,
   isLoading,
@@ -62,7 +62,7 @@ const mapStateToProps = ({ movies, hasError, isLoading, user, favorites }) => ({
   favorites
 });
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ setMovies }, dispatch)
 }
 export default connect(

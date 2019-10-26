@@ -29,7 +29,7 @@ class LoginForm extends Component {
       setUser(foundUser);
       this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });
-      hasError('')
+      hasError('');
     } catch ({ message }) {
       hasError(message);
     }
@@ -49,17 +49,17 @@ class LoginForm extends Component {
     event.preventDefault();
   };
 
-  findUserFavorites = async (user) => {
+  findUserFavorites = async user => {
     const { setFavorites } = this.props;
     if (user.id) {
       try {
-        let favorites = await getFavorites(user.id)
+        let favorites = await getFavorites(user.id);
         setFavorites(favorites.favorites);
       } catch ({ message }) {
-        hasError(message)
+        hasError(message);
       }
     }
-  } 
+  };
 
   render() {
     if (this.state.isLoggedIn) {
@@ -150,4 +150,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({ setUser, setFavorites, hasError }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginForm);
