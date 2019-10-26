@@ -11,8 +11,7 @@ export const Container = ({ movies, toggleFavorites }) => {
 };
 
 export const mapStateToProps = ({ movies }) => ({
-  movies,
-
+  movies
 });
 
 export default connect(mapStateToProps)(Container);
