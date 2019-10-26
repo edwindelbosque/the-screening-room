@@ -7,7 +7,6 @@ export const getMovies = async () => {
   const response = await fetch(`${baseUrl}${apiKey}`);
   const data = await response.json();
   const results = data.results;
-  console.log(results);
   const cleanedMovies = await results.map(async result => {
     const {
       adult,
@@ -89,6 +88,28 @@ export const getFavorites = async userId => {
 }
 
 export const postFavorite = async (movie, userId) => {
+  const cleanedMovie = {
+    movie_id: movie.id,
+    title: movie.title,
+    poster_path: movie.poster ,
+    release_date: movie.release_date,
+    vote_average: movie.rating,
+    overview: movie.overview
+  }
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(cleanedMovie)
+  }
+  const response = await fetch(url, options)
+  const newFavorite = await response.json();
+  return newFavorite;
+}
+
+export const removeFavorite = async (movie, userId) => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
