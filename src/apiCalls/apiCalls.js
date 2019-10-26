@@ -7,7 +7,6 @@ export const getMovies = async () => {
   const response = await fetch(`${baseUrl}${apiKey}`);
   const data = await response.json();
   const results = data.results;
-  console.log(results);
   const cleanedMovies = await results.map(async result => {
     const {
       adult,

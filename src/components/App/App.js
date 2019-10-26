@@ -6,12 +6,18 @@ import Container from '../Container/Container';
 import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import Footer from '../Footer/Footer';
 import { getMovies, getFavorites, postFavorite } from '../../apiCalls/apiCalls';
-import { setMovies, isLoading, hasError, addFavorite, setFavorites } from '../../actions';
+import {
+  setMovies,
+  isLoading,
+  hasError,
+  addFavorite,
+  setFavorites
+} from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
 
-class App extends Component {
+export class App extends Component {
   componentDidMount = async () => {
     const { setMovies } = this.props;
     try {
@@ -23,16 +29,15 @@ class App extends Component {
     } catch ({ message }) {
       isLoading(false);
       hasError(message);
-      }
     }
+  };
 
-  toggleFavorites = async(movie) => {
+  toggleFavorites = async movie => {
     try {
-      let favoritesData = await postFavorite(movie)
-      addFavorite(favoritesData)
-
-    } catch ({message}){
-      hasError(message)
+      let favoritesData = await postFavorite(movie);
+      addFavorite(favoritesData);
+    } catch ({ message }) {
+      hasError(message);
     }
   };
 
@@ -40,21 +45,32 @@ class App extends Component {
     return (
       <main className='main'>
         <Nav />
-          <Route path='/movies/:id' render={({ match }) => {
-          console.log(match.params)
-          const movieDetails = this.props.movies.find(movie => movie.id === parseInt(match.params.id));
-            return (<SelectedMovie movieDetails={movieDetails} />)
-          }} />
-          <Route path='/(|movies|signup|login)' render={() => <Container />} />
-          <Route path='/(login|signup)' render={() => <AccessModal />} />
-          <Route exact path='/favorites' render={() => <Container />} />
+        <Route
+          path='/movies/:id'
+          render={({ match }) => {
+            console.log(match.params);
+            const movieDetails = this.props.movies.find(
+              movie => movie.id === parseInt(match.params.id)
+            );
+            return <SelectedMovie movieDetails={movieDetails} />;
+          }}
+        />
+        <Route path='/(|movies|signup|login)' render={() => <Container />} />
+        <Route path='/(login|signup)' render={() => <AccessModal />} />
+        <Route exact path='/favorites' render={() => <Container />} />
         <Footer />
       </main>
     );
   }
 }
 
-const mapStateToProps = ({ movies, hasError, isLoading, user, favorites }) => ({
+export const mapStateToProps = ({
+  movies,
+  hasError,
+  isLoading,
+  user,
+  favorites
+}) => ({
   movies,
   hasError,
   isLoading,
@@ -62,9 +78,9 @@ const mapStateToProps = ({ movies, hasError, isLoading, user, favorites }) => ({
   favorites
 });
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setMovies }, dispatch)
-}
+export const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ setMovies }, dispatch);
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
