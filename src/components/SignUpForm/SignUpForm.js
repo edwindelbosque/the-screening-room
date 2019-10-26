@@ -29,6 +29,7 @@ class SignUpForm extends Component {
       let newUser = await createUser(this.state);
       setUser(newUser);
       this.setState({ isLoggedIn: true });
+      hasEmailError('')
     } catch ({ message }) {
       hasEmailError(message);
     }

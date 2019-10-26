@@ -29,6 +29,7 @@ class LoginForm extends Component {
       setUser(foundUser);
       this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });
+      hasError('')
     } catch ({ message }) {
       hasError(message);
     }
