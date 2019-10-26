@@ -29,18 +29,19 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 4px;
+  border-radius: 5px 5px 4px 4px;
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.479);
   min-width: 20rem;
   max-width: 60rem;
   width: 800px;
-  height: 660px;
+  height: 675px;
   background: rgb(196, 196, 196);
+  border-bottom: 8px solid rgb(17, 148, 87);
 
   h2 {
     color: rgb(255, 255, 255);
-    font-size: 30px;
+    font-size: 29px;
     z-index: 1;
   }
 
@@ -48,7 +49,7 @@
     margin-top: 30px;
     font-size: 17px;
     color: rgb(48, 48, 48);
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .movie-details {
@@ -56,13 +57,13 @@
     flex-direction: column;
     margin-left: 32px;
     position: relative;
-    top: 160px;
+    top: 165px;
     font-weight: 300;
   }
 
   h4 {
-    color: rgb(0, 0, 0);
-    font-weight: 400;
+    color: rgb(63, 63, 63);
+    font-weight: 500;
     padding-bottom: 5px;
     width: 200px;
 
@@ -74,10 +75,10 @@
 }
 
 .movie-text {
-  width: 65%;
+  width: 70%;
   position: relative;
   margin-right: 50px;
-  left: 30px;
+  left: 20px;
   bottom: 50px;
 }
 
