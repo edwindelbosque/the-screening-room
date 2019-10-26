@@ -6,7 +6,7 @@ import './LoginForm.scss';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -140,13 +140,13 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
+export const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
   movies,
   errMsg,
   isLoading
 });
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ setUser, setFavorites, hasError }, dispatch);
 };
 
