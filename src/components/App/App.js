@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
+import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import Footer from '../Footer/Footer';
 import { getMovies, getFavorites, postFavorite } from '../../apiCalls/apiCalls';
 import { setMovies, isLoading, hasError, addFavorite, setFavorites } from '../../actions';
@@ -16,6 +17,7 @@ class App extends Component {
     try {
       isLoading(true);
       let movieData = await getMovies();
+      console.log(movieData);
       isLoading(false);
       setMovies(movieData);
     } catch ({ message }) {
@@ -38,6 +40,11 @@ class App extends Component {
     return (
       <main className='main'>
         <Nav />
+          <Route path='/movies/:id' render={({ match }) => {
+          console.log(match.params)
+          const movieDetails = this.props.movies.find(movie => movie.id === parseInt(match.params.id));
+            return (<SelectedMovie movieDetails={movieDetails} />)
+          }} />
           <Route path='/(|movies|signup|login)' render={() => <Container />} />
           <Route path='/(login|signup)' render={() => <AccessModal />} />
           <Route exact path='/favorites' render={() => <Container />} />

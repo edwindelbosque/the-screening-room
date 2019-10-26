@@ -23,9 +23,9 @@
 .MovieCard__footer {
   background: linear-gradient(
     -0.25turn,
-    #f8c60e,
-    #fadb42,
-    #fadb42,
+    rgb(3, 190, 103),
+    rgb(3, 204, 110),
+    rgb(25, 211, 124),
     white,
     white,
     white,
@@ -80,13 +80,14 @@
 .stick-1 {
   transform: rotate(90deg);
   height: 22px;
-  background-color: rgb(223, 152, 0);
+  background-color: rgba(255, 255, 255, 0.918);
   position: absolute;
+  z-index: 0;
   transition: .2s;
 }
 
 .stick-2 {
-  background-color: rgb(223, 134, 0);
+  background-color: rgb(255, 255, 255);
   height: 22px;
   transition: .2s;
 }
@@ -94,7 +95,7 @@
 .stick-1-active {
   transform: rotate(40deg);
   height: 23px;
-  background-color: rgba(223, 119, 0, 0.329);
+  background-color: rgb(255, 255, 255);
   position: absolute;
   margin-left: 5px;
   transition: .2s;
@@ -104,7 +105,7 @@
 .stick-2-active {
   height: 8px;
   margin-right: 11px;
-  background-color: rgba(223, 119, 0, 0.329);
+  background-color: rgba(255, 255, 255, 0.911);
   transform: rotate(-49deg);
   margin-top: 7px;
   transition: .2s;
