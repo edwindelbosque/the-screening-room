@@ -43,7 +43,6 @@ export class App extends Component {
   };
 
   logoutCurrentUser = () => {
-    console.log('hello')
     const { setUser } = this.props;
     setUser({});
   }
