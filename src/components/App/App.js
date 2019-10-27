@@ -5,7 +5,7 @@ import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import Footer from '../Footer/Footer';
-import { getMovies, getFavorites, postFavorite } from '../../apiCalls/apiCalls';
+import { getMovies, postFavorite, removeFavorite } from '../../apiCalls/apiCalls';
 import { setMovies, isLoading, hasError, addFavorite, setFavorites } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,7 +17,6 @@ class App extends Component {
     try {
       isLoading(true);
       let movieData = await getMovies();
-      console.log(movieData);
       isLoading(false);
       setMovies(movieData);
     } catch ({ message }) {
@@ -26,13 +25,26 @@ class App extends Component {
       }
     }
 
-  toggleFavorites = async(movie) => {
-    try {
-      let favoritesData = await postFavorite(movie)
-      addFavorite(favoritesData)
+  updateFavorites = async(movie) => {
+    console.log('movie', movie)
+    const { user } = this.props;
+    if (!movie.favorite) {
+      try {
+        console.log('inside try add')
+        let favoritesData = await postFavorite(movie, user.id)
+        console.log(favoritesData)
+        addFavorite(favoritesData)
+      } catch ({message}){
+        hasError(message)
+      }
+    } else {
+      try {
+        let favoritesData = await removeFavorite(movie, user.id)
+        setFavorites(favoritesData)
 
-    } catch ({message}){
-      hasError(message)
+      } catch ({ message }) {
+        hasError(message)
+      }
     }
   };
 
@@ -45,7 +57,7 @@ class App extends Component {
           const movieDetails = this.props.movies.find(movie => movie.id === parseInt(match.params.id));
             return (<SelectedMovie movieDetails={movieDetails} />)
           }} />
-          <Route path='/(|movies|signup|login)' render={() => <Container />} />
+          <Route path='/(|movies|signup|login)' render={() => <Container updateFavorites={this.updateFavorites}/>} />
           <Route path='/(login|signup)' render={() => <AccessModal />} />
           <Route exact path='/favorites' render={() => <Container />} />
         <Footer />
