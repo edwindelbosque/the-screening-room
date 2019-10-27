@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 import { connect } from 'react-redux';
 
-const Nav = ({ movies }) => {
-
-
+const Nav = ({ movies, wallpapers }) => {
+console.log(wallpapers)
   return (
-    <div className='Nav__container' style={{ backgroundImage: `${movies.length ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${movies[Math.floor(Math.random() * Math.floor(19))].wallpaper})` : 'none' }` }} >
+    <div className='Nav__container' style={{ backgroundImage: `${movies.length ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${wallpapers[Math.floor(Math.random() * Math.floor(19))].wallpaper})` : 'none' }` }} >
         <header className='Nav'>
           <h1>The Screening Room</h1>
           <ul className='Nav__ul'>
@@ -27,7 +26,8 @@ const Nav = ({ movies }) => {
   };
 
   const mapStateToProps = state => {
-    return { movies: state.movies };
+    return { movies: state.movies,
+             wallpapers: state.wallpapers };
   }
   
   export default connect(mapStateToProps)(Nav)
