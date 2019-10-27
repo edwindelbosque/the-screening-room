@@ -33,9 +33,6 @@ const SelectedMovie = ({ movieDetails }) => {
             </div>
             <div className='movie-details'>
               <h4>
-                Genre: <span>{genre.join(', ')}</span>
-              </h4>
-              <h4>
                 Rating: <span>{rating}</span>
               </h4>
             </div>

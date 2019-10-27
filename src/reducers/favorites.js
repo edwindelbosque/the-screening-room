@@ -3,7 +3,9 @@ export const favorites = (state = [] , action) => {
     case 'ADD_FAVORITE':
       return [...state, action.newFavorite]
     case 'SET_FAVORITES':
-       return action.favorites
+       return state = action.favorites.map(movie => (
+         {...movie, favorite: true}
+       ))
     default:
       return state;  
   }
