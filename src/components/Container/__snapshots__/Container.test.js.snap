@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container should match the All Movies snapshot 1`] = `
+<main
+  className="Container"
+>
+  <Connect(MovieCard)
+    id={1}
+    key="1"
+  />
+  <Connect(MovieCard)
+    id={2}
+    key="2"
+  />
+  <Connect(MovieCard)
+    id={3}
+    key="3"
+  />
+</main>
+`;

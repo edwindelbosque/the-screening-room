@@ -1,32 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { setUser } from '../../actions/index';
 import './Nav.scss';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const Nav = ({ movies, wallpapers }) => {
+export const Nav = ({ logoutCurrentUser, movies, user, wallpapers }) => {
   return (
-    <div className='Nav__container' style={{ backgroundImage: `${movies.length ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${wallpapers[Math.floor(Math.random() * Math.floor(19))].wallpaper})` : 'none' }` }} >
-        <header className='Nav'>
-          <h1>The Screening Room</h1>
-          <ul className='Nav__ul'>
-            <Link to='/movies' className='Nav__li link-wrapper'>
-              <li className='link hover-home'>Home</li>
-            </Link>
-            <Link to='/favorites' className='Nav__li link-wrapper'>
-              <li className='link hover-1'>Favorites</li>
-            </Link>
-            <Link to='/signup' className='Nav__li link-wrapper'>
-              <li className='link hover-1'>Account</li>
-            </Link>
-          </ul>
-        </header>
+    <div
+      className='Nav__container'
+      style={{
+        backgroundImage: `${
+          movies.length
+            ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${wallpapers[Math.floor(Math.random() * Math.floor(19))].wallpaper})`
+            : 'none'
+        }`
+      }}
+    >
+      <header className='Nav'>
+        <h1>The Screening Room</h1>
+        <div className='Nav__ul'>
+          <NavLink exact to='/' className='Nav__button link-wrapper' activeClassName='nav-active'>
+            <button className='link hover-home'>Home</button>
+          </NavLink>
+          <NavLink to='/favorites' className='Nav__button link-wrapper' activeClassName='nav-active'>
+            <button className='link hover-1'>Favorites</button>
+          </NavLink>
+          {user.name ? (
+            <NavLink to='/login\' className='Nav__button link-wrapper' activeClassName='nav-active'>
+              <button className='link hover-1' onClick={logoutCurrentUser}>
+                Logout
+              </button>
+            </NavLink>
+          ) : (
+            <NavLink to='/signup' className='Nav__button link-wrapper' activeClassName='nav-active'>
+              <button className='link hover-1'>Account</button>
+            </NavLink>
+          )}
+        </div>
+      </header>
     </div>
-    );
-  };
+  );
+};
 
-  const mapStateToProps = state => {
-    return { movies: state.movies,
-             wallpapers: state.wallpapers };
-  }
-  
-  export default connect(mapStateToProps)(Nav)
+export const mapStateToProps = ({ movies, user, wallpapers }) => {
+  return { movies, user, wallpapers };
+};
+
+export const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ setUser }, dispatch);
+};
+ 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Nav);

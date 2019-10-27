@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm should match the snapshot 1`] = `
+<form
+  className="form-model"
+  onSubmit={[Function]}
+>
+  <p
+    className="signup-message"
+  >
+    Create an account with your email to keep track of your favorite movies.
+  </p>
+  <div>
+    <label
+      className="Form__label"
+      htmlFor="email"
+    >
+      Your name
+    </label>
+    <input
+      className="Form__input"
+      id="name"
+      name="name"
+      onChange={[Function]}
+      placeholder="Walter White"
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      className="Form__label"
+      htmlFor="email"
+    >
+      Your email
+    </label>
+    <input
+      className="Form__input"
+      id="email"
+      name="email"
+      onChange={[Function]}
+      placeholder="your@email.com"
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <label
+      className="Form__label"
+      htmlFor="password"
+    >
+      Your password
+    </label>
+    <input
+      className="Form__input"
+      id="password"
+      name="password"
+      onChange={[Function]}
+      placeholder="Must have at least 8 characters"
+      type="password"
+      value=""
+    />
+  </div>
+  <button
+    className="Form__button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+  </button>
+</form>
+`;

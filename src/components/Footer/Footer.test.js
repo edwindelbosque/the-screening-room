@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AccessModal, mapStateToProps } from './AccessModal';
+import Footer from './Footer';
 
-describe('AccessModal', () => {
+describe('Footer', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<AccessModal />);
+    wrapper = shallow(<Footer />);
   });
 
   it('should match the snapshot', () => {

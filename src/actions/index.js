@@ -41,4 +41,8 @@ export const addFavorite = newFavorite => ({
 export const setUser = user => ({
   type: 'USER',
   user
-})
+});
+
+export const logoutUser = () => ({
+  type: 'USER_LOGOUT'
+});

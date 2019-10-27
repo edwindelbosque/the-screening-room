@@ -10,9 +10,8 @@ const Container = ({ movies, updateFavorites }) => {
   return <main className='Container'>{allMovies}</main>;
 };
 
-const mapStateToProps = ({ movies }) => ({
-  movies,
-
+export const mapStateToProps = ({ movies }) => ({
+  movies
 });
 
 export default connect(mapStateToProps)(Container);
