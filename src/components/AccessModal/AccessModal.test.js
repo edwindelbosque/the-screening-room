@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AccessModal from './AccessModal';
+import { AccessModal, mapStateToProps } from './AccessModal';
 
 describe('AccessModal', () => {
   let wrapper;

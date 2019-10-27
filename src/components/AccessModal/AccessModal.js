@@ -6,9 +6,7 @@ import { Route, NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 export const AccessModal = ({ user, findUserFavorites }) => {
-  return user.name ? (
-    <></>
-  ) : (
+  return (
     <>
       <Link to='/'>
         <div className='modal-backdrop-white'>

@@ -45,12 +45,12 @@ export class App extends Component {
   logoutCurrentUser = () => {
     const { setUser } = this.props;
     setUser({});
-  }
+  };
 
   render() {
     return (
       <main className='main'>
-        <Nav logoutCurrentUser={this.logoutCurrentUser}/>
+        <Nav logoutCurrentUser={this.logoutCurrentUser} />
         <Route
           path='/movies/:id'
           render={({ match }) => {
