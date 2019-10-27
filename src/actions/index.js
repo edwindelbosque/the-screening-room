@@ -3,7 +3,12 @@ export const setMovies = movies => ({
   movies
 });
 
-export const isLoading = bool => ({
+export const setWallpapers = wallpapers => ({
+  type: 'SET_WALLPAPERS',
+  wallpapers
+});
+
+export const setLoading = bool => ({
   type: 'IS_LOADING',
   bool
 });
