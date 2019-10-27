@@ -4,7 +4,6 @@ import './Nav.scss';
 import { connect } from 'react-redux';
 
 const Nav = ({ movies, wallpapers }) => {
-console.log(wallpapers)
   return (
     <div className='Nav__container' style={{ backgroundImage: `${movies.length ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${wallpapers[Math.floor(Math.random() * Math.floor(19))].wallpaper})` : 'none' }` }} >
         <header className='Nav'>
