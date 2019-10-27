@@ -26,6 +26,7 @@ export class LoginForm extends Component {
     const { setUser, hasError } = this.props;
     try {
       let foundUser = await selectUser(this.state);
+      console.log('found', foundUser);
       setUser(foundUser);
       this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });

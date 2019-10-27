@@ -11,7 +11,8 @@ import {
   isLoading,
   hasError,
   addFavorite,
-  setFavorites
+  setFavorites,
+  setUser
 } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -41,10 +42,16 @@ export class App extends Component {
     }
   };
 
+  logoutCurrentUser = () => {
+    console.log('hello')
+    const { setUser } = this.props;
+    setUser({});
+  }
+
   render() {
     return (
       <main className='main'>
-        <Nav />
+        <Nav logoutCurrentUser={this.logoutCurrentUser}/>
         <Route
           path='/movies/:id'
           render={({ match }) => {
@@ -79,7 +86,7 @@ export const mapStateToProps = ({
 });
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setMovies }, dispatch);
+  return bindActionCreators({ setMovies, setUser }, dispatch);
 };
 export default connect(
   mapStateToProps,
