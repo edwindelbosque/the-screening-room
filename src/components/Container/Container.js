@@ -5,7 +5,7 @@ import './Container.scss';
 
 const Container = ({ movies, updateFavorites }) => {
   const allMovies = movies.map(movie => (
-    <MovieCard {...movie} key={movie.id} updateFavorites={updateFavorites} />
+    <MovieCard movie={movie} key={movie.id} updateFavorites={updateFavorites} />
   ));
   return <main className='Container'>{allMovies}</main>;
 };
