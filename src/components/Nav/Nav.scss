@@ -79,8 +79,18 @@
     width: 130px;
     text-align: center;
     height: 50px;
+    cursor: pointer;
     vertical-align: middle;
-    // padding-top: 12.5px;
+    transition: .2s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: rgb(0, 182, 91);
+      transition: .2s;
+    }
   }
 
   a {    
@@ -89,11 +99,6 @@
     color: white;
     font-weight: 500;
     transition: .2s;
-
-    &:hover {
-      color: rgb(0, 182, 91);
-      transition: .2s;
-    }
   }
 
   h1 {
@@ -127,6 +132,45 @@ button {
     button {
       height: 36px;
       padding-top: 6px;
+    }
+  }
+}
+
+.nav-active {
+  button {
+    color: rgb(0, 182, 91);
+  }
+
+  .hover-1 {
+
+    &:after {
+        content:'';
+        position: absolute;
+        width: 70%;
+        height: 3px;
+        bottom: 0;
+        left: 19px;
+        background-color: rgb(1, 146, 73);
+        transform: scaleX(1);
+        transform-origin: bottom right;
+    }
+  }
+}
+
+.nav-active {
+
+  .hover-home {
+
+    &:after {
+      content:'';
+      position: absolute;
+      width: 48%;
+      height: 3px;
+      bottom: 0;
+      left: 34px;
+      background-color: rgb(1, 146, 73);
+      transform: scaleX(1);
+      transform-origin: bottom right;
     }
   }
 }
