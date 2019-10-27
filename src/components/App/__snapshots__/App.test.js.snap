@@ -4,7 +4,9 @@ exports[`App should match the snapshot 1`] = `
 <main
   className="main"
 >
-  <Connect(Nav) />
+  <Connect(Nav)
+    logoutCurrentUser={[Function]}
+  />
   <Route
     path="/movies/:id"
     render={[Function]}

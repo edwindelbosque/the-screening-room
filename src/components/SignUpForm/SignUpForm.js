@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './SignUpForm.scss';
 
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -131,7 +131,7 @@ class SignUpForm extends Component {
   }
 }
 
-const mapStateToProps = ({ movies, emailErrMsg, isLoading }) => ({
+export const mapStateToProps = ({ movies, emailErrMsg, isLoading }) => ({
   movies,
   emailErrMsg,
   isLoading

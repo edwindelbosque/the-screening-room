@@ -4,6 +4,10 @@ import { Nav, mapStateToProps } from './Nav';
 
 describe('Nav', () => {
   let wrapper;
+  let logoutCurrentUser = jest.fn();
+  let user = {
+    name: ''
+  };
   let movies = [
     {
       wallpaper:
@@ -20,7 +24,9 @@ describe('Nav', () => {
   ];
 
   beforeEach(() => {
-    wrapper = shallow(<Nav movies={movies} />);
+    wrapper = shallow(
+      <Nav logoutCurrentUser={logoutCurrentUser} movies={movies} user={user} />
+    );
   });
 
   it('should match the snapshot', () => {
