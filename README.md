@@ -21,7 +21,7 @@ As a result of building out this project, we developed some muscle memory buildi
 
 ![](https://user-images.githubusercontent.com/48811985/67630269-b81c3400-f87c-11e9-808a-d1bb821ea83d.png)
 
-## Goals
+## Learnings
 
 - Made informed design decisions to create a user-friendly application.
 - Became comfortable with different network requests like GET, POST, & DELETE.
@@ -30,14 +30,13 @@ As a result of building out this project, we developed some muscle memory buildi
 - Became comfortable with Redux’s lifecycle, creating actions, reducers, and connecting them to React components.
 - Understood and solidified concepts with React component, asynchronous code, and Redux testing.
 
-## Built with:
+## Built with
 
 - React
 - Redux
 - React Router
 - PostgresSQL
 - TheMovieDB API
-- Jest
-- Enzyme
-- SASS
+- Jest & Enzyme testing suite
+- SASS (SCSS)
 - HTML
