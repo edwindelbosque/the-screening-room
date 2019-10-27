@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import { addFavorite, toggleFavorite } from '../../actions';
 
 const MovieCard = movie => {
-  const { title, poster, favorite, toggleFavorite, id } = movie;
+  const { title, poster, favorite, updateFavorites, id } = movie;
 
   const handleClick = () => {
     toggleFavorite(title);
+    updateFavorites(movie);
   }
 
   return (
