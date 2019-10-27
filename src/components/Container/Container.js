@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
 
-export const Container = ({ movies, toggleFavorites }) => {
+const Container = ({ movies, updateFavorites }) => {
   const allMovies = movies.map(movie => (
-    <MovieCard {...movie} key={movie.id} toggleFavorites={toggleFavorites} />
+    <MovieCard movie={movie} key={movie.id} updateFavorites={updateFavorites} />
   ));
   return <main className='Container'>{allMovies}</main>;
 };

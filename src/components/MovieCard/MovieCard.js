@@ -3,15 +3,16 @@ import './MovieCard.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { addFavorite, toggleFavorite } from '../../actions';
+import { toggleFavorite } from '../../actions';
 
-export const MovieCard = movie => {
-  const { title, poster, favorite, toggleFavorite, id } = movie;
+const MovieCard = ({movie, favorites, toggleFavorite, updateFavorites}) => {
+  const { title, poster, favorite, id } = movie;
+  const isFavorite = favorites.map(favorite => favorite.title).includes(movie.title);
 
   const handleClick = () => {
     toggleFavorite(title);
-  };
-
+    updateFavorites(movie, isFavorite);
+  }
   return (
     <div className='MovieCard__div--container'>
       <Link to={`movies/${id}`}>
@@ -38,9 +39,9 @@ export const mapStateToProps = ({ movies, favorites, user }) => ({
   user
 });
 
-export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ addFavorite, toggleFavorite }, dispatch);
-};
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ toggleFavorite }, dispatch)
+} 
 
 export default connect(
   mapStateToProps,

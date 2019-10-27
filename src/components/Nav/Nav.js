@@ -5,14 +5,14 @@ import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-export const Nav = ({ logoutCurrentUser, movies, user }) => {
+export const Nav = ({ logoutCurrentUser, movies, user, wallpapers }) => {
   return (
     <div
       className='Nav__container'
       style={{
         backgroundImage: `${
           movies.length
-            ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${movies[Math.floor(Math.random() * Math.floor(19))].wallpaper})`
+            ? `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${wallpapers[Math.floor(Math.random() * Math.floor(19))].wallpaper})`
             : 'none'
         }`
       }}
@@ -43,14 +43,14 @@ export const Nav = ({ logoutCurrentUser, movies, user }) => {
   );
 };
 
-export const mapStateToProps = ({ movies, user }) => {
-  return { movies, user };
+export const mapStateToProps = ({ movies, user, wallpapers }) => {
+  return { movies, user, wallpapers };
 };
 
 export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ setUser }, dispatch);
 };
-
+ 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
