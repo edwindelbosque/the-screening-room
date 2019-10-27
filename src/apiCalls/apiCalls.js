@@ -35,14 +35,14 @@ export const getMovies = async () => {
   return await Promise.all(cleanedMovies);
 };
 
-const getGenresData = async genreIds => {
+export const getGenresData = async genreIds => {
   const genres = await genreIds.map(id => {
     return getGenres(id);
   });
   return await Promise.all(genres);
 };
 
-const getGenres = async id => {
+export const getGenres = async id => {
   const response = await fetch(`${genreBaseUrl}${id}?api_key=${apiKey}`);
   const data = await response.json();
   return await data.name;
@@ -85,7 +85,7 @@ export const getFavorites = async userId => {
   const response = await fetch(url);
   const favorites = await response.json();
   return favorites;
-}
+};
 
 export const postFavorite = async (movie, userId) => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
@@ -95,8 +95,8 @@ export const postFavorite = async (movie, userId) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(movie)
-  }
-  const response = await fetch(url, options)
+  };
+  const response = await fetch(url, options);
   const newFavorite = await response.json();
   return newFavorite;
-}
+};

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 const SelectedMovie = ({ movieDetails }) => {
   const { wallpaper, title, overview, poster, rating, genre } = movieDetails;
-  console.log(movieDetails);
   return (
     <>
       <Link to='/'>
