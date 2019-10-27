@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { setUser } from '../../actions/index';
 import './Nav.scss';
 import { connect } from 'react-redux';
@@ -20,22 +20,22 @@ export const Nav = ({ logoutCurrentUser, movies, user }) => {
       <header className='Nav'>
         <h1>The Screening Room</h1>
         <div className='Nav__ul'>
-          <Link to='/movies' className='Nav__button link-wrapper'>
+          <NavLink exact to='/' className='Nav__button link-wrapper' activeClassName='nav-active'>
             <button className='link hover-home'>Home</button>
-          </Link>
-          <Link to='/favorites' className='Nav__button link-wrapper'>
+          </NavLink>
+          <NavLink to='/favorites' className='Nav__button link-wrapper' activeClassName='nav-active'>
             <button className='link hover-1'>Favorites</button>
-          </Link>
+          </NavLink>
           {user.name ? (
-            <Link to='/login' className='Nav__button link-wrapper'>
+            <NavLink to='/login\' className='Nav__button link-wrapper' activeClassName='nav-active'>
               <button className='link hover-1' onClick={logoutCurrentUser}>
                 Logout
               </button>
-            </Link>
+            </NavLink>
           ) : (
-            <Link to='/signup' className='Nav__button link-wrapper'>
+            <NavLink to='/signup' className='Nav__button link-wrapper' activeClassName='nav-active'>
               <button className='link hover-1'>Account</button>
-            </Link>
+            </NavLink>
           )}
         </div>
       </header>
