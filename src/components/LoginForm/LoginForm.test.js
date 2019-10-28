@@ -88,4 +88,14 @@ describe('mapDispatchToProps', () => {
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
   });
+
+  it('should call dispatch with a hasError action when handleClick is called', () => {
+    const message = '';
+    const actionToDispatch = hasError(message);
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.hasError(message);
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
 });
