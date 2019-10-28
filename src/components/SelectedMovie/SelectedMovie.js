@@ -3,8 +3,8 @@ import './SelectedMovie.scss';
 import { Link } from 'react-router-dom';
 
 const SelectedMovie = ({ movieDetails, wallpapers }) => {
-  const { title, overview, poster, rating, id } = movieDetails;
-  const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === id).wallpaper
+  const { title, overview, poster_path, rating, movie_id } = movieDetails;
+  const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === movie_id).wallpaper
   return (
     <>
       <Link to='/'>
@@ -22,7 +22,7 @@ const SelectedMovie = ({ movieDetails, wallpapers }) => {
             />
             <img
               className='SelectedMovie__img--close'
-              src={poster}
+              src={poster_path}
               alt='Close window icon'
             />
           </header>

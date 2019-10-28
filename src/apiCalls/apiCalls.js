@@ -18,9 +18,9 @@ export const getMovies = async () => {
     } = result;
     return {
       title,
-      id,
+      movie_id: id,
       overview,
-      poster: `${imageBaseUrl}${poster_path}`,
+      poster_path: `${imageBaseUrl}${poster_path}`,
       release_date,
       rating: vote_average,
       favorite: false
@@ -97,9 +97,9 @@ export const getFavorites = async userId => {
 
 export const postFavorite = async (movie, userId) => {
   const cleanedMovie = {
-    movie_id: movie.id,
+    movie_id: movie.movie_id,
     title: movie.title,
-    poster_path: movie.poster,
+    poster_path: movie.poster_path,
     release_date: movie.release_date,
     vote_average: movie.rating,
     overview: movie.overview

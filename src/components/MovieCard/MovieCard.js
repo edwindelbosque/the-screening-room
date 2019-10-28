@@ -11,7 +11,7 @@ export const MovieCard = ({
   toggleFavorite,
   updateFavorites
 }) => {
-  const { title, poster, favorite, id } = movie;
+  const { title, poster_path, favorite, movie_id } = movie;
   const isFavorite = favorites
     .map(favorite => favorite.title)
     .includes(movie.title);
@@ -22,10 +22,10 @@ export const MovieCard = ({
   };
   return (
     <div className='MovieCard__div--container'>
-      <Link to={`movies/${id}`}>
+      <Link to={`movies/${movie_id}`}>
         <img
           className='MovieCard__img--poster'
-          src={poster}
+          src={poster_path}
           alt='Official movie poster'
         />
       </Link>

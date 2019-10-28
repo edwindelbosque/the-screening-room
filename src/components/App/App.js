@@ -28,17 +28,17 @@ import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setMovies, setWallpapers, setLoading, hasError, setRandomWallpaper } = this.props;
+    const { setMovies, setWallpapers, setLoading, hasError, setRandomWallpaper, favorites, user } = this.props;
     try {
       // setLoading(true);
       let movieData = await getMovies();
       let wallpapers = await getWallpapers();
-      // setLoading(false);
+      let favoriteMovies = await getFavorites(user.id);
+      setFavorites(favoriteMovies)
       setWallpapers(wallpapers);
       setRandomWallpaper(wallpapers)
       setMovies(movieData);
     } catch ({ message }) {
-      // setLoading(false);
       hasError(message);
     }
   };
@@ -49,6 +49,7 @@ export class App extends Component {
       try {
         let favoritesData = await postFavorite(movie, user.id);
         addFavorite(favoritesData);
+        setFavorites()
       } catch ({ message }) {
         hasError(message);
       }
@@ -75,22 +76,21 @@ export class App extends Component {
         <Route
           path='/movies/:id'
           render={({ match }) => {
-            console.log(match.params);
             const movieDetails = this.props.movies.find(
-              movie => movie.id === parseInt(match.params.id)
+              movie => movie.movie_id === parseInt(match.params.id)
             );
             return <SelectedMovie movieDetails={movieDetails} wallpapers={this.props.wallpapers} />;
           }}
         />
         <Route
           path='/(|movies|signup|login)'
-          render={() => <Container updateFavorites={this.updateFavorites} />}
+          render={() => <Container movies={this.props.movies} updateFavorites={this.updateFavorites} />}
         />
         <Route path='/(login|signup)' render={() => <AccessModal />} />
         <Route
           exact
           path='/favorites'
-          render={() => <Container updateFavorites={this.updateFavorites} />}
+          render={() => <Container movies={this.props.favorites} updateFavorites={this.updateFavorites} />}
         />
         <Footer />
       </main>
