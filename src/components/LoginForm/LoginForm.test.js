@@ -14,6 +14,28 @@ describe('LoginForm', () => {
   it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should update form state when handleChange is called', () => {
+    let mockEventName = {
+      target: {
+        name: 'email',
+        value: 'elyse@noneofyourbusiness.com'
+      }
+    };
+    let mockEventPassword = {
+      target: {
+        name: 'password',
+        value: 'testing123'
+      }
+    };
+    const expectedEmail = 'elyse@noneofyourbusiness.com';
+    const expectedPassword = 'testing123';
+
+    wrapper.instance().handleChange(mockEventName);
+    wrapper.instance().handleChange(mockEventPassword);
+    expect(wrapper.state('email')).toEqual(expectedEmail);
+    expect(wrapper.state('password')).toEqual(expectedPassword);
+  });
 });
 
 describe('mapStateToProps', () => {
