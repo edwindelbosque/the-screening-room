@@ -1,3 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Nav should match the snapshot 1`] = `undefined`;
+exports[`Nav should match the snapshot 1`] = `
+<div
+  className="Nav__container"
+  style={
+    Object {
+      "backgroundImage": "linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(undefined)",
+    }
+  }
+>
+  <header
+    className="Nav"
+  >
+    <h1>
+      The Screening Room
+    </h1>
+    <div
+      className="Nav__ul"
+    >
+      <NavLink
+        activeClassName="nav-active"
+        className="Nav__button link-wrapper"
+        exact={true}
+        to="/"
+      >
+        <button
+          className="link hover-home"
+        >
+          Home
+        </button>
+      </NavLink>
+      <NavLink
+        activeClassName="nav-active"
+        className="Nav__button link-wrapper"
+        to="/favorites"
+      >
+        <button
+          className="link hover-1"
+        >
+          Favorites
+        </button>
+      </NavLink>
+      <NavLink
+        activeClassName="nav-active"
+        className="Nav__button link-wrapper"
+        to="/signup"
+      >
+        <button
+          className="link hover-1"
+        >
+          Account
+        </button>
+      </NavLink>
+    </div>
+  </header>
+</div>
+`;

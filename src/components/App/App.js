@@ -19,7 +19,8 @@ import {
   hasError,
   addFavorite,
   setFavorites,
-  setUser
+  setUser,
+  setRandomWallpaper
 } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,13 +28,14 @@ import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setMovies, setWallpapers, setLoading, hasError } = this.props;
+    const { setMovies, setWallpapers, setLoading, hasError, setRandomWallpaper } = this.props;
     try {
       // setLoading(true);
       let movieData = await getMovies();
       let wallpapers = await getWallpapers();
       // setLoading(false);
       setWallpapers(wallpapers);
+      setRandomWallpaper(wallpapers)
       setMovies(movieData);
     } catch ({ message }) {
       // setLoading(false);
@@ -121,7 +123,8 @@ const mapDispatchToProps = dispatch => {
       hasError,
       addFavorite,
       setFavorites,
-      setUser
+      setUser,
+      setRandomWallpaper
     },
     dispatch
   );

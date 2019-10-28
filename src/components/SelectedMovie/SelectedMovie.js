@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const SelectedMovie = ({ movieDetails, wallpapers }) => {
   const { title, overview, poster, rating, id } = movieDetails;
   const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === id).wallpaper
-  console.log(movieWallpaper)
   return (
     <>
       <Link to='/'>
