@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { LoginForm, mapStateToProps, mapDispatchToProps } from './LoginForm';
 import { setUser, hasError, setFavorites } from '../../actions/index';
-import { selectUser } from '../../apiCalls/apiCalls';
+import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
 
 jest.mock('../../apiCalls/apiCalls');
 
@@ -55,10 +55,19 @@ describe('LoginForm', () => {
 
   it('should update the value of isLoggedIn when handleClick is called', () => {
     expect(wrapper.state('isLoggedIn')).toEqual(false);
-    wrapper.find('button').at(0).simulate('click');
+    wrapper.instance().handleClick();
     expect(wrapper.state('isLoggedIn')).toEqual(true);
   });
 
+  it('should call the getFavorites fetch when findUserFavorites is called', () => {
+    let user = {
+      id: 1,
+      name: 'Alan',
+      email: 'alan@turing.io'
+    }
+    wrapper.instance().findUserFavorites(user)
+    expect(getFavorites).toHaveBeenCalled();
+  });
   
 });
 
