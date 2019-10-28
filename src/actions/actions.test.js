@@ -30,7 +30,7 @@ describe('actions', () => {
     };
 
     const result = actions.setWallpapers(wallpapers);
-    
+
     expect(result).toEqual(expectedAction);
   });
 
@@ -82,7 +82,41 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
-  it('should have a type of SET_FAVORITES', () => {});
+  it('should have a type of SET_FAVORITES', () => {
+    const favorites = [
+      {
+        id: 63,
+        movie_id: 420809,
+        user_id: 1,
+        title: 'Maleficent: Mistress of Evil',
+        poster_path: 'https://image.tmdb.org/t/p/original/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg',
+        release_date: '2019-10-18',
+        vote_average: '7.2',
+        overview: 'Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.',
+        favorite: true
+      },
+      {
+        id: 63,
+        movie_id: 420809,
+        user_id: 1,
+        title: 'Maleficent: Mistress of Evil',
+        poster_path: 'https://image.tmdb.org/t/p/original/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg',
+        release_date: '2019-10-18',
+        vote_average: '7.2',
+        overview: 'Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.',
+        favorite: true
+      }
+    ];
+
+    const expectedAction = {
+      type: 'SET_FAVORITES',
+      favorites
+    }
+
+    const result = actions.setFavorites(favorites);
+
+    expect(result).toEqual(expectedAction);
+  });
 
   it('should have a type of ADD_FAVORITE', () => {});
 
@@ -116,4 +150,6 @@ describe('actions', () => {
 
     expect(result).toEqual(expectedAction);
   });
+
+
 });
