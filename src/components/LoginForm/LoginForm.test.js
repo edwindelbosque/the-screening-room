@@ -44,13 +44,48 @@ describe('mapDispatchToProps', () => {
     id: 2
   };
 
-  it('calls dispatch with a setUser action when handleClick is called', () => {
-    const mockDispatch = jest.fn();
+  let favorites = [
+    {
+      id: 63,
+      movie_id: 420809,
+      user_id: 1,
+      title: 'Maleficent: Mistress of Evil',
+      poster_path: 'https://image.tmdb.org/t/p/original/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg',
+      release_date: '2019-10-18',
+      vote_average: '7.2',
+      overview: 'Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.',
+      favorite: true
+    },
+    {
+      id: 63,
+      movie_id: 420809,
+      user_id: 1,
+      title: 'Maleficent: Mistress of Evil',
+      poster_path: 'https://image.tmdb.org/t/p/original/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg',
+      release_date: '2019-10-18',
+      vote_average: '7.2',
+      overview: 'Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.',
+      favorite: true
+    }
+  ];
+
+  const mockDispatch = jest.fn();
+
+  it('should call dispatch with a setUser action when handleClick is called', () => {
     const actionToDispatch = setUser(user);
 
     const mappedProps = mapDispatchToProps(mockDispatch);
     mappedProps.setUser(user);
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
+  it('should call dispatch with a setFavorites action when handleClick is called', () => {
+    const actionToDispatch = setFavorites(favorites)
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.setFavorites(favorites);
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
   });
 });
