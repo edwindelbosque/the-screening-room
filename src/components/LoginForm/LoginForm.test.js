@@ -40,6 +40,14 @@ describe('LoginForm', () => {
     expect(wrapper.state('password')).toEqual(expectedPassword);
   });
 
+  it('should reset state when clearInputs is called', () => {
+    const expected = {email: '', password: '', isLoggedIn: ''};
+    
+    wrapper.instance().setState({ email: 'elyse@noneofyourbusiness.com', password: 'testing123'});
+    wrapper.instance().clearInputs();
+    expect(wrapper.state()).toEqual(expected);
+  });
+
   it('should call the selectUser fetch when handleClick is called', () => {
     wrapper.instance().handleClick();
     expect(selectUser).toHaveBeenCalled();
