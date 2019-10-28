@@ -131,8 +131,7 @@ export class SignUpForm extends Component {
   }
 }
 
-export const mapStateToProps = ({ movies, emailErrMsg, isLoading }) => ({
-  movies,
+export const mapStateToProps = ({ emailErrMsg, isLoading }) => ({
   emailErrMsg,
   isLoading
 });

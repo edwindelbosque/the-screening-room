@@ -1,8 +1,8 @@
 export const setLoading = (state = false, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'IS_LOADING':
-      return action.isLoading
+      return action.isLoading;
     default:
-      return state  
+      return state;
   }
-}
+};

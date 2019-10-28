@@ -52,12 +52,6 @@ exports[`SelectedMovie should match the snapshot 1`] = `
           className="movie-details"
         >
           <h4>
-            Genre: 
-            <span>
-              Adventure, Fantasy, Family
-            </span>
-          </h4>
-          <h4>
             Rating: 
             <span>
               7.2

@@ -5,16 +5,31 @@ exports[`Container should match the All Movies snapshot 1`] = `
   className="Container"
 >
   <Connect(MovieCard)
-    id={1}
     key="1"
+    movie={
+      Object {
+        "id": 1,
+      }
+    }
+    updateFavorites={[MockFunction]}
   />
   <Connect(MovieCard)
-    id={2}
     key="2"
+    movie={
+      Object {
+        "id": 2,
+      }
+    }
+    updateFavorites={[MockFunction]}
   />
   <Connect(MovieCard)
-    id={3}
     key="3"
+    movie={
+      Object {
+        "id": 3,
+      }
+    }
+    updateFavorites={[MockFunction]}
   />
 </main>
 `;

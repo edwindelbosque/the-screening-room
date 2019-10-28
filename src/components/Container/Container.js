@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
 
-const Container = ({ movies, updateFavorites }) => {
+export const Container = ({ movies, updateFavorites }) => {
   const allMovies = movies.map(movie => (
     <MovieCard movie={movie} key={movie.id} updateFavorites={updateFavorites} />
   ));

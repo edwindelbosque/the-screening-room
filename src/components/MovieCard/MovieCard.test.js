@@ -5,6 +5,7 @@ import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
 describe('MovieCard', () => {
   let wrapper;
   let toggleFavorites = jest.fn();
+  let updateFavorites = jest.fn();
   let movie = {
     favorite: false,
     genre: (3)[('Crime', 'Drama', 'Thriller')],
@@ -23,7 +24,12 @@ describe('MovieCard', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-      <MovieCard {...movie} key={movie.id} toggleFavorites={toggleFavorites} />
+      <MovieCard
+        {...movie}
+        key={movie.id}
+        toggleFavorites={toggleFavorites}
+        updateFavorites={updateFavorites}
+      />
     );
   });
 

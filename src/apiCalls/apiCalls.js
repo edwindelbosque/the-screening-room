@@ -37,10 +37,10 @@ export const getWallpapers = async () => {
     const { backdrop_path } = result;
     return {
       wallpaper: `${imageBaseUrl}${backdrop_path}`
-    }
-  })
+    };
+  });
   return await Promise.all(wallpaper);
-}
+};
 
 // const getGenresData = async genreIds => {
 //   const genres = await genreIds.map(id => {
@@ -92,17 +92,17 @@ export const getFavorites = async userId => {
   const response = await fetch(url);
   const favorites = await response.json();
   return favorites;
-}
+};
 
 export const postFavorite = async (movie, userId) => {
   const cleanedMovie = {
     movie_id: movie.id,
     title: movie.title,
-    poster_path: movie.poster ,
+    poster_path: movie.poster,
     release_date: movie.release_date,
     vote_average: movie.rating,
     overview: movie.overview
-  }
+  };
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
@@ -110,14 +110,14 @@ export const postFavorite = async (movie, userId) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(cleanedMovie)
-  }
+  };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw Error('Could not add new favorite.')
+    throw Error('Could not add new favorite.');
   }
   const newFavorite = await response.json();
   return newFavorite;
-}
+};
 
 export const removeFavorite = async (movieId, userId) => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movieId}`;
@@ -126,9 +126,9 @@ export const removeFavorite = async (movieId, userId) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }
-  const response = await fetch(url, options)
+  };
+  const response = await fetch(url, options);
   if (!response.ok) {
-    throw Error('Could not delete favorite.')
+    throw Error('Could not delete favorite.');
   }
-}
+};

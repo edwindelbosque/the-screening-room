@@ -7,8 +7,9 @@ describe('Container', () => {
 
   it('should match the All Movies snapshot', () => {
     let movies = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    let updateFavorites = jest.fn();
     
-    allMoviesWrapper = shallow(<Container movies={movies} />);
+    allMoviesWrapper = shallow(<Container movies={movies} updateFavorites={updateFavorites} />);
 
     expect(allMoviesWrapper).toMatchSnapshot();
   });
