@@ -29,9 +29,9 @@ export const MovieCard = ({
           alt='Official movie poster'
         />
       </Link>
-      <footer className='MovieCard__footer'>
+      <footer className={`MovieCard__footer ${favorite ? 'footer-active' : ''}`}>
         <h3 className='MovieCard__h3--title'>{title}</h3>
-        <div className='button-container' onClick={handleClick}>
+        <div className={`button-container ${favorite ? 'button-container-active' : ''}`} onClick={handleClick}>
           <div className={favorite ? 'stick-1-active' : 'stick-1'}></div>
           <div className={favorite ? 'stick-2-active' : 'stick-2'}></div>
         </div>

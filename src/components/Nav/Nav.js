@@ -27,7 +27,7 @@ export const Nav = ({ logoutCurrentUser, movies, user, wallpapers }) => {
             <button className='link hover-1'>Favorites</button>
           </NavLink>
           {user.name ? (
-            <NavLink to='/login\' className='Nav__button link-wrapper' activeClassName='nav-active'>
+            <NavLink to='/login' className='Nav__button link-wrapper' activeClassName='nav-active'>
               <button className='link hover-1' onClick={logoutCurrentUser}>
                 Logout
               </button>
