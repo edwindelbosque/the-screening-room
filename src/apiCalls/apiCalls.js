@@ -114,7 +114,7 @@ export const postFavorite = async (movie, userId) => {
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw Error('Could not add new favorite.');
+    throw Error('Please log in to add favorites.');
   }
   const newFavorite = await response.json();
   return newFavorite;

@@ -51,3 +51,7 @@ export const setRandomWallpaper = wallpapers => ({
   type: 'RANDOM_WALLPAPER',
   wallpapers
 });
+
+export const resetFavorites = () => ({
+  type: 'RESET_FAVORITES'
+})

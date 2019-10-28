@@ -8,7 +8,6 @@ import { setUser } from './user';
 import { emailErrMsg } from './hasEmailErrMsg';
 import { setRandomWallpaper } from './setRandomWallpaper';
 
-
 const rootReducer = combineReducers({
   movies,
   wallpapers,

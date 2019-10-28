@@ -7,6 +7,8 @@ export const favorites = (state = [], action) => {
         ...movie,
         favorite: true
       }));
+    case 'RESET_FAVORITES':
+      return state = [];
     default:
       return state;
   }
