@@ -6,11 +6,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 export const Nav = ({ logoutCurrentUser, user, setRandomWallpaper }) => {
-  
   const navBackdrop = {
     backgroundImage: `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${setRandomWallpaper})`
   }
-
+  
   return (
     <div className='Nav__container' style={navBackdrop}>
         <header className='Nav'>
