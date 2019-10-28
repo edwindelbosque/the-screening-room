@@ -3,13 +3,12 @@ import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
 
 export const Container = ({ movies, updateFavorites, type }) => {
-  // console.log(movies)
   const allMovies = movies.map(movie => (
-    <MovieCard 
-    key={movie.movie_id}
-    type={type}
-    movie={movie} 
-    updateFavorites={updateFavorites} 
+    <MovieCard
+      key={movie.movie_id}
+      type={type}
+      movie={movie}
+      updateFavorites={updateFavorites}
     />
   ));
   return <main className='Container'>{allMovies}</main>;
