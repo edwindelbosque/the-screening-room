@@ -6,7 +6,7 @@ export const Container = ({ movies, updateFavorites, type }) => {
   // console.log(movies)
   const allMovies = movies.map(movie => (
     <MovieCard 
-      key={movie.id}
+      key={movie.movie_id}
       type={type}
       movie={movie} 
       updateFavorites={updateFavorites} 

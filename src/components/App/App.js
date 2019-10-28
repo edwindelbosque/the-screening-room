@@ -28,13 +28,20 @@ import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setMovies, setWallpapers, setLoading, hasError, setRandomWallpaper, user } = this.props;
+    const { setMovies, setFavorites, setWallpapers, hasError, setRandomWallpaper, user } = this.props;
     try {
-      // setLoading(true);
       let movieData = await getMovies();
       let wallpapers = await getWallpapers();
-      let favoriteMovies = await getFavorites(user.id);
-      setFavorites(favoriteMovies)
+
+      if (user.id) {
+        try {
+          let favorites = await getFavorites(user.id);
+          setFavorites(favorites.favorites);
+        } catch ({ message }) {
+          hasError(message);
+        }
+      }
+
       setWallpapers(wallpapers);
       setRandomWallpaper(wallpapers)
       setMovies(movieData);
