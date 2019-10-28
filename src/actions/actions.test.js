@@ -13,6 +13,27 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
+  it('should have a type of SET_WALLPAPERS', () => {
+    const wallpapers = [
+      {
+        wallpaper: 'https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg',
+        id: 475557
+      },
+      {
+        wallpaper: 'https://image.tmdb.org/t/p/original/skvI4rYFrKXS73BJxWGH54Omlvv.jpg',
+        id: 420809
+      }
+    ];
+    const expectedAction = {
+      type: 'SET_WALLPAPERS',
+      wallpapers
+    };
+
+    const result = actions.setWallpapers(wallpapers);
+    
+    expect(result).toEqual(expectedAction);
+  });
+
   it('should have a type of IS_LOADING', () => {
     const bool = true;
     const expectedAction = {
