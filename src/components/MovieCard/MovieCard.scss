@@ -1,6 +1,6 @@
 .MovieCard__div--container {
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.356);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,38 +25,21 @@
 }
 
 .MovieCard__footer {
-  background: linear-gradient(
-    -0.25turn,
-    rgb(3, 190, 103),
-    rgb(3, 204, 110),
-    rgb(25, 211, 124),
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white,
-    white
-  );
+  background: white;
   text-align: center;
   height: 60px;
   margin: 0%;
   display: flex;
-  border-radius: 0 4px 4px 4px;
+  border-radius: 0px 2px 4px 4px;
   justify-content: space-between;
   align-items: center;
   padding: 0%;
   width: 100%;
+  transition: .2s;
+}
+
+.footer-active {
+  transition: .2s;
 }
 
 .MovieCard__h3--title {
@@ -70,29 +53,55 @@
 }
 
 .button-container {
-  width: 45px;
+  width: 50px;
   height: 100%;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 2px;
+  border-radius: 0px 0 4px 0;
+  transition: .2s;
 
   div {
     width: 4px;
     border-radius: 1px;
+  }
+
+  &:hover {
+    transition: .2s;
+    
+    div {
+      background: black;
+    }
+  }
+}
+
+.button-container-active {
+  background: #0BBF68;
+  transition: .2s;
+
+  &:hover {
+    background: rgb(18, 207, 119);
+    transition: .2s;
+
+    div {
+      background: rgb(255, 255, 255);
+    }
   }
 }
 
 .stick-1 {
   transform: rotate(90deg);
   height: 22px;
-  background-color: rgba(255, 255, 255, 0.918);
+  background-color: rgba(95, 95, 95, 0.918);
   position: absolute;
   z-index: 0;
   transition: .2s;
 }
 
 .stick-2 {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(94, 94, 94);
   height: 22px;
   transition: .2s;
 }

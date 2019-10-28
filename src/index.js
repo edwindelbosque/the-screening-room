@@ -8,8 +8,16 @@ import rootReducer from './reducers';
 import './index.scss';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
+import { loadState, saveState } from './localStorage';
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, loadState(), composeWithDevTools());
+
+store.subscribe(() => {
+  saveState({
+    user: store.getState().user
+  })
+  console.log(store.getState().user)
+})
 
 ReactDOM.render(
   <Provider store={store}>

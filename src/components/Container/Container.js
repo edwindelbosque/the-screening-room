@@ -1,17 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
 
-export const Container = ({ movies, updateFavorites }) => {
+export const Container = ({ movies, updateFavorites, type }) => {
+  // console.log(movies)
   const allMovies = movies.map(movie => (
-    <MovieCard movie={movie} key={movie.id} updateFavorites={updateFavorites} />
+    <MovieCard 
+      key={movie.movie_id}
+      type={type}
+      movie={movie} 
+      updateFavorites={updateFavorites} 
+    />
   ));
   return <main className='Container'>{allMovies}</main>;
 };
 
-export const mapStateToProps = ({ movies }) => ({
-  movies
-});
-
-export default connect(mapStateToProps)(Container);
+export default Container;

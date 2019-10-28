@@ -6,6 +6,7 @@ import { setLoading } from './setLoading';
 import { favorites } from './favorites';
 import { setUser } from './user';
 import { emailErrMsg } from './hasEmailErrMsg';
+import { setRandomWallpaper } from './setRandomWallpaper';
 
 const rootReducer = combineReducers({
   movies,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   isLoading: setLoading,
   favorites,
   emailErrMsg,
-  user: setUser
-});
+  user: setUser,
+  setRandomWallpaper
+}) 
 
 export default rootReducer;

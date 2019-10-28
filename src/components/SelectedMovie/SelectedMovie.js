@@ -2,11 +2,12 @@ import React from 'react';
 import './SelectedMovie.scss';
 import { Link } from 'react-router-dom';
 
-const SelectedMovie = ({ movieDetails }) => {
-  const { wallpaper, title, overview, poster, rating, genre } = movieDetails;
+const SelectedMovie = ({ movieDetails, wallpapers, match }) => {
+  const { title, overview, poster_path, rating, movie_id } = movieDetails;
+  const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === movie_id).wallpaper
   return (
     <>
-      <Link to='/'>
+      <Link to={`/${match.params[0]}`}>
         <div className='modal-backdrop-white'>
           <div className='modal-backdrop'></div>
         </div>
@@ -16,12 +17,12 @@ const SelectedMovie = ({ movieDetails }) => {
           <header className='SelectedMovie__header'>
             <img
               className='SelectedMovie__img--favorite'
-              src={wallpaper}
+              src={movieWallpaper}
               alt='Favorite icon'
             />
             <img
               className='SelectedMovie__img--close'
-              src={poster}
+              src={poster_path}
               alt='Close window icon'
             />
           </header>
