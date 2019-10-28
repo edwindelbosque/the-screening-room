@@ -17,6 +17,6 @@ const rootReducer = combineReducers({
   emailErrMsg,
   user: setUser,
   setRandomWallpaper
-}) 
+});
 
 export default rootReducer;

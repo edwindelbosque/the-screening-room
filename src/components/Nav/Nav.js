@@ -14,7 +14,6 @@ export const Nav = ({
   hasError,
   setRandomWallpaper
 }) => {
-
   const handleLogoutClick = () => {
     logoutCurrentUser();
     resetFavorites({});
@@ -23,11 +22,11 @@ export const Nav = ({
 
   const navBackdrop = {
     backgroundImage: `linear-gradient(to top, #00000000, #00000000, rgb(31, 31, 31)), url(${setRandomWallpaper})`
-  }
+  };
 
   return (
     <div className='Nav__container' style={navBackdrop}>
-      <header className='Nav' >
+      <header className='Nav'>
         <h1>The Screening Room</h1>
         <div className='Nav__ul'>
           <NavLink
@@ -62,11 +61,12 @@ export const Nav = ({
               activeClassName='nav-active'
             >
               <button className='link hover-1'>Account</button>
-          </NavLink> )}
-          </div>
-        </header>
-      </div>
-    );
+            </NavLink>
+          )}
+        </div>
+      </header>
+    </div>
+  );
 };
 
 export const mapStateToProps = ({ movies, user, setRandomWallpaper }) => {

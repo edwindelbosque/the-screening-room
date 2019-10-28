@@ -22,7 +22,7 @@ export const MovieCard = ({
 
   const handleClick = () => {
     if (user.name) {
-      setFavorites(favorites)
+      setFavorites(favorites);
       updateFavorites(movie, isFavorite);
       toggleFavorite(title);
     } else {
@@ -30,7 +30,7 @@ export const MovieCard = ({
       history.push('/login');
     }
   };
-  
+
   return (
     <div className='MovieCard__div--container'>
       <Link to={`${type}/${movie_id}`}>
@@ -40,9 +40,16 @@ export const MovieCard = ({
           alt='Official movie poster'
         />
       </Link>
-      <footer className={`MovieCard__footer ${favorite ? 'footer-active' : ''}`}>
+      <footer
+        className={`MovieCard__footer ${favorite ? 'footer-active' : ''}`}
+      >
         <h3 className='MovieCard__h3--title'>{title}</h3>
-        <div className={`button-container ${favorite ? 'button-container-active' : ''}`} onClick={handleClick}>
+        <div
+          className={`button-container ${
+            favorite ? 'button-container-active' : ''
+          }`}
+          onClick={handleClick}
+        >
           <div className={favorite ? 'stick-1-active' : 'stick-1'}></div>
           <div className={favorite ? 'stick-2-active' : 'stick-2'}></div>
         </div>
@@ -61,7 +68,9 @@ export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ toggleFavorite, setFavorites }, dispatch);
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MovieCard));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MovieCard)
+);

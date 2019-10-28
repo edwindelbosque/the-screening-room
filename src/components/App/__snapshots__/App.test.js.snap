@@ -8,7 +8,7 @@ exports[`App should match the snapshot 1`] = `
     logoutCurrentUser={[Function]}
   />
   <Route
-    path="/movies/:id"
+    path="/(movies|favorites)/:id"
     render={[Function]}
   />
   <Route
@@ -20,7 +20,6 @@ exports[`App should match the snapshot 1`] = `
     render={[Function]}
   />
   <Route
-    exact={true}
     path="/favorites"
     render={[Function]}
   />
