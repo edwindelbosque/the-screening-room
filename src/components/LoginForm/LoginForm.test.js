@@ -52,6 +52,14 @@ describe('LoginForm', () => {
     wrapper.instance().handleClick();
     expect(selectUser).toHaveBeenCalled();
   });
+
+  it('should update the value of isLoggedIn when handleClick is called', () => {
+    expect(wrapper.state('isLoggedIn')).toEqual(false);
+    wrapper.find('button').at(0).simulate('click');
+    expect(wrapper.state('isLoggedIn')).toEqual(true);
+  });
+
+  
 });
 
 describe('mapStateToProps', () => {
