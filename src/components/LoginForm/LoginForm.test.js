@@ -2,10 +2,25 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { LoginForm, mapStateToProps, mapDispatchToProps } from './LoginForm';
 import { setUser, hasError, setFavorites } from '../../actions/index';
+import { selectUser } from '../../apiCalls/apiCalls';
+
+jest.mock('../../apiCalls/apiCalls');
 
 describe('LoginForm', () => {
   let wrapper;
   let errMsg = jest.fn();
+  let mockEventName = {
+    target: {
+      name: 'email',
+      value: 'elyse@noneofyourbusiness.com'
+    }
+  };
+  let mockEventPassword = {
+    target: {
+      name: 'password',
+      value: 'testing123'
+    }
+  };
 
   beforeEach(() => {
     wrapper = shallow(<LoginForm errMsg={errMsg} />);
@@ -16,18 +31,6 @@ describe('LoginForm', () => {
   });
 
   it('should update form state when handleChange is called', () => {
-    let mockEventName = {
-      target: {
-        name: 'email',
-        value: 'elyse@noneofyourbusiness.com'
-      }
-    };
-    let mockEventPassword = {
-      target: {
-        name: 'password',
-        value: 'testing123'
-      }
-    };
     const expectedEmail = 'elyse@noneofyourbusiness.com';
     const expectedPassword = 'testing123';
 
@@ -35,6 +38,11 @@ describe('LoginForm', () => {
     wrapper.instance().handleChange(mockEventPassword);
     expect(wrapper.state('email')).toEqual(expectedEmail);
     expect(wrapper.state('password')).toEqual(expectedPassword);
+  });
+
+  it('should call the selectUser fetch when handleClick is called', () => {
+    wrapper.instance().handleClick();
+    expect(selectUser).toHaveBeenCalled();
   });
 });
 
