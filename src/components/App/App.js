@@ -28,7 +28,7 @@ import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setMovies, setWallpapers, setLoading, hasError, setRandomWallpaper, favorites, user } = this.props;
+    const { setMovies, setWallpapers, setLoading, hasError, setRandomWallpaper, user } = this.props;
     try {
       // setLoading(true);
       let movieData = await getMovies();
@@ -55,7 +55,7 @@ export class App extends Component {
       }
     } else {
       try {
-        await removeFavorite(movie.id, user.id);
+        await removeFavorite(movie.movie_id, user.id);
         let newFavorites = await getFavorites(user.id);
         setFavorites(newFavorites.favorites);
       } catch ({ message }) {
@@ -74,23 +74,22 @@ export class App extends Component {
       <main className='main'>
         <Nav logoutCurrentUser={this.logoutCurrentUser} />
         <Route
-          path='/movies/:id'
+          path='/(movies|favorites)/:id'
           render={({ match }) => {
             const movieDetails = this.props.movies.find(
               movie => movie.movie_id === parseInt(match.params.id)
             );
-            return <SelectedMovie movieDetails={movieDetails} wallpapers={this.props.wallpapers} />;
+            return <SelectedMovie movieDetails={movieDetails} match={match} wallpapers={this.props.wallpapers} />;
           }}
         />
         <Route
           path='/(|movies|signup|login)'
-          render={() => <Container movies={this.props.movies} updateFavorites={this.updateFavorites} />}
+          render={() => <Container movies={this.props.movies} type='movies' updateFavorites={this.updateFavorites} />}
         />
         <Route path='/(login|signup)' render={() => <AccessModal />} />
         <Route
-          exact
           path='/favorites'
-          render={() => <Container movies={this.props.favorites} updateFavorites={this.updateFavorites} />}
+          render={() => <Container movies={this.props.favorites} type='favorites' updateFavorites={this.updateFavorites} />}
         />
         <Footer />
       </main>

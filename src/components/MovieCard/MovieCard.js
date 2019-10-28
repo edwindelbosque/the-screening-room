@@ -9,7 +9,8 @@ export const MovieCard = ({
   movie,
   favorites,
   toggleFavorite,
-  updateFavorites
+  updateFavorites,
+  type
 }) => {
   const { title, poster_path, favorite, movie_id } = movie;
   const isFavorite = favorites
@@ -22,7 +23,7 @@ export const MovieCard = ({
   };
   return (
     <div className='MovieCard__div--container'>
-      <Link to={`movies/${movie_id}`}>
+      <Link to={`${type}/${movie_id}`}>
         <img
           className='MovieCard__img--poster'
           src={poster_path}
