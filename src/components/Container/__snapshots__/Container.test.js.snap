@@ -4,7 +4,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
 <main
   className="Container"
 >
-  <Connect(MovieCard)
+  <withRouter(Connect(MovieCard))
     key="1"
     movie={
       Object {
@@ -13,7 +13,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
     }
     updateFavorites={[MockFunction]}
   />
-  <Connect(MovieCard)
+  <withRouter(Connect(MovieCard))
     key="2"
     movie={
       Object {
@@ -22,7 +22,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
     }
     updateFavorites={[MockFunction]}
   />
-  <Connect(MovieCard)
+  <withRouter(Connect(MovieCard))
     key="3"
     movie={
       Object {
