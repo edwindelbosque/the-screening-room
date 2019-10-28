@@ -5,8 +5,22 @@ import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import Footer from '../Footer/Footer';
-import { getMovies, getWallpapers, postFavorite, removeFavorite, getFavorites } from '../../apiCalls/apiCalls';
-import { setMovies, setWallpapers, setLoading, hasError, addFavorite, setFavorites, setUser } from '../../actions';
+import {
+  getMovies,
+  getWallpapers,
+  postFavorite,
+  removeFavorite,
+  getFavorites
+} from '../../apiCalls/apiCalls';
+import {
+  setMovies,
+  setWallpapers,
+  setLoading,
+  hasError,
+  addFavorite,
+  setFavorites,
+  setUser
+} from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
@@ -27,21 +41,20 @@ export class App extends Component {
     }
   };
 
-  updateFavorites = async(movie, isFavorite) => {
+  updateFavorites = async (movie, isFavorite) => {
     const { user, addFavorite, setFavorites, hasError } = this.props;
     if (!isFavorite) {
       try {
         let favoritesData = await postFavorite(movie, user.id);
         addFavorite(favoritesData);
-      } catch ({message}){  
+      } catch ({ message }) {
         hasError(message);
       }
     } else {
       try {
         await removeFavorite(movie.id, user.id);
-        let newFavorites = await getFavorites(user.id)
+        let newFavorites = await getFavorites(user.id);
         setFavorites(newFavorites.favorites);
-
       } catch ({ message }) {
         hasError(message);
       }
@@ -67,16 +80,30 @@ export class App extends Component {
             return <SelectedMovie movieDetails={movieDetails} />;
           }}
         />
-        <Route path='/(|movies|signup|login)' render={() => <Container />} />
+        <Route
+          path='/(|movies|signup|login)'
+          render={() => <Container updateFavorites={this.updateFavorites} />}
+        />
         <Route path='/(login|signup)' render={() => <AccessModal />} />
-        <Route exact path='/favorites' render={() => <Container />} />
+        <Route
+          exact
+          path='/favorites'
+          render={() => <Container updateFavorites={this.updateFavorites} />}
+        />
         <Footer />
       </main>
     );
   }
 }
 
-const mapStateToProps = ({ movies, wallpapers, hasError, isLoading, user, favorites }) => ({
+const mapStateToProps = ({
+  movies,
+  wallpapers,
+  hasError,
+  isLoading,
+  user,
+  favorites
+}) => ({
   movies,
   wallpapers,
   hasError,
@@ -86,8 +113,19 @@ const mapStateToProps = ({ movies, wallpapers, hasError, isLoading, user, favori
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setMovies, setWallpapers, setLoading, hasError, addFavorite, setFavorites, setUser }, dispatch)
-}
+  return bindActionCreators(
+    {
+      setMovies,
+      setWallpapers,
+      setLoading,
+      hasError,
+      addFavorite,
+      setFavorites,
+      setUser
+    },
+    dispatch
+  );
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

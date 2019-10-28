@@ -20,7 +20,7 @@ describe('actions', () => {
       bool
     };
 
-    const result = actions.isLoading(bool);
+    const result = actions.setLoading(bool);
 
     expect(result).toEqual(expectedAction);
   });
