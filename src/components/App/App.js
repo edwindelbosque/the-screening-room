@@ -77,7 +77,7 @@ export class App extends Component {
             const movieDetails = this.props.movies.find(
               movie => movie.id === parseInt(match.params.id)
             );
-            return <SelectedMovie movieDetails={movieDetails} />;
+            return <SelectedMovie movieDetails={movieDetails} wallpapers={this.props.wallpapers} />;
           }}
         />
         <Route

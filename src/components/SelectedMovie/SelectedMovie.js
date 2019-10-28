@@ -2,8 +2,10 @@ import React from 'react';
 import './SelectedMovie.scss';
 import { Link } from 'react-router-dom';
 
-const SelectedMovie = ({ movieDetails }) => {
-  const { wallpaper, title, overview, poster, rating, genre } = movieDetails;
+const SelectedMovie = ({ movieDetails, wallpapers }) => {
+  const { title, overview, poster, rating, id } = movieDetails;
+  const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === id).wallpaper
+  console.log(movieWallpaper)
   return (
     <>
       <Link to='/'>
@@ -16,7 +18,7 @@ const SelectedMovie = ({ movieDetails }) => {
           <header className='SelectedMovie__header'>
             <img
               className='SelectedMovie__img--favorite'
-              src={wallpaper}
+              src={movieWallpaper}
               alt='Favorite icon'
             />
             <img

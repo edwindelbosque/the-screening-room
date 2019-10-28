@@ -34,9 +34,10 @@ export const getWallpapers = async () => {
   const data = await response.json();
   const results = data.results;
   const wallpaper = await results.map(async result => {
-    const { backdrop_path } = result;
+    const { backdrop_path, id } = result;
     return {
-      wallpaper: `${imageBaseUrl}${backdrop_path}`
+      wallpaper: `${imageBaseUrl}${backdrop_path}`,
+      id: id
     };
   });
   return await Promise.all(wallpaper);
