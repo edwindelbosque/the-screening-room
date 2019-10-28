@@ -184,4 +184,13 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
+  it('should have a type of RESET_FAVORITES', () => {
+    const expectedAction = {
+      type: 'RESET_FAVORITES'
+    };
+
+    const result = actions.resetFavorites();
+
+    expect(result).toEqual(expectedAction);
+  }); 
 });
