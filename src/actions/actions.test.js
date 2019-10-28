@@ -172,5 +172,16 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
+  it('should have a type of RANDOM_WALLPAPER', () => {
+    const wallpapers = 'https://image.tmdb.org/t/p/original/zBAoNL50oFRCAJvEEQEKD8M48pV.jpg';
+    const expectedAction = {
+      type: 'RANDOM_WALLPAPER',
+      wallpapers
+    };
+
+    const result = actions.setRandomWallpaper(wallpapers);
+
+    expect(result).toEqual(expectedAction);
+  });
 
 });
