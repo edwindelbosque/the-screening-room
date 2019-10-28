@@ -7,7 +7,6 @@ import { favorites } from './favorites';
 import { setUser } from './user';
 import { emailErrMsg } from './hasEmailErrMsg';
 
-
 const rootReducer = combineReducers({
   movies,
   wallpapers,
@@ -16,6 +15,6 @@ const rootReducer = combineReducers({
   favorites,
   emailErrMsg,
   user: setUser
-}) 
+});
 
 export default rootReducer;

@@ -46,3 +46,7 @@ export const setUser = user => ({
 export const logoutUser = () => ({
   type: 'USER_LOGOUT'
 });
+
+export const resetFavorites = () => ({
+  type: 'RESET_FAVORITES'
+})
