@@ -23,4 +23,8 @@ describe('wallpapers', () => {
 
     expect(result).toEqual(expected);
   });
+
+  // it('should return wallpapers if action.type is "SET_WALLPAPERS"', () => {
+
+  // })
 });
