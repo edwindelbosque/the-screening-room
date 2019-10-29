@@ -10,6 +10,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
         "id": 1,
       }
     }
+    type="movies"
     updateFavorites={[MockFunction]}
   />
   <withRouter(Connect(MovieCard))
@@ -18,6 +19,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
         "id": 2,
       }
     }
+    type="movies"
     updateFavorites={[MockFunction]}
   />
   <withRouter(Connect(MovieCard))
@@ -26,6 +28,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
         "id": 3,
       }
     }
+    type="movies"
     updateFavorites={[MockFunction]}
   />
 </main>

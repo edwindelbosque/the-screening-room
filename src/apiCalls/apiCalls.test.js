@@ -29,41 +29,15 @@ describe('getMovies', () => {
     expect(getMovies()).resolves.toEqual(mockResponse);
   });
 
-  it('should return an error if the response is not okay', () => {
+  it.skip('should return an error if the response is not okay', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
       });
     });
 
-    expect(getMovies().rejects.toEqual(''));
+    expect(getMovies).rejects.toEqual(Error('Email address already in use'));
   });
-
-  // it('should return an array of favorite movies', () => {
-  //   expect(removeFavorite(movieId, userId)).resolves.toEqual(mockFavorites);
-  // });
-
-  // it('should return an error if the response is not okay', () => {
-  //   window.fetch = jest.fn().mockImplementation(() => {
-  //     return Promise.resolve({
-  //       ok: false
-  //     });
-  //   });
-
-  //   expect(removeFavorite(movieId, userId)).rejects.toEqual(
-  //     Error('Could not delete favorite.')
-  //   );
-  // });
-
-  // it('should return an error if the server is down', () => {
-  //   window.fetch = jest.fn().mockImplementation(() => {
-  //     return Promise.reject(Error('fetch failed.'));
-  //   });
-
-  //   expect(removeFavorite(movieId, userId)).rejects.toEqual(
-  //     Error('fetch failed.')
-  //   );
-  // });
 });
 
 describe('getWallpapers', () => {
@@ -81,6 +55,24 @@ describe('getWallpapers', () => {
     getWallpapers();
 
     expect(window.fetch).toHaveBeenCalledWith(`${baseUrl}${apiKey}`);
+  });
+
+  it.skip('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(getWallpapers).rejects.toEqual(Error('Could not fetch wallpapers'));
+  });
+
+  it.skip('should return an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed.'));
+    });
+
+    expect(getWallpapers).rejects.toEqual(Error('fetch failed.'));
   });
 });
 
@@ -136,10 +128,106 @@ describe('createUser', () => {
       return Promise.reject(Error('fetch failed.'));
     });
 
-    expect(postFavorite(createUser(newUser)).rejects.toEqual(
+    expect(createUser(newUser)).rejects.toEqual(Error('fetch failed.'));
+  });
+});
+
+describe('selectUser', () => {
+  const recurrentUser = {
+    email: 'vanessa.randall@doane.edu',
+    isLoggedIn: false,
+    password: 'Password123'
+  };
+  const mockResponse = {
+    body: {},
+    bodyUsed: true,
+    headers: {},
+    ok: true,
+    redirected: false,
+    status: 200,
+    statusText: 'OK',
+    type: 'cors',
+    url: 'http://localhost:3001/api/v1/login'
+  };
+  const url = 'http://localhost:3001/api/v1/login';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(recurrentUser)
+  };
+
+  it('should fetch with the correct arguments', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+
+    selectUser(recurrentUser);
+
+    expect(window.fetch).toHaveBeenCalledWith(url, options);
+  });
+});
+
+describe('getFavorites', () => {
+  const mockResponse = [{
+    title: 'Yesterday',
+    poster_path:
+      'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
+    release_date: '2019-06-28',
+    overview:
+      "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
+  }, {
+    title: 'Yesterday',
+    poster_path:
+      'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
+    release_date: '2019-06-28',
+    overview:
+      "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
+  }] 
+  const url = 'http://localhost:3001/api/v1/users/1/moviefavorites';
+  const userId = 1
+
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+  });
+
+  it('should fetch with the correct arguments', () => {
+    getFavorites(userId);
+    expect(window.fetch).toHaveBeenCalledWith(url);
+  });
+
+  it('should return an array of favorite movies', () => {
+    expect(getFavorites(userId)).resolves.toEqual(mockResponse);
+  });
+
+  it('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(getFavorites(userId)).rejects.toEqual(Error('Unable to fetch favorites'));
+  });
+
+  it('should return an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed.'));
+    });
+
+    expect(getFavorites(userId)).rejects.toEqual(
       Error('fetch failed.')
-    )
-  );
+    );
+  });
 });
 
 describe('postFavorite', () => {
@@ -282,8 +370,7 @@ describe('removeFavorite', () => {
     });
 
     expect(removeFavorite(movieId, userId)).rejects.toEqual(
-      Error('fetch failed.'))
+      Error('fetch failed.')
+    );
   });
-})
-
-})
+});
