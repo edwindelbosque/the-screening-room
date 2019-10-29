@@ -16,7 +16,6 @@ store.subscribe(() => {
   saveState({
     user: store.getState().user
   })
-  console.log(store.getState().user)
 })
 
 ReactDOM.render(

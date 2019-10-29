@@ -5,50 +5,53 @@ import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import Footer from '../Footer/Footer';
-import {
-  getMovies,
-  getWallpapers,
-  postFavorite,
-  removeFavorite,
-  getFavorites
-} from '../../apiCalls/apiCalls';
-import {
-  setMovies,
-  setWallpapers,
-  setLoading,
-  hasError,
-  addFavorite,
-  setFavorites,
-  setUser,
-  setRandomWallpaper
-} from '../../actions';
+import { getMovies, getWallpapers, postFavorite, removeFavorite, getFavorites } from '../../apiCalls/apiCalls';
+import { setMovies, setWallpapers, setLoading, hasError, addFavorite, setFavorites, setUser, setRandomWallpaper } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setMovies, setFavorites, setWallpapers, hasError, setRandomWallpaper, user } = this.props;
+    const { setWallpapers, hasError, setRandomWallpaper, setLoading } = this.props;
     try {
-      let movieData = await getMovies();
-      let wallpapers = await getWallpapers();
+      setLoading(true);
+      const wallpapers = await getWallpapers();
+      await this.loadMovieData();
+      setWallpapers(wallpapers);
+      setRandomWallpaper(wallpapers)
+      setLoading(false);
+    } catch ({ message }) {
+      hasError(message);
+      setLoading(false);
+    }
+  };
+
+  loadMovieData = async () => {
+    const { setMovies, setFavorites, hasError, user } = this.props;
+      const fetchedMovies = await getMovies()
 
       if (user.id) {
         try {
-          let favorites = await getFavorites(user.id);
-          setFavorites(favorites.favorites);
+          const favorites = await getFavorites(user.id);
+          const markedMovies = await this.markFavorites(fetchedMovies, favorites)
+          setMovies(markedMovies);
+          await setFavorites(favorites.favorites);
         } catch ({ message }) {
           hasError(message);
         }
+      } else {
+        setMovies(fetchedMovies)
       }
-
-      setWallpapers(wallpapers);
-      setRandomWallpaper(wallpapers)
-      setMovies(movieData);
-    } catch ({ message }) {
-      hasError(message);
-    }
-  };
+  }
+  
+  markFavorites = (movies, favorites) => {
+      return movies.map(movie => {
+      return favorites.favorites.find(favorite => favorite.movie_id === movie.movie_id)
+        ? { ...movie, favorite: true }
+        : { ...movie, favorite: false }
+      })
+  }
 
   updateFavorites = async (movie, isFavorite) => {
     const { user, addFavorite, setFavorites, hasError } = this.props;
@@ -56,7 +59,6 @@ export class App extends Component {
       try {
         let favoritesData = await postFavorite(movie, user.id);
         addFavorite(favoritesData);
-        setFavorites()
       } catch ({ message }) {
         hasError(message);
       }
@@ -86,14 +88,18 @@ export class App extends Component {
             const movieDetails = this.props.movies.find(
               movie => movie.movie_id === parseInt(match.params.id)
             );
-            return <SelectedMovie movieDetails={movieDetails} match={match} wallpapers={this.props.wallpapers} />;
+            return <SelectedMovie 
+              movieDetails={movieDetails} 
+              match={match} 
+              wallpapers={this.props.wallpapers} 
+            />;
           }}
         />
         <Route
           path='/(|movies|signup|login)'
           render={() => <Container movies={this.props.movies} type='movies' updateFavorites={this.updateFavorites} />}
         />
-        <Route path='/(login|signup)' render={() => <AccessModal />} />
+        <Route path='/(login|signup)' render={() => <AccessModal loadMovieData={this.loadMovieData} />} />
         <Route
           path='/favorites'
           render={() => <Container movies={this.props.favorites} type='favorites' updateFavorites={this.updateFavorites} />}

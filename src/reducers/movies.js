@@ -8,6 +8,10 @@ export const movies = (state = [], action) => {
           ? { ...movie, favorite: !movie.favorite }
           : movie
       );
+    case 'RESET_MOVIES_FAVORITES':
+      return state.map(movie => ({
+        ...movie, favorite: false
+      }))
     default:
       return state;
   }

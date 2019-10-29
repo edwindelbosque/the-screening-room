@@ -3,9 +3,8 @@ import './AccessModal.scss';
 import LoginForm from '../LoginForm/LoginForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import { Route, NavLink, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-export const AccessModal = ({ user, findUserFavorites }) => {
+export const AccessModal = ({ loadMovieData }) => {
   return (
     <>
       <Link to='/'>
@@ -22,15 +21,11 @@ export const AccessModal = ({ user, findUserFavorites }) => {
             <li className='login_tab'>Sign up</li>
           </NavLink>
         </ul>
-        <Route exact path='/login' render={() => <LoginForm />} />
+        <Route exact path='/login' render={() => <LoginForm loadMovieData={loadMovieData} />} />
         <Route exact path='/signup' render={() => <SignUpForm />} />
       </div>
     </>
   );
 };
 
-export const mapStateToProps = user => ({
-  user
-});
-
-export default connect(mapStateToProps)(AccessModal);
+export default AccessModal;

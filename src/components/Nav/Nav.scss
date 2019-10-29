@@ -4,8 +4,8 @@
   background-size: cover;
   width: 100%;
   object-fit: cover;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.774);
   color: rgb(31, 31, 31);
-  border-bottom: 3px solid rgb(80, 80, 80);
 }
 
 .link-wrapper {
@@ -21,7 +21,7 @@
       height: 3px;
       bottom: 0;
       left: 19px;
-      background-color: rgb(1, 146, 73);
+      background-color: rgb(0, 196, 104);
       transform: scaleX(0);
       transform-origin: bottom right;
       transition: transform 0.15s;
@@ -43,7 +43,7 @@
       height: 3px;
       bottom: 0;
       left: 34px;
-      background-color: rgb(1, 146, 73);
+      background-color: rgb(0, 196, 104);
       transform: scaleX(0);
       transform-origin: bottom right;
       transition: transform 0.15s;
@@ -88,7 +88,7 @@
     }
 
     &:hover {
-      color: rgb(0, 182, 91);
+      color: rgb(255, 255, 255);
       transition: .2s;
     }
   }
@@ -104,6 +104,8 @@
   h1 {
     margin-left: 25px;
     margin-top: 80px;
+    position: sticky;
+    top: 0;
     font-size: 1.6em;
     width: 170px;
     color: rgb(29, 199, 134);
@@ -133,9 +135,19 @@ button {
   vertical-align: middle;
 }
 
+.favorite-counter {
+  position: absolute;
+  background-image: linear-gradient(to right bottom, #01C369, #01c382);
+  border-radius: 30px;
+  padding: 0px 6px 1px 6px;
+  font-size: 16px;
+  left: 108px;
+  top: 0;
+}
+
 @media only screen and (max-width: 820px) {
   .Nav__container {
-    height: 85px;
+    height: 200px;
     width: 100%;
   }
 
@@ -148,12 +160,30 @@ button {
       height: 36px;
       padding-top: 6px;
     }
+
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   }
+
 }
 
 .nav-active {
   button {
-    color: rgb(0, 182, 91);
+    color: rgb(0, 196, 104);
+
+    &:hover {
+      color: rgb(0, 196, 104);
+    }
+
+    &:active {
+      color: rgb(0, 196, 104);
+    }
+
+    p {
+      color: white;
+    }
   }
 
   .hover-1 {
@@ -165,7 +195,7 @@ button {
         height: 3px;
         bottom: 0;
         left: 19px;
-        background-color: rgb(1, 146, 73);
+        background-color: rgb(0, 196, 104);
         transform: scaleX(1);
         transform-origin: bottom right;
     }
@@ -183,7 +213,7 @@ button {
       height: 3px;
       bottom: 0;
       left: 34px;
-      background-color: rgb(1, 146, 73);
+      background-color: rgb(0, 196, 104);
       transform: scaleX(1);
       transform-origin: bottom right;
     }

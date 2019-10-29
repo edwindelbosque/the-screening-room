@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { setUser, hasError, resetFavorites } from '../../actions/index';
+import { setUser, hasError, resetFavorites, resetMoviesFavorites } from '../../actions/index';
 import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,14 +8,16 @@ import { bindActionCreators } from 'redux';
 export const Nav = ({
   logoutCurrentUser,
   resetFavorites,
-  movies,
+  loadMovieData,
   user,
-  wallpapers,
   hasError,
+  favorites,
+  resetMoviesFavorites,
   setRandomWallpaper
 }) => {
   const handleLogoutClick = () => {
     logoutCurrentUser();
+    resetMoviesFavorites();
     resetFavorites({});
     hasError('');
   };
@@ -42,7 +44,13 @@ export const Nav = ({
             className='Nav__button link-wrapper'
             activeClassName='nav-active'
           >
-            <button className='link hover-1'>Favorites</button>
+            <button className='link hover-1'>
+              Favorites 
+              {favorites.length 
+                ? <p className='favorite-counter'>{favorites.length}</p>
+                : '' }
+            </button>
+
           </NavLink>
           {user.name ? (
             <NavLink
@@ -69,12 +77,12 @@ export const Nav = ({
   );
 };
 
-export const mapStateToProps = ({ movies, user, setRandomWallpaper }) => {
-  return { movies, user, setRandomWallpaper };
+export const mapStateToProps = ({ movies, user, setRandomWallpaper, favorites }) => {
+  return { movies, user, setRandomWallpaper, favorites };
 };
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, hasError, resetFavorites }, dispatch);
+  return bindActionCreators({ setUser, hasError, resetFavorites, resetMoviesFavorites }, dispatch);
 };
 
 export default connect(

@@ -8,12 +8,12 @@
   width: 320px;
   background: linear-gradient(to left, #02BF67, rgb(85, 216, 140), rgb(236, 236, 236));
   border-radius: 4px;
-  transition: .15s;
+  transition: .25s;
   cursor: pointer;
 
   &:hover {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
-    transition: .15s;
+    transition: .25s;
   }
 }
 
@@ -78,7 +78,7 @@
 }
 
 .button-container-active {
-  background: #0BBF68;
+  background: #01C369;
   transition: .2s;
 
   &:hover {
