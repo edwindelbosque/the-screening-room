@@ -18,7 +18,7 @@ exports[`SignUpForm should match the snapshot 1`] = `
       Your name
     </label>
     <input
-      className="Form__input"
+      className="Form__input Form__input--name"
       id="name"
       name="name"
       onChange={[Function]}
@@ -35,7 +35,7 @@ exports[`SignUpForm should match the snapshot 1`] = `
       Your email
     </label>
     <input
-      className="Form__input"
+      className="Form__input Form__input--email"
       id="email"
       name="email"
       onChange={[Function]}
@@ -52,7 +52,7 @@ exports[`SignUpForm should match the snapshot 1`] = `
       Your password
     </label>
     <input
-      className="Form__input"
+      className="Form__input Form__input--password"
       id="password"
       name="password"
       onChange={[Function]}
@@ -62,8 +62,7 @@ exports[`SignUpForm should match the snapshot 1`] = `
     />
   </div>
   <button
-    className="Form__button"
-    onClick={[Function]}
+    className="Form__button signup-form__button"
     type="submit"
   >
     Continue

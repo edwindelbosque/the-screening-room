@@ -22,9 +22,9 @@ As a result of building out this project, we developed some muscle memory buildi
 
 ## Screenshot
 
-![](https://user-images.githubusercontent.com/48811985/67630270-b8b4ca80-f87c-11e9-9cae-873b1cd87ac6.png)
+![](https://user-images.githubusercontent.com/48811985/67738764-ca76a900-fa07-11e9-8ddb-0fc6a5aa1e9f.png)
 
-![](https://user-images.githubusercontent.com/48811985/67630269-b81c3400-f87c-11e9-808a-d1bb821ea83d.png)
+![](https://user-images.githubusercontent.com/48811985/67738963-93ed5e00-fa08-11e9-93f0-1a99421b6b39.png)
 
 ## Learnings
 
@@ -34,6 +34,7 @@ As a result of building out this project, we developed some muscle memory buildi
 - Solidified concepts with React to create clean and re-useable components.
 - Became comfortable with Redux’s lifecycle, creating actions, reducers, and connecting them to React components.
 - Understood and solidified concepts with React component, asynchronous code, and Redux testing.
+- Use of localStorage to make user and userinformation persist on page load.
 
 ## Built with
 

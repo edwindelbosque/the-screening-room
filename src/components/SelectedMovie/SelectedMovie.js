@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 const SelectedMovie = ({ movieDetails, wallpapers, match }) => {
   const { title, overview, poster_path, rating, movie_id } = movieDetails;
-  const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === movie_id).wallpaper
+  const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === movie_id)
+    .wallpaper;
   return (
     <>
       <Link to={`/${match.params[0]}`}>

@@ -5,6 +5,9 @@ const apiKey = '149174d30ba0677b5219f8786eaaaaa7';
 
 export const getMovies = async () => {
   const response = await fetch(`${baseUrl}${apiKey}`);
+  if (!response.ok) {
+    throw Error('Could not fetch movies.');
+  }
   const data = await response.json();
   const results = data.results;
   const cleanedMovies = await results.map(async result => {

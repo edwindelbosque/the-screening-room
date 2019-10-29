@@ -4,6 +4,7 @@
   background-size: cover;
   width: 100%;
   object-fit: cover;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.774);
   color: rgb(31, 31, 31);
 }
 
@@ -20,7 +21,7 @@
       height: 3px;
       bottom: 0;
       left: 19px;
-      background-color: rgb(1, 146, 73);
+      background-color: rgb(0, 196, 104);
       transform: scaleX(0);
       transform-origin: bottom right;
       transition: transform 0.15s;
@@ -42,7 +43,7 @@
       height: 3px;
       bottom: 0;
       left: 34px;
-      background-color: rgb(1, 146, 73);
+      background-color: rgb(0, 196, 104);
       transform: scaleX(0);
       transform-origin: bottom right;
       transition: transform 0.15s;
@@ -136,9 +137,9 @@ button {
 
 .favorite-counter {
   position: absolute;
-  background-image: linear-gradient(to right bottom, rgb(24, 201, 103), rgb(18, 138, 78));
+  background-image: linear-gradient(to right bottom, #01C369, #01c382);
   border-radius: 30px;
-  padding: 0px 6px;
+  padding: 0px 6px 1px 6px;
   font-size: 16px;
   left: 108px;
   top: 0;
@@ -170,14 +171,14 @@ button {
 
 .nav-active {
   button {
-    color: rgb(0, 182, 91);
+    color: rgb(0, 196, 104);
 
     &:hover {
-      color: rgb(0, 182, 91);
+      color: rgb(0, 196, 104);
     }
 
     &:active {
-      color: rgb(18, 138, 78);
+      color: rgb(0, 196, 104);
     }
 
     p {
@@ -194,7 +195,7 @@ button {
         height: 3px;
         bottom: 0;
         left: 19px;
-        background-color: rgb(1, 146, 73);
+        background-color: rgb(0, 196, 104);
         transform: scaleX(1);
         transform-origin: bottom right;
     }
@@ -212,7 +213,7 @@ button {
       height: 3px;
       bottom: 0;
       left: 34px;
-      background-color: rgb(1, 146, 73);
+      background-color: rgb(0, 196, 104);
       transform: scaleX(1);
       transform-origin: bottom right;
     }

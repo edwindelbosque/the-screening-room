@@ -47,6 +47,7 @@ export class SignUpForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    this.handleClick();
   };
 
   render() {
@@ -73,7 +74,7 @@ export class SignUpForm extends Component {
             id='name'
             type='text'
             placeholder='Walter White'
-            className='Form__input'
+            className='Form__input Form__input--name'
             name='name'
             value={name}
             onChange={e => this.handleChange(e)}
@@ -98,7 +99,7 @@ export class SignUpForm extends Component {
               id='email'
               type='text'
               placeholder='your@email.com'
-              className='Form__input'
+              className='Form__input Form__input--email'
               name='email'
               value={email}
               onChange={e => this.handleChange(e)}
@@ -113,7 +114,7 @@ export class SignUpForm extends Component {
             id='password'
             type='password'
             placeholder='Must have at least 8 characters'
-            className='Form__input'
+            className='Form__input Form__input--password'
             name='password'
             value={password}
             onChange={e => this.handleChange(e)}
@@ -121,8 +122,7 @@ export class SignUpForm extends Component {
         </div>
         <button
           type='submit'
-          className='Form__button'
-          onClick={this.handleClick}
+          className='Form__button signup-form__button'
         >
           Continue
         </button>

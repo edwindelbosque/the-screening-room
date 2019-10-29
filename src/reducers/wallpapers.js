@@ -1,8 +1,8 @@
 export const wallpapers = (state = [], action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'SET_WALLPAPERS':
-      return action.wallpapers
+      return action.wallpapers;
     default:
-      return state;  
+      return state;
   }
-}
+};
