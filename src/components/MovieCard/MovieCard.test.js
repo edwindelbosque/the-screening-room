@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
-import { setFavorites, hasError, toggleFavorite } from '../../actions/index';
+import { setFavorites, setError, toggleFavorite } from '../../actions/index';
 
 describe('MovieCard', () => {
   let wrapper;
@@ -122,12 +122,12 @@ describe('mockStateToProps', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     });
 
-    it('should call dispatch with a hasError action when handleClick is called', () => {
+    it('should call dispatch with a setError action when handleClick is called', () => {
       const message = '';
-      const actionToDispatch = hasError(message);
+      const actionToDispatch = setError(message);
   
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.hasError(message);
+      mappedProps.setError(message);
   
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
