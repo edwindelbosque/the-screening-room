@@ -13,7 +13,7 @@ export const setLoading = bool => ({
   bool
 });
 
-export const hasError = error => ({
+export const setError = error => ({
   type: 'HAS_ERROR',
   error
 });

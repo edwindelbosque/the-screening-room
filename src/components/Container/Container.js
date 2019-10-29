@@ -20,5 +20,5 @@ export default Container;
 Container.propTypes = {
   movies: PropTypes.array,
   updateFavorites: PropTypes.func,
-  type: PropTypes.object
+  type: PropTypes.string
 };

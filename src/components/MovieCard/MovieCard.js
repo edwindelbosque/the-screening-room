@@ -3,7 +3,7 @@ import './MovieCard.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
-import { toggleFavorite, setFavorites, hasError } from '../../actions';
+import { toggleFavorite, setFavorites, setError } from '../../actions';
 import { getFavorites } from '../../apiCalls/apiCalls';
 import PropTypes from 'prop-types';
 
@@ -15,7 +15,7 @@ export const MovieCard = ({
   updateFavorites,
   type,
   setFavorites,
-  hasError,
+  setError,
   history
 }) => {
   const { title, poster_path, favorite, movie_id } = movie;
@@ -30,7 +30,7 @@ export const MovieCard = ({
       const favoriteMovies = await getFavorites(user.id);
       setFavorites(favoriteMovies.favorites);
     } else {
-      hasError('Please log in to add favorites.');
+      setError('Please log in to add favorites.');
       history.push('/login');
     }
   };
@@ -70,7 +70,7 @@ export const mapStateToProps = ({ movies, favorites, user }) => ({
 
 export const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { toggleFavorite, setFavorites, hasError },
+    { toggleFavorite, setFavorites, setError },
     dispatch
   );
 };
@@ -88,5 +88,5 @@ MovieCard.propTypes = {
   user: PropTypes.object,
   toggleFavorite: PropTypes.func,
   setFavorites: PropTypes.func,
-  hasError: PropTypes.func
+  setError: PropTypes.func
 };
