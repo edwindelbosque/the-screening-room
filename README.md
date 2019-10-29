@@ -44,7 +44,7 @@ Optionally - you can follow step 5 above and then view the application live [her
 - React
 - Redux
 - React Router
-- PostgresSQL
+- PostgreSQL
 - TheMovieDB API
 - Jest & Enzyme testing suite
 - SASS (SCSS)
