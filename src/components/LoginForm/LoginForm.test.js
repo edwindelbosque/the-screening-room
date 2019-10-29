@@ -94,7 +94,7 @@ describe('LoginForm', () => {
       .at(0)
       .simulate('change', mockEventEmail);
 
-    expect(wrapper.instance().handleChange).toHaveBeenCalled();
+    expect(wrapper1.instance().handleChange).toHaveBeenCalled();
   });
 
   it('should invoke handleChange onchange of password input', () => {

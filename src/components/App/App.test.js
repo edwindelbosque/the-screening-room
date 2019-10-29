@@ -6,10 +6,7 @@ import {
   setWallpapers,
   setLoading,
   setError,
-  addFavorite,
-  setFavorites,
-  setUser,
-  setRandomWallpaper
+  addFavorite
 } from '../../actions/index';
 
 jest.mock('../../apiCalls/apiCalls.js');
@@ -28,11 +25,11 @@ describe('App', () => {
 
 describe('mapStateToProps', () => {
   it('should return an object with', () => {
-    let movies, wallpapers, hasError, isLoading, user, favorites;
+    let movies, wallpapers, setError, isLoading, user, favorites;
     const mockState = {
       movies,
       wallpapers,
-      hasError,
+      setError,
       isLoading,
       user,
       favorites
@@ -41,7 +38,7 @@ describe('mapStateToProps', () => {
     const expected = {
       movies,
       wallpapers,
-      hasError,
+      setError,
       isLoading,
       user,
       favorites
