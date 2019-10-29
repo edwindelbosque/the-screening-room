@@ -135,8 +135,18 @@ describe('getFavorites', () => {
         ok: false
       });
     });
-    
+
     expect(getFavorites(userId)).rejects.toEqual(Error('Unable to fetch favorites'));
+  });
+
+  it('should return an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed.'));
+    });
+
+    expect(getFavorites(userId)).rejects.toEqual(
+      Error('fetch failed.')
+    );
   });
 });
 
