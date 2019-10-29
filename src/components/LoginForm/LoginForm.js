@@ -160,5 +160,8 @@ export default connect(
 LoginForm.proptypes = {
   movies: PropTypes.array,
   errMsg: PropTypes.string,
-  isLoading: PropTypes.boolean
+  isLoading: PropTypes.boolean,
+  setUser: PropTypes.func,
+  setFavorites: PropTypes.func,
+  hasError: PropTypes.func
 }
