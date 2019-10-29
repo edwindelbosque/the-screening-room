@@ -114,7 +114,7 @@ export class SignUpForm extends Component {
             id='password'
             type='password'
             placeholder='Must have at least 8 characters'
-            className='Form__input'
+            className='Form__input Form__input--password'
             name='password'
             value={password}
             onChange={e => this.handleChange(e)}
