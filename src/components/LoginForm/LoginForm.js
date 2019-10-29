@@ -157,10 +157,10 @@ export default connect(
   mapDispatchToProps
 )(LoginForm);
 
-LoginForm.proptypes = {
+LoginForm.propTypes = {
   movies: PropTypes.array,
   errMsg: PropTypes.string,
-  isLoading: PropTypes.boolean,
+  isLoading: PropTypes.bool,
   setUser: PropTypes.func,
   setFavorites: PropTypes.func,
   hasError: PropTypes.func

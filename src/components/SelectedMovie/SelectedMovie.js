@@ -50,5 +50,5 @@ export default SelectedMovie;
 SelectedMovie.propTypes = {
   movieDetails: PropTypes.object,
   wallpapers: PropTypes.array,
-  match: Protypes.object
+  // match: Proptypes.object
 }

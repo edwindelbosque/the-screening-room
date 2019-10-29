@@ -92,12 +92,10 @@ export default connect(
 
 Nav.propTypes = {
   logoutCurrentUser: PropTypes.func,
-  resetFavorites: PropTypes.func,
   user: PropTypes.object,
   setUser: PropTypes.func,
   hasError: PropTypes.func,
   favorites: PropTypes.array,
   resetFavorites: PropTypes.func,
   resetMoviesFavorites: PropTypes.func,
-  setRandomWallpaper: PropTypes.string
 }
