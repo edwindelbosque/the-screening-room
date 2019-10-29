@@ -44,7 +44,9 @@ export const Nav = ({
           >
             <button className='link hover-1'>
               Favorites 
-              <p className='favorite-counter'>{favorites.length}</p>
+              {favorites.length 
+                ? <p className='favorite-counter'>{favorites.length}</p>
+                : '' }
             </button>
 
           </NavLink>
