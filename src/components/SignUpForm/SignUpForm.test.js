@@ -18,7 +18,7 @@ describe('SignUpForm', () => {
   };
 
   beforeEach(() => {
-    wrapper = shallow(<SignUpForm />);
+    wrapper = shallow(<SignUpForm emailErrMsg={''} isLoading={false} />);
   });
 
   it('should match the snapshot', () => {
@@ -38,9 +38,50 @@ describe('SignUpForm', () => {
   });
 
   it('should call handleClick on submit', () => {
-    wrapper.instance().handleClick = jest.fn();
-    wrapper.find('.Form__button').simulate('click');
+    wrapper.instance().handleSubmit = jest.fn();
+    wrapper.instance().forceUpdate();
+    wrapper.find('.form-model').simulate('submit');
 
-    expect(wrapper.instance().handleClick).toHaveBeenCalled();
+    expect(wrapper.instance().handleSubmit).toHaveBeenCalled();
+  });
+
+  it('should invoke handleChange on change of email input', () => {
+    let wrapper1 = shallow(
+      <SignUpForm emailErrMsg={'Error'} isLoading={false} />
+    );
+    wrapper1.instance().forceUpdate();
+    wrapper1.instance().handleChange = jest.fn();
+    wrapper1.find('.Form__input--error').simulate('change', mockEvent);
+
+    expect(wrapper1.instance().handleChange).toHaveBeenCalled();
+  });
+
+  it('should invoke handleChange on change of name input', () => {
+    wrapper.instance().handleChange = jest.fn();
+    wrapper.find('.Form__input--name').simulate('change', mockEvent);
+
+    expect(wrapper.instance().handleChange).toHaveBeenCalled();
+  });
+
+  // it('should redirect the user to the homepage if the user is logged in', () => {
+  //   wrapper.instance().forceUpdate();
+  //   wrapper.instance().setState({
+  //     isLoggedIn: true
+  //   })
+
+  // })
+
+  it('should invoke handleChange on change of email input when emailErrMsg is falsey', () => {
+    wrapper.instance().forceUpdate();
+    const mockEvent = {
+      target: {
+        name: 'email',
+        value: 'vanessa.randall@doane.edu'
+      }
+    };
+    wrapper.instance().handleChange = jest.fn();
+    wrapper.find('.Form__input--email').simulate('change', mockEvent);
+
+    expect(wrapper.instance().handleChange).toHaveBeenCalled();
   });
 });

@@ -24,6 +24,46 @@ describe('getMovies', () => {
 
     expect(window.fetch).toHaveBeenCalledWith(`${baseUrl}${apiKey}`);
   });
+
+  it('should return an array of movies', () => {
+    expect(getMovies()).resolves.toEqual(mockResponse);
+  });
+
+  it('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(getMovies().rejects.toEqual(''));
+  });
+
+  // it('should return an array of favorite movies', () => {
+  //   expect(removeFavorite(movieId, userId)).resolves.toEqual(mockFavorites);
+  // });
+
+  // it('should return an error if the response is not okay', () => {
+  //   window.fetch = jest.fn().mockImplementation(() => {
+  //     return Promise.resolve({
+  //       ok: false
+  //     });
+  //   });
+
+  //   expect(removeFavorite(movieId, userId)).rejects.toEqual(
+  //     Error('Could not delete favorite.')
+  //   );
+  // });
+
+  // it('should return an error if the server is down', () => {
+  //   window.fetch = jest.fn().mockImplementation(() => {
+  //     return Promise.reject(Error('fetch failed.'));
+  //   });
+
+  //   expect(removeFavorite(movieId, userId)).rejects.toEqual(
+  //     Error('fetch failed.')
+  //   );
+  // });
 });
 
 describe('getWallpapers', () => {
@@ -74,15 +114,16 @@ describe('postFavorite', () => {
 
   it('should fetch with the correct arguments', () => {
     const url = `http://localhost:3001/api/v1/users/2/moviefavorites`;
-    const expected= [url, 
+    const expected = [
+      url,
       {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(mockFavorite)
-    }
-  ];
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(mockFavorite)
+      }
+    ];
 
     postFavorite(mockFavorite, 2);
 
@@ -93,6 +134,27 @@ describe('postFavorite', () => {
     expect(postFavorite(mockFavorite, 2)).resolves.toEqual(mockFavorite);
   });
 
+  it('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(postFavorite(mockFavorite, 2)).rejects.toEqual(
+      Error('Please log in to add favorites.')
+    );
+  });
+
+  it('should return an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed.'));
+    });
+
+    expect(postFavorite(mockFavorite, 2)).rejects.toEqual(
+      Error('fetch failed.')
+    );
+  });
 });
 
 describe('removeFavorite', () => {
