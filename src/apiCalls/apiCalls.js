@@ -1,6 +1,5 @@
 const baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=';
 const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
-// const genreBaseUrl = 'https://api.themoviedb.org/3/genre/';
 const apiKey = '149174d30ba0677b5219f8786eaaaaa7';
 
 export const getMovies = async () => {

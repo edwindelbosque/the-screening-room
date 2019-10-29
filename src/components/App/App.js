@@ -13,45 +13,44 @@ import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setWallpapers, hasError, setRandomWallpaper } = this.props;
+    const { setWallpapers, hasError, setRandomWallpaper, setLoading } = this.props;
     try {
+      setLoading(true);
       const wallpapers = await getWallpapers();
       await this.loadMovieData();
       setWallpapers(wallpapers);
       setRandomWallpaper(wallpapers)
+      setLoading(false);
     } catch ({ message }) {
       hasError(message);
+      setLoading(false);
     }
   };
 
   loadMovieData = async () => {
     const { setMovies, setFavorites, hasError, user } = this.props;
       const fetchedMovies = await getMovies()
-      const movieData = user.id 
-        ? await this.markFavorites(fetchedMovies, await getFavorites(user.id)) 
-        : fetchedMovies;
 
       if (user.id) {
         try {
           const favorites = await getFavorites(user.id);
+          const markedMovies = await this.markFavorites(fetchedMovies, favorites)
+          setMovies(markedMovies);
           await setFavorites(favorites.favorites);
         } catch ({ message }) {
           hasError(message);
         }
+      } else {
+        setMovies(fetchedMovies)
       }
-      setMovies(movieData);
   }
   
   markFavorites = (movies, favorites) => {
-    if (favorites) {
       return movies.map(movie => {
       return favorites.favorites.find(favorite => favorite.movie_id === movie.movie_id)
         ? { ...movie, favorite: true }
         : { ...movie, favorite: false }
       })
-    } else {
-      return movies
-    }
   }
 
   updateFavorites = async (movie, isFavorite) => {

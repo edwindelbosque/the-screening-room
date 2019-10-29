@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   movies,
   wallpapers,
   errMsg,
-  isLoading: setLoading,
+  setLoading,
   favorites,
   emailErrMsg,
   user: setUser,
