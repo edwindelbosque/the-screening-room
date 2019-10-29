@@ -53,7 +53,7 @@ describe('actions', () => {
       type: 'HAS_ERROR'
     };
 
-    const result = actions.hasError(errMsg);
+    const result = actions.setError(errMsg);
 
     expect(result).toEqual(expectedAction);
   });
@@ -193,4 +193,14 @@ describe('actions', () => {
 
     expect(result).toEqual(expectedAction);
   }); 
+
+  it('should have a type of RESET_MOVIES_FAVORITES', () => {
+    const expectedAction = {
+      type: 'RESET_MOVIES_FAVORITES',
+    };
+    
+    const result = actions.resetMoviesFavorites();
+
+    expect(result).toEqual(expectedAction);
+  });
 });

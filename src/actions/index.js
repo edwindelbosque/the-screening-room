@@ -58,4 +58,4 @@ export const resetFavorites = () => ({
 
 export const resetMoviesFavorites = () => ({
   type: 'RESET_MOVIES_FAVORITES',
-})
+});

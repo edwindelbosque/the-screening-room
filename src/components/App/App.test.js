@@ -5,7 +5,7 @@ import {
   setMovies,
   setWallpapers,
   setLoading,
-  hasError,
+  setError,
   addFavorite
 } from '../../actions/index';
 
@@ -25,11 +25,11 @@ describe('App', () => {
 
 describe('mapStateToProps', () => {
   it('should return an object with', () => {
-    let movies, wallpapers, hasError, isLoading, user, favorites;
+    let movies, wallpapers, setError, isLoading, user, favorites;
     const mockState = {
       movies,
       wallpapers,
-      hasError,
+      setError,
       isLoading,
       user,
       favorites
@@ -38,7 +38,7 @@ describe('mapStateToProps', () => {
     const expected = {
       movies,
       wallpapers,
-      hasError,
+      setError,
       isLoading,
       user,
       favorites
@@ -84,14 +84,14 @@ describe('mapDispatchToProps', () => {
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
 
-  it('calls dispatch with hasError', () => {
+  it('calls dispatch with setError', () => {
     const errMsg = {
       message: 'message'
     };
-    const actionToDispatch = hasError(errMsg);
+    const actionToDispatch = setError(errMsg);
 
     const mappedProps = mapDispatchToProps(mockDispatch);
-    mappedProps.hasError({ message: 'message' });
+    mappedProps.setError({ message: 'message' });
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
