@@ -93,20 +93,40 @@ describe('createUser', () => {
 });
 
 describe('getFavorites', () => {
-  const mockResponse = [{}, {}, {}];
+  const mockResponse = [{
+    title: 'Yesterday',
+    poster_path:
+      'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
+    release_date: '2019-06-28',
+    overview:
+      "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
+  }, {
+    title: 'Yesterday',
+    poster_path:
+      'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
+    release_date: '2019-06-28',
+    overview:
+      "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
+  }] 
   const url = 'http://localhost:3001/api/v1/users/1/moviefavorites';
   const userId = 1
 
-  it('should fetch with the correct arguments', () => {
+  beforeEach(() => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: true,
         json: () => Promise.resolve(mockResponse)
       });
     });
+  });
 
+  it('should fetch with the correct arguments', () => {
     getFavorites(userId);
     expect(window.fetch).toHaveBeenCalledWith(url);
+  });
+
+  it('should return an array of favorite movies', () => {
+    expect(getFavorites(userId)).resolves.toEqual(mockResponse);
   });
 });
 
