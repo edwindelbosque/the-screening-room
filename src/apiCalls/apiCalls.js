@@ -55,7 +55,6 @@ export const createUser = async newUser => {
     body: JSON.stringify(newUser)
   };
   const response = await fetch(url, options);
-  console.log('response', response)
   if (!response.ok) {
     throw new Error('Email address already in use');
   }

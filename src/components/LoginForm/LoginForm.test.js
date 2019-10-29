@@ -58,7 +58,7 @@ describe('LoginForm', () => {
     expect(selectUser).toHaveBeenCalled();
   });
 
-  it.skip('should update the value of isLoggedIn when handleClick is called', () => {
+  it('should update the value of isLoggedIn when handleClick is called', () => {
     expect(wrapper.state('isLoggedIn')).toEqual(false);
     wrapper.instance().handleClick();
     expect(wrapper.state('isLoggedIn')).toEqual(true);

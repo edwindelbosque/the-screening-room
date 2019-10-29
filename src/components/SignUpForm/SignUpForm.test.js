@@ -137,7 +137,7 @@ describe('SignUpForm', () => {
     expect(createUser).toHaveBeenCalled();
   });
 
-  it.skip('should update the value of isLoggedIn when handleClick is called', async () => {
+  it('should update the value of isLoggedIn when handleClick is called', async () => {
     expect(wrapper.state('isLoggedIn')).toEqual(false);
     wrapper.instance().setState({
       name: 'Vanessa Randall',

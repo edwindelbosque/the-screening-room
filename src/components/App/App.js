@@ -58,7 +58,6 @@ export class App extends Component {
     if (!isFavorite) {
       try {
         let favoritesData = await postFavorite(movie, user.id);
-        console.log('favs', favoritesData)
         addFavorite(favoritesData);
       } catch ({ message }) {
         hasError(message);
