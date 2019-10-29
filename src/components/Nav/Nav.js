@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { setUser, hasError, resetFavorites } from '../../actions/index';
+import { setUser, hasError, resetFavorites, resetMoviesFavorites } from '../../actions/index';
 import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,14 +8,17 @@ import { bindActionCreators } from 'redux';
 export const Nav = ({
   logoutCurrentUser,
   resetFavorites,
+  loadMovieData,
   user,
   hasError,
   favorites,
+  resetMoviesFavorites,
   setRandomWallpaper
 }) => {
 
   const handleLogoutClick = () => {
     logoutCurrentUser();
+    resetMoviesFavorites();
     resetFavorites({});
     hasError('');
   };
@@ -79,7 +82,7 @@ export const mapStateToProps = ({ movies, user, setRandomWallpaper, favorites })
 };
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, hasError, resetFavorites }, dispatch);
+  return bindActionCreators({ setUser, hasError, resetFavorites, resetMoviesFavorites }, dispatch);
 };
 
 export default connect(

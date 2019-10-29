@@ -13,9 +13,19 @@ import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
-    const { setMovies, setFavorites, setWallpapers, hasError, setRandomWallpaper, user } = this.props;
+    const { setWallpapers, hasError, setRandomWallpaper } = this.props;
     try {
       const wallpapers = await getWallpapers();
+      await this.loadMovieData();
+      setWallpapers(wallpapers);
+      setRandomWallpaper(wallpapers)
+    } catch ({ message }) {
+      hasError(message);
+    }
+  };
+
+  loadMovieData = async () => {
+    const { setMovies, setFavorites, hasError, user } = this.props;
       const fetchedMovies = await getMovies()
       const movieData = user.id 
         ? await this.markFavorites(fetchedMovies, await getFavorites(user.id)) 
@@ -29,13 +39,8 @@ export class App extends Component {
           hasError(message);
         }
       }
-      setWallpapers(wallpapers);
-      setRandomWallpaper(wallpapers)
       setMovies(movieData);
-    } catch ({ message }) {
-      hasError(message);
-    }
-  };
+  }
   
   markFavorites = (movies, favorites) => {
     if (favorites) {
@@ -84,14 +89,18 @@ export class App extends Component {
             const movieDetails = this.props.movies.find(
               movie => movie.movie_id === parseInt(match.params.id)
             );
-            return <SelectedMovie movieDetails={movieDetails} match={match} wallpapers={this.props.wallpapers} />;
+            return <SelectedMovie 
+              movieDetails={movieDetails} 
+              match={match} 
+              wallpapers={this.props.wallpapers} 
+            />;
           }}
         />
         <Route
           path='/(|movies|signup|login)'
           render={() => <Container movies={this.props.movies} type='movies' updateFavorites={this.updateFavorites} />}
         />
-        <Route path='/(login|signup)' render={() => <AccessModal />} />
+        <Route path='/(login|signup)' render={() => <AccessModal loadMovieData={this.loadMovieData} />} />
         <Route
           path='/favorites'
           render={() => <Container movies={this.props.favorites} type='favorites' updateFavorites={this.updateFavorites} />}
