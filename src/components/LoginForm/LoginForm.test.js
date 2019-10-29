@@ -61,21 +61,35 @@ describe('LoginForm', () => {
     expect(selectUser).toHaveBeenCalled();
   });
 
-  it.skip('should update the value of isLoggedIn when handleClick is called', () => {
+  it.skip('should update the value of isLoggedIn when handleSubmit is called', () => {
+    const mockEvent = {
+      preventDefault: jest.fn()
+    }
     expect(wrapper.state('isLoggedIn')).toEqual(false);
-    wrapper.instance().handleClick();
+    wrapper.instance().handleSubmit(mockEvent);
     expect(wrapper.state('isLoggedIn')).toEqual(true);
   });
 
-  it('should invoke handleChange on change of email input', () => {
+  it.skip('should invoke handleChange on change of email input when error is true', () => {
     let wrapper1 = shallow(
       <LoginForm errMsg={'Error'} isLoading={false} />
     );
     wrapper1.instance().forceUpdate();
     wrapper1.instance.handleChange = jest.fn();
-    wrapper1.find('Form__input--error').at(0).simulate('change', mockEventEmail);
+    wrapper1.find('.Form__input--error').at(0).simulate('change', mockEventEmail);
 
     expect(wrapper1.instance().handleChange).toHaveBeenCalled()
+  });
+
+  it.skip('should invoke handleChange on change of email input when error it false', () => {
+    let wrapper1 = shallow(
+      <LoginForm errMsg={''}/>
+    );
+    wrapper.instance().forceUpdate();
+    wrapper.instance.handleChange = jest.fn();
+    wrapper.find('.Form__input').at(0).simulate('change', mockEventEmail);
+
+    expect(wrapper.instance().handleChange).toHaveBeenCalled();
   });
 
   it('should invoke handleChange onchange of password input', () => {
