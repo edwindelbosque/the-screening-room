@@ -128,6 +128,16 @@ describe('getFavorites', () => {
   it('should return an array of favorite movies', () => {
     expect(getFavorites(userId)).resolves.toEqual(mockResponse);
   });
+
+  it('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+    
+    expect(getFavorites(userId)).rejects.toEqual(Error('Unable to fetch favorites'));
+  });
 });
 
 describe('postFavorite', () => {
