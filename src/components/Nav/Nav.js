@@ -10,6 +10,7 @@ export const Nav = ({
   resetFavorites,
   user,
   hasError,
+  favorites,
   setRandomWallpaper
 }) => {
 
@@ -41,7 +42,11 @@ export const Nav = ({
             className='Nav__button link-wrapper'
             activeClassName='nav-active'
           >
-            <button className='link hover-1'>Favorites</button>
+            <button className='link hover-1'>
+              Favorites 
+              <p className='favorite-counter'>{favorites.length}</p>
+            </button>
+
           </NavLink>
           {user.name ? (
             <NavLink
@@ -67,8 +72,8 @@ export const Nav = ({
     );
 };
 
-export const mapStateToProps = ({ movies, user, setRandomWallpaper }) => {
-  return { movies, user, setRandomWallpaper };
+export const mapStateToProps = ({ movies, user, setRandomWallpaper, favorites }) => {
+  return { movies, user, setRandomWallpaper, favorites };
 };
 
 export const mapDispatchToProps = dispatch => {

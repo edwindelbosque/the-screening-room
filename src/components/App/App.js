@@ -15,8 +15,11 @@ export class App extends Component {
   componentDidMount = async () => {
     const { setMovies, setFavorites, setWallpapers, hasError, setRandomWallpaper, user } = this.props;
     try {
-      let wallpapers = await getWallpapers();
-      let movieData = await this.markFavorites(await getMovies(), await getFavorites(user.id));
+      const wallpapers = await getWallpapers();
+      const fetchedMovies = await getMovies()
+      const movieData = user.id 
+        ? await this.markFavorites(fetchedMovies, await getFavorites(user.id)) 
+        : fetchedMovies;
 
       if (user.id) {
         try {
@@ -35,11 +38,15 @@ export class App extends Component {
   };
   
   markFavorites = (movies, favorites) => {
-    return movies.map(movie => {
-    return favorites.favorites.find(favorite => favorite.movie_id === movie.movie_id)
-      ? { ...movie, favorite: true }
-      : { ...movie, favorite: false }
-    })
+    if (favorites) {
+      return movies.map(movie => {
+      return favorites.favorites.find(favorite => favorite.movie_id === movie.movie_id)
+        ? { ...movie, favorite: true }
+        : { ...movie, favorite: false }
+      })
+    } else {
+      return movies
+    }
   }
 
   updateFavorites = async (movie, isFavorite) => {
