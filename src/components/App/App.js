@@ -110,7 +110,7 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = ({
+export const mapStateToProps = ({
   movies,
   wallpapers,
   hasError,
@@ -126,7 +126,7 @@ const mapStateToProps = ({
   favorites
 });
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       setMovies,
