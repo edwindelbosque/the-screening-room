@@ -4,6 +4,7 @@ import { Nav } from './Nav';
 
 describe('Nav', () => {
   let wrapper;
+  const favorites = [{id: 2, title: 'Joker'}]
   let logoutCurrentUser = jest.fn();
   let user = {
     name: ''
@@ -25,7 +26,12 @@ describe('Nav', () => {
 
   beforeEach(() => {
     wrapper = shallow(
-      <Nav logoutCurrentUser={logoutCurrentUser} movies={movies} user={user} />
+      <Nav 
+        logoutCurrentUser={logoutCurrentUser} 
+        movies={movies} 
+        user={user} 
+        favorites={favorites}
+      />
     );
   });
 

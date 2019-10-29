@@ -8,7 +8,6 @@ jest.mock('../../apiCalls/apiCalls');
 
 describe('LoginForm', () => {
   let wrapper;
-  let errMsg = jest.fn();
   let mockEventEmail = {
     target: {
       name: 'email',
@@ -23,7 +22,7 @@ describe('LoginForm', () => {
   };
 
   beforeEach(() => {
-    wrapper = shallow(<LoginForm errMsg={errMsg} />);
+    wrapper = shallow(<LoginForm errMsg={'string'} />);
   });
 
   it('should match the snapshot', () => {

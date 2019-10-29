@@ -8,7 +8,7 @@ exports[`LoginForm should match the snapshot 1`] = `
   <p
     className="login-message login-error"
   >
-    <Component />
+    string
   </p>
   <div>
     <label

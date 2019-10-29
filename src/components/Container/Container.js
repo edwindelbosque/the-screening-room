@@ -4,9 +4,9 @@ import './Container.scss';
 import PropTypes from 'prop-types';
 
 export const Container = ({ movies, updateFavorites, type }) => {
-  const allMovies = movies.map(movie => (
+  const allMovies = movies.map((movie, index) => (
     <MovieCard
-      key={movie.movie_id}
+      key={index}
       type={type}
       movie={movie}
       updateFavorites={updateFavorites}
