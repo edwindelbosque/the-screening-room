@@ -24,14 +24,14 @@ export class LoginForm extends Component {
   };
 
   handleClick = async () => {
-    const { setUser, hasError, loadMovieData } = this.props;
+    const { setUser, setError, loadMovieData } = this.props;
     try {
       let foundUser = await selectUser(this.state);
       setUser(foundUser);
       this.findUserFavorites(foundUser);
       this.setState({ isLoggedIn: true });
       loadMovieData();
-      hasError('');
+      setError('');
     } catch ({ message }) {
       setError(message);
     }
