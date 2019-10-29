@@ -1,3 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCard should match the snapshot 1`] = `undefined`;
+exports[`MovieCard should match the snapshot 1`] = `
+<div
+  className="MovieCard__div--container"
+>
+  <Link
+    to="movies/undefined"
+  >
+    <img
+      alt="Official movie poster"
+      className="MovieCard__img--poster"
+    />
+  </Link>
+  <footer
+    className="MovieCard__footer "
+  >
+    <h3
+      className="MovieCard__h3--title"
+    >
+      Joker
+    </h3>
+    <div
+      className="button-container "
+      onClick={[Function]}
+    >
+      <div
+        className="stick-1"
+      />
+      <div
+        className="stick-2"
+      />
+    </div>
+  </footer>
+</div>
+`;
