@@ -7,8 +7,6 @@ Ever been curious about what movies are currently out in theaters and wish you c
 
 As a result of building out this project, we developed some muscle memory building out applications with Redux. We also got a much more practice doing network requests with a backend and fetching a nested API from 'TheMovieDB'.
 
-### View the application live [here](https://screening-room.herokuapp.com/).
-
 ## Developers
 - [vrandall66](https://github.com/vrandall66)
 - [ec-myers](https://github.com/ec-myers)
@@ -16,11 +14,14 @@ As a result of building out this project, we developed some muscle memory buildi
 
 ## How to install
 
-1. Fork and clone down this repository
-2. In your Terminal, access the directory of this repository
-3. Run `npm install` to install the webpack dependencies
-4. Once it has finished installing, run `npm start`
-5. Check out your broswer.
+1. Fork and clone down this repository.
+2. In your Terminal, access the directory of this repository.
+3. Run `npm install` to install the webpack dependencies.
+4. Once it has finished installing, run `npm start`.
+5. Follow the instructions [here](https://github.com/turingschool-examples/favorites-tracker-api) to get the database up and running.
+6. Check out your broswer.
+
+Optionally - you can follow step 5 above and then view the application live [here](https://screening-room.herokuapp.com/). Please note, to interact with the functionality you must first have the database up and running.
 
 ## Screenshot
 
@@ -35,8 +36,8 @@ As a result of building out this project, we developed some muscle memory buildi
 - Got to user PostgresSQL to make network requests to the server.
 - Solidified concepts with React to create clean and re-useable components.
 - Became comfortable with Redux’s lifecycle, creating actions, reducers, and connecting them to React components.
-- Understood and solidified concepts with React component, asynchronous code, and Redux testing.
-- Use of localStorage to make user and userinformation persist on page load.
+- Understood and solidified concepts with React components, asynchronous code, and Redux testing.
+- Use of localStorage to make user and user information persist on page load.
 
 ## Built with
 
