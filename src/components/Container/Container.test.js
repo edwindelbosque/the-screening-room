@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Container, mapStateToProps } from './Container';
+import Container from './Container';
 
 describe('Container', () => {
   let allMoviesWrapper;
@@ -8,26 +8,12 @@ describe('Container', () => {
   it('should match the All Movies snapshot', () => {
     let movies = [{ id: 1 }, { id: 2 }, { id: 3 }];
     let updateFavorites = jest.fn();
+    let type = 'movies',
 
     allMoviesWrapper = shallow(
-      <Container movies={movies} updateFavorites={updateFavorites} />
+      <Container movies={movies} updateFavorites={updateFavorites} type={type}/>
     );
 
     expect(allMoviesWrapper).toMatchSnapshot();
-  });
-});
-
-describe('mockStateToProps', () => {
-  it('should return an object with the movies data array', () => {
-    const mockState = {
-      movies: [{ id: 1 }, { id: 2 }, { id: 3 }]
-    };
-    const expected = {
-      movies: [{ id: 1 }, { id: 2 }, { id: 3 }]
-    };
-
-    const mappedProps = mapStateToProps(mockState);
-
-    expect(mappedProps).toEqual(expected);
   });
 });
