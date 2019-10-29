@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
 import { setUser, hasError, setFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
@@ -155,3 +156,12 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
+
+LoginForm.propTypes = {
+  movies: PropTypes.array,
+  errMsg: PropTypes.string,
+  isLoading: PropTypes.bool,
+  setUser: PropTypes.func,
+  setFavorites: PropTypes.func,
+  hasError: PropTypes.func
+}

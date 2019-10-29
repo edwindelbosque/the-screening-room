@@ -1,6 +1,7 @@
 import React from 'react';
-import './SelectedMovie.scss';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './SelectedMovie.scss';
 
 const SelectedMovie = ({ movieDetails, wallpapers, match }) => {
   const { title, overview, poster_path, rating, movie_id } = movieDetails;
@@ -45,3 +46,9 @@ const SelectedMovie = ({ movieDetails, wallpapers, match }) => {
 };
 
 export default SelectedMovie;
+
+SelectedMovie.propTypes = {
+  movieDetails: PropTypes.object,
+  wallpapers: PropTypes.array,
+  // match: Proptypes.object
+}
