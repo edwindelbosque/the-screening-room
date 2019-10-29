@@ -46,7 +46,6 @@ exports[`LoginForm should match the snapshot 1`] = `
   </div>
   <button
     className="Form__button"
-    onClick={[Function]}
     type="submit"
   >
     Continue

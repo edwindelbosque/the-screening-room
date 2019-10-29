@@ -48,6 +48,7 @@ export class LoginForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    this.handleClick();
   };
 
   findUserFavorites = async user => {
@@ -132,7 +133,6 @@ export class LoginForm extends Component {
         <button
           type='submit'
           className='Form__button'
-          onClick={e => this.handleClick(e)}
         >
           Continue
         </button>

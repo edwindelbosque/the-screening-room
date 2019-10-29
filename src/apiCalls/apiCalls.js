@@ -81,6 +81,9 @@ export const selectUser = async recurrentUser => {
 export const getFavorites = async userId => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('Unable to fetch favorites')
+  }
   const favorites = await response.json();
   return favorites;
 };
