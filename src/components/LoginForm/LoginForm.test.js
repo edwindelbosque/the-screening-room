@@ -48,6 +48,14 @@ describe('LoginForm', () => {
     expect(wrapper.state()).toEqual(expected);
   });
 
+  it('should call handleClick on submit', () => {
+    wrapper.instance().handleSubmit = jest.fn();
+    wrapper.instance().forceUpdate();
+    wrapper.find('.form-model').simulate('submit');
+
+    expect(wrapper.instance().handleSubmit).toHaveBeenCalled();
+  });
+
   it('should call the selectUser fetch when handleClick is called', () => {
     wrapper.instance().handleClick();
     expect(selectUser).toHaveBeenCalled();
