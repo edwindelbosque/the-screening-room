@@ -33,7 +33,7 @@ export class LoginForm extends Component {
       loadMovieData();
       hasError('');
     } catch ({ message }) {
-      hasError(message);
+      setError(message);
     }
     this.clearInputs();
   };
