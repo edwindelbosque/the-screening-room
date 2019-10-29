@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { setUser, setError, resetFavorites, resetMoviesFavorites } from '../../actions/index';
+import {
+  setUser,
+  setError,
+  resetFavorites,
+  resetMoviesFavorites
+} from '../../actions/index';
 import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import './Nav.scss';
 
 export const Nav = ({
   logoutCurrentUser,
   resetFavorites,
-  loadMovieData,
   user,
   setError,
   favorites,
@@ -45,12 +51,13 @@ export const Nav = ({
             activeClassName='nav-active'
           >
             <button className='link hover-1'>
-              Favorites 
-              {favorites.length 
-                ? <p className='favorite-counter'>{favorites.length}</p>
-                : '' }
+              Favorites
+              {favorites.length ? (
+                <p className='favorite-counter'>{favorites.length}</p>
+              ) : (
+                ''
+              )}
             </button>
-
           </NavLink>
           {user.name ? (
             <NavLink
@@ -77,15 +84,33 @@ export const Nav = ({
   );
 };
 
-export const mapStateToProps = ({ movies, user, setRandomWallpaper, favorites }) => {
+export const mapStateToProps = ({
+  movies,
+  user,
+  setRandomWallpaper,
+  favorites
+}) => {
   return { movies, user, setRandomWallpaper, favorites };
 };
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, setError, resetFavorites, resetMoviesFavorites }, dispatch);
+  return bindActionCreators(
+    { setUser, setError, resetFavorites, resetMoviesFavorites },
+    dispatch
+  );
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Nav);
+
+Nav.propTypes = {
+  logoutCurrentUser: PropTypes.func,
+  user: PropTypes.object,
+  setUser: PropTypes.func,
+  setError: PropTypes.func,
+  favorites: PropTypes.array,
+  resetFavorites: PropTypes.func,
+  resetMoviesFavorites: PropTypes.func
+};

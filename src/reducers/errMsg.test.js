@@ -8,25 +8,14 @@ describe('hasError', () => {
 
     expect(result).toEqual(expected);
   });
-  //   it('should output the correct case of HAS_ERROR action type', () => {
-  //     const initialState = '';
-  //     const action = {
-  //       type: 'HAS_ERROR',
-  //       errMsg: 'There is an error'
-  //     };
 
-  //     const result = 'There is an error'
+    it('should not output the case of HAS_ERROR action type', () => {
+      const initialState = '';
+      const wrongAction = {
+        type: 'WRONG_ACTION',
+        movies: [{}, {}, {}]
+      };
 
-  //     expect(hasError(initialState, action)).toEqual(result);
-  //   })
-
-  //   it('should not output the case of HAS_ERROR action type', () => {
-  //     const initialState = '';
-  //     const wrongAction = {
-  //       type: 'WRONG_ACTION',
-  //       movies: [{}, {}, {}]
-  //     };
-
-  //     expect(hasError(initialState, wrongAction)).toEqual(initialState);
-  //   })
+      expect(errMsg(initialState, wrongAction)).toEqual(initialState);
+    })
 });
