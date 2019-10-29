@@ -5,7 +5,7 @@ import {
   setMovies,
   setWallpapers,
   setLoading,
-  hasError,
+  setError,
   addFavorite,
   setFavorites,
   setUser,
@@ -87,14 +87,14 @@ describe('mapDispatchToProps', () => {
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
 
-  it('calls dispatch with hasError', () => {
+  it('calls dispatch with setError', () => {
     const errMsg = {
       message: 'message'
     };
-    const actionToDispatch = hasError(errMsg);
+    const actionToDispatch = setError(errMsg);
 
     const mappedProps = mapDispatchToProps(mockDispatch);
-    mappedProps.hasError({ message: 'message' });
+    mappedProps.setError({ message: 'message' });
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
