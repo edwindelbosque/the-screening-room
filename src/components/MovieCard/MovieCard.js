@@ -28,7 +28,6 @@ export const MovieCard = ({
       const favoriteMovies = await getFavorites(user.id);
       setFavorites(favoriteMovies.favorites)
     } else {
-      updateFavorites(movie, isFavorite);
       history.push('/login');
     }
   };
