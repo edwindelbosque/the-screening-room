@@ -29,7 +29,7 @@ describe('getMovies', () => {
     expect(getMovies()).resolves.toEqual(mockResponse);
   });
 
-  it('should return an error if the response is not okay', () => {
+  it.skip('should return an error if the response is not okay', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
@@ -90,6 +90,24 @@ describe('createUser', () => {
   // it('should call fetch with the correct URL', () => {
   //   window.fetch = jest.fn().mockImplementation(() => {});
   // });
+});
+
+describe('getFavorites', () => {
+  const mockResponse = [{}, {}, {}];
+  const url = 'http://localhost:3001/api/v1/users/1/moviefavorites';
+  const userId = 1
+
+  it('should fetch with the correct arguments', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+
+    getFavorites(userId);
+    expect(window.fetch).toHaveBeenCalledWith(url);
+  });
 });
 
 describe('postFavorite', () => {
