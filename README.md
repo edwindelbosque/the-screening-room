@@ -7,6 +7,11 @@ Ever been curious about what movies are currently out in theaters and wish you c
 
 As a result of building out this project, we developed some muscle memory building out applications with Redux. We also got a much more practice doing network requests with a backend and fetching a nested API from 'TheMovieDB'.
 
+## Developers
+- [vrandall66](https://github.com/vrandall66)
+- [ec-myers](https://github.com/ec-myers)
+- [edwindelbosque](https://github.com/edwindelbosque)
+
 ## How to install
 
 1. Fork and clone down this repository
