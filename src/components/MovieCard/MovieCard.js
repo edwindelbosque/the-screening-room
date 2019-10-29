@@ -3,8 +3,9 @@ import './MovieCard.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
-import { toggleFavorite, setFavorites, hasError } from '../../actions';
+import { toggleFavorite, setFavorites, setError } from '../../actions';
 import { getFavorites } from '../../apiCalls/apiCalls';
+import PropTypes from 'prop-types';
 
 export const MovieCard = ({
   movie,
@@ -14,7 +15,7 @@ export const MovieCard = ({
   updateFavorites,
   type,
   setFavorites,
-  hasError,
+  setError,
   history
 }) => {
   const { title, poster_path, favorite, movie_id } = movie;
@@ -27,9 +28,9 @@ export const MovieCard = ({
       toggleFavorite(title);
       await updateFavorites(movie, isFavorite);
       const favoriteMovies = await getFavorites(user.id);
-      setFavorites(favoriteMovies.favorites)
+      setFavorites(favoriteMovies.favorites);
     } else {
-      hasError('Please log in to add favorites.')
+      setError('Please log in to add favorites.');
       history.push('/login');
     }
   };
@@ -68,7 +69,10 @@ export const mapStateToProps = ({ movies, favorites, user }) => ({
 });
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ toggleFavorite, setFavorites, hasError }, dispatch);
+  return bindActionCreators(
+    { toggleFavorite, setFavorites, setError },
+    dispatch
+  );
 };
 
 export default withRouter(
@@ -77,3 +81,12 @@ export default withRouter(
     mapDispatchToProps
   )(MovieCard)
 );
+
+MovieCard.propTypes = {
+  movies: PropTypes.array,
+  favorites: PropTypes.array,
+  user: PropTypes.object,
+  toggleFavorite: PropTypes.func,
+  setFavorites: PropTypes.func,
+  setError: PropTypes.func
+};

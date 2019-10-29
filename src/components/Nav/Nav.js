@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { setUser, hasError, resetFavorites, resetMoviesFavorites } from '../../actions/index';
+import {
+  setUser,
+  setError,
+  resetFavorites,
+  resetMoviesFavorites
+} from '../../actions/index';
+import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './Nav.scss';
@@ -10,7 +16,7 @@ export const Nav = ({
   logoutCurrentUser,
   resetFavorites,
   user,
-  hasError,
+  setError,
   favorites,
   resetMoviesFavorites,
   setRandomWallpaper
@@ -19,7 +25,7 @@ export const Nav = ({
     logoutCurrentUser();
     resetMoviesFavorites();
     resetFavorites({});
-    hasError('');
+    setError('');
   };
 
   const navBackdrop = {
@@ -45,12 +51,13 @@ export const Nav = ({
             activeClassName='nav-active'
           >
             <button className='link hover-1'>
-              Favorites 
-              {favorites.length 
-                ? <p className='favorite-counter'>{favorites.length}</p>
-                : '' }
+              Favorites
+              {favorites.length ? (
+                <p className='favorite-counter'>{favorites.length}</p>
+              ) : (
+                ''
+              )}
             </button>
-
           </NavLink>
           {user.name ? (
             <NavLink
@@ -77,12 +84,20 @@ export const Nav = ({
   );
 };
 
-export const mapStateToProps = ({ movies, user, setRandomWallpaper, favorites }) => {
+export const mapStateToProps = ({
+  movies,
+  user,
+  setRandomWallpaper,
+  favorites
+}) => {
   return { movies, user, setRandomWallpaper, favorites };
 };
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, hasError, resetFavorites, resetMoviesFavorites }, dispatch);
+  return bindActionCreators(
+    { setUser, setError, resetFavorites, resetMoviesFavorites },
+    dispatch
+  );
 };
 
 export default connect(
@@ -94,8 +109,8 @@ Nav.propTypes = {
   logoutCurrentUser: PropTypes.func,
   user: PropTypes.object,
   setUser: PropTypes.func,
-  hasError: PropTypes.func,
+  setError: PropTypes.func,
   favorites: PropTypes.array,
   resetFavorites: PropTypes.func,
-  resetMoviesFavorites: PropTypes.func,
-}
+  resetMoviesFavorites: PropTypes.func
+};

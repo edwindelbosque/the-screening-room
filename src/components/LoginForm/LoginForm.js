@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
-import { setUser, hasError, setFavorites } from '../../actions/index';
+import { setUser, setError, setFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import './LoginForm.scss';
 import { Redirect } from 'react-router-dom';
@@ -59,7 +59,7 @@ export class LoginForm extends Component {
         let favorites = await getFavorites(user.id);
         setFavorites(favorites.favorites);
       } catch ({ message }) {
-        hasError(message);
+        setError(message);
       }
     }
   };
@@ -131,10 +131,7 @@ export class LoginForm extends Component {
             ></input>
           )}
         </div>
-        <button
-          type='submit'
-          className='Form__button'
-        >
+        <button type='submit' className='Form__button'>
           Continue
         </button>
       </form>
@@ -149,7 +146,7 @@ export const mapStateToProps = ({ movies, errMsg, isLoading }) => ({
 });
 
 export const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ setUser, setFavorites, hasError }, dispatch);
+  return bindActionCreators({ setUser, setFavorites, setError }, dispatch);
 };
 
 export default connect(

@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 import './Container.scss';
+import PropTypes from 'prop-types';
 
 export const Container = ({ movies, updateFavorites, type }) => {
   const allMovies = movies.map(movie => (
@@ -15,3 +16,9 @@ export const Container = ({ movies, updateFavorites, type }) => {
 };
 
 export default Container;
+
+Container.propTypes = {
+  movies: PropTypes.array,
+  updateFavorites: PropTypes.func,
+  type: PropTypes.string
+};
