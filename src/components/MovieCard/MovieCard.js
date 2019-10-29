@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, withRouter } from 'react-router-dom';
 import { toggleFavorite, setFavorites } from '../../actions';
+import { getFavorites } from '../../apiCalls/apiCalls';
 
 export const MovieCard = ({
   movie,
@@ -20,11 +21,12 @@ export const MovieCard = ({
     .map(favorite => favorite.title)
     .includes(movie.title);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (user.name) {
-      setFavorites(favorites)
-      updateFavorites(movie, isFavorite);
       toggleFavorite(title);
+      await updateFavorites(movie, isFavorite);
+      const favoriteMovies = await getFavorites(user.id);
+      setFavorites(favoriteMovies.favorites)
     } else {
       updateFavorites(movie, isFavorite);
       history.push('/login');

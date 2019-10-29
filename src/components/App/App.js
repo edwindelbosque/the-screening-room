@@ -5,23 +5,8 @@ import AccessModal from '../AccessModal/AccessModal';
 import Container from '../Container/Container';
 import SelectedMovie from '../SelectedMovie/SelectedMovie';
 import Footer from '../Footer/Footer';
-import {
-  getMovies,
-  getWallpapers,
-  postFavorite,
-  removeFavorite,
-  getFavorites
-} from '../../apiCalls/apiCalls';
-import {
-  setMovies,
-  setWallpapers,
-  setLoading,
-  hasError,
-  addFavorite,
-  setFavorites,
-  setUser,
-  setRandomWallpaper
-} from '../../actions';
+import { getMovies, getWallpapers, postFavorite, removeFavorite, getFavorites } from '../../apiCalls/apiCalls';
+import { setMovies, setWallpapers, setLoading, hasError, addFavorite, setFavorites, setUser, setRandomWallpaper } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.scss';
@@ -30,18 +15,17 @@ export class App extends Component {
   componentDidMount = async () => {
     const { setMovies, setFavorites, setWallpapers, hasError, setRandomWallpaper, user } = this.props;
     try {
-      let movieData = await getMovies();
       let wallpapers = await getWallpapers();
+      let movieData = await this.markFavorites(await getMovies(), await getFavorites(user.id));
 
       if (user.id) {
         try {
-          let favorites = await getFavorites(user.id);
-          setFavorites(favorites.favorites);
+          const favorites = await getFavorites(user.id);
+          await setFavorites(favorites.favorites);
         } catch ({ message }) {
           hasError(message);
         }
       }
-
       setWallpapers(wallpapers);
       setRandomWallpaper(wallpapers)
       setMovies(movieData);
@@ -49,6 +33,14 @@ export class App extends Component {
       hasError(message);
     }
   };
+  
+  markFavorites = (movies, favorites) => {
+    return movies.map(movie => {
+    return favorites.favorites.find(favorite => favorite.movie_id === movie.movie_id)
+      ? { ...movie, favorite: true }
+      : { ...movie, favorite: false }
+    })
+  }
 
   updateFavorites = async (movie, isFavorite) => {
     const { user, addFavorite, setFavorites, hasError } = this.props;
@@ -56,7 +48,6 @@ export class App extends Component {
       try {
         let favoritesData = await postFavorite(movie, user.id);
         addFavorite(favoritesData);
-        setFavorites()
       } catch ({ message }) {
         hasError(message);
       }

@@ -8,9 +8,7 @@ import { bindActionCreators } from 'redux';
 export const Nav = ({
   logoutCurrentUser,
   resetFavorites,
-  movies,
   user,
-  wallpapers,
   hasError,
   setRandomWallpaper
 }) => {
