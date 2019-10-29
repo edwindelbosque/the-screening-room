@@ -137,19 +137,19 @@ describe('SignUpForm', () => {
     expect(createUser).toHaveBeenCalled();
   });
 
-  // it('should update the value of isLoggedIn when handleClick is called', async () => {
-  //   expect(wrapper.state('isLoggedIn')).toEqual(false);
-  //   wrapper.instance().setState({
-  //     name: 'Vanessa Randall',
-  //     email: 'vanessa.randall@doane.edu',
-  //     password: 'Password123'
-  //   });
-  //   const mockEvent = {
-  //     preventDefault: jest.fn()
-  //   };
-  //   await wrapper.instance().handleSubmit(mockEvent);
-  //   expect(wrapper.state('isLoggedIn')).toEqual(true);
-  // });
+  it('should update the value of isLoggedIn when handleClick is called', async () => {
+    expect(wrapper.state('isLoggedIn')).toEqual(false);
+    wrapper.instance().setState({
+      name: 'Vanessa Randall',
+      email: 'vanessa.randall@doane.edu',
+      password: 'Password123'
+    });
+    const mockEvent = {
+      preventDefault: jest.fn()
+    };
+    await wrapper.instance().handleSubmit(mockEvent);
+    expect(wrapper.state('isLoggedIn')).toEqual(true);
+  });
 });
 
 describe('mapStateToProps', () => {
