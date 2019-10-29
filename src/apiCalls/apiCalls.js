@@ -46,19 +46,6 @@ export const getWallpapers = async () => {
   return await Promise.all(wallpaper);
 };
 
-// const getGenresData = async genreIds => {
-//   const genres = await genreIds.map(id => {
-//     return getGenres(id);
-//   });
-//   return await Promise.all(genres);
-// };
-
-// const getGenres = async id => {
-//   const response = await fetch(`${genreBaseUrl}${id}?api_key=${apiKey}`);
-//   const data = await response.json();
-//   return await data.name;
-// };
-
 export const createUser = async newUser => {
   const url = 'http://localhost:3001/api/v1/users';
   const options = {
@@ -69,6 +56,7 @@ export const createUser = async newUser => {
     body: JSON.stringify(newUser)
   };
   const response = await fetch(url, options);
+  console.log('response', response)
   if (!response.ok) {
     throw new Error('Email address already in use');
   }
@@ -117,7 +105,7 @@ export const postFavorite = async (movie, userId) => {
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw Error('Please log in to add favorites.');
+    throw new Error('Please log in to add favorites.');
   }
   const newFavorite = await response.json();
   return newFavorite;
@@ -133,6 +121,6 @@ export const removeFavorite = async (movieId, userId) => {
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw Error('Could not delete favorite.');
+    throw new Error('Could not delete favorite.');
   }
 };

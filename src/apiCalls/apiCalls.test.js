@@ -85,11 +85,61 @@ describe('getWallpapers', () => {
 });
 
 describe('createUser', () => {
-  const mockResponse = {};
+  const newUser = {
+    name: 'Vanessa Randall',
+    email: 'vanessa.randall@doane.edu',
+    password: 'Password123',
+    isLoggedIn: false
+  };
+  const mockResponse = {
+    type: 'cors',
+    url: 'http://localhost:3001/api/v1/users',
+    redirected: false,
+    status: 201,
+    ok: true
+  };
+  const url = 'http://localhost:3001/api/v1/users';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newUser)
+  };
 
-  // it('should call fetch with the correct URL', () => {
-  //   window.fetch = jest.fn().mockImplementation(() => {});
-  // });
+  it('should call fetch with the correct arguments', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+    createUser(newUser);
+
+    expect(window.fetch).toHaveBeenCalledWith(url, options);
+  });
+
+  it('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(createUser(newUser)).rejects.toEqual(
+      Error('Email address already in use')
+    );
+  });
+
+  it('should return an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed.'));
+    });
+
+    expect(postFavorite(createUser(newUser)).rejects.toEqual(
+      Error('fetch failed.')
+    )
+  );
 });
 
 describe('postFavorite', () => {
@@ -232,7 +282,8 @@ describe('removeFavorite', () => {
     });
 
     expect(removeFavorite(movieId, userId)).rejects.toEqual(
-      Error('fetch failed.')
-    );
+      Error('fetch failed.'))
   });
-});
+})
+
+})
