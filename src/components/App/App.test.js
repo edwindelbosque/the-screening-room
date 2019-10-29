@@ -6,10 +6,7 @@ import {
   setWallpapers,
   setLoading,
   hasError,
-  addFavorite,
-  setFavorites,
-  setUser,
-  setRandomWallpaper
+  addFavorite
 } from '../../actions/index';
 
 jest.mock('../../apiCalls/apiCalls.js');

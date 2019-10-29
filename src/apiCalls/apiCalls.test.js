@@ -173,23 +173,26 @@ describe('selectUser', () => {
 });
 
 describe('getFavorites', () => {
-  const mockResponse = [{
-    title: 'Yesterday',
-    poster_path:
-      'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
-    release_date: '2019-06-28',
-    overview:
-      "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
-  }, {
-    title: 'Yesterday',
-    poster_path:
-      'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
-    release_date: '2019-06-28',
-    overview:
-      "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
-  }] 
+  const mockResponse = [
+    {
+      title: 'Yesterday',
+      poster_path:
+        'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
+      release_date: '2019-06-28',
+      overview:
+        "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
+    },
+    {
+      title: 'Yesterday',
+      poster_path:
+        'https://image.tmdb.org/t/p/original/1rjaRIAqFPQNnMtqSMLtg0VEABi.jpg',
+      release_date: '2019-06-28',
+      overview:
+        "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
+    }
+  ];
   const url = 'http://localhost:3001/api/v1/users/1/moviefavorites';
-  const userId = 1
+  const userId = 1;
 
   beforeEach(() => {
     window.fetch = jest.fn().mockImplementation(() => {
@@ -216,7 +219,9 @@ describe('getFavorites', () => {
       });
     });
 
-    expect(getFavorites(userId)).rejects.toEqual(Error('Unable to fetch favorites'));
+    expect(getFavorites(userId)).rejects.toEqual(
+      Error('Unable to fetch favorites')
+    );
   });
 
   it('should return an error if the server is down', () => {
@@ -224,9 +229,7 @@ describe('getFavorites', () => {
       return Promise.reject(Error('fetch failed.'));
     });
 
-    expect(getFavorites(userId)).rejects.toEqual(
-      Error('fetch failed.')
-    );
+    expect(getFavorites(userId)).rejects.toEqual(Error('fetch failed.'));
   });
 });
 
