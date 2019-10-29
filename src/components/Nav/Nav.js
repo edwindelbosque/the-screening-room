@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { setUser, hasError, resetFavorites, resetMoviesFavorites } from '../../actions/index';
-import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import './Nav.scss';
 
 export const Nav = ({
   logoutCurrentUser,
   resetFavorites,
-  loadMovieData,
   user,
   hasError,
   favorites,
@@ -89,3 +89,15 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Nav);
+
+Nav.propTypes = {
+  logoutCurrentUser: PropTypes.func,
+  resetFavorites: PropTypes.func,
+  user: PropTypes.object,
+  setUser: PropTypes.func,
+  hasError: PropTypes.func,
+  favorites: PropTypes.array,
+  resetFavorites: PropTypes.func,
+  resetMoviesFavorites: PropTypes.func,
+  setRandomWallpaper: PropTypes.string
+}
