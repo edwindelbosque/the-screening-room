@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { LoginForm, mapStateToProps, mapDispatchToProps } from './LoginForm';
-import { setUser, hasError, setFavorites } from '../../actions/index';
+import { setUser, setError, setFavorites } from '../../actions/index';
 import { selectUser, getFavorites } from '../../apiCalls/apiCalls';
 
 jest.mock('../../apiCalls/apiCalls');
@@ -195,12 +195,12 @@ describe('mapDispatchToProps', () => {
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
 
-  it('should call dispatch with a hasError action when handleClick is called', () => {
+  it('should call dispatch with a setError action when handleClick is called', () => {
     const message = '';
-    const actionToDispatch = hasError(message);
+    const actionToDispatch = setError(message);
 
     const mappedProps = mapDispatchToProps(mockDispatch);
-    mappedProps.hasError(message);
+    mappedProps.setError(message);
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
