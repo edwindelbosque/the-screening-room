@@ -5,6 +5,7 @@ import { setUser, hasEmailError } from '../../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './SignUpForm.scss';
+import PropTypes from 'prop-types';
 
 export class SignUpForm extends Component {
   constructor() {
@@ -120,10 +121,7 @@ export class SignUpForm extends Component {
             onChange={e => this.handleChange(e)}
           ></input>
         </div>
-        <button
-          type='submit'
-          className='Form__button signup-form__button'
-        >
+        <button type='submit' className='Form__button signup-form__button'>
           Continue
         </button>
       </form>
@@ -144,3 +142,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SignUpForm);
+
+SignUpForm.propTypes = {
+  emailErrMsg: PropTypes.string,
+  isLoading: PropTypes.bool,
+  setUser: PropTypes.func,
+  hasEmailError: PropTypes.func
+};

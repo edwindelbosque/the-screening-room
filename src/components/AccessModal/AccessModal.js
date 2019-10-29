@@ -3,6 +3,7 @@ import './AccessModal.scss';
 import LoginForm from '../LoginForm/LoginForm';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import { Route, NavLink, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const AccessModal = ({ loadMovieData }) => {
   return (
@@ -21,7 +22,11 @@ export const AccessModal = ({ loadMovieData }) => {
             <li className='login_tab'>Sign up</li>
           </NavLink>
         </ul>
-        <Route exact path='/login' render={() => <LoginForm loadMovieData={loadMovieData} />} />
+        <Route
+          exact
+          path='/login'
+          render={() => <LoginForm loadMovieData={loadMovieData} />}
+        />
         <Route exact path='/signup' render={() => <SignUpForm />} />
       </div>
     </>
@@ -29,3 +34,7 @@ export const AccessModal = ({ loadMovieData }) => {
 };
 
 export default AccessModal;
+
+AccessModal.propTypes = {
+  loadMovieData: PropTypes.func
+};
