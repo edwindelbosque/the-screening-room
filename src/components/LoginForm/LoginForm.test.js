@@ -78,6 +78,13 @@ describe('LoginForm', () => {
     expect(wrapper1.instance().handleChange).toHaveBeenCalled()
   });
 
+  it('should invoke handleChange onchange of password input', () => {
+    wrapper.instance().handleChange = jest.fn();
+    wrapper.find('.Form__input').at(1).simulate('change', mockEventPassword);
+
+    expect(wrapper.instance().handleChange).toHaveBeenCalled();
+  });
+
   it('should call the getFavorites fetch when findUserFavorites is called', () => {
     let user = {
       id: 1,
