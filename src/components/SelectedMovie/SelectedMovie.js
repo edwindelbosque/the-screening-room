@@ -6,7 +6,6 @@ const SelectedMovie = ({ movieDetails, wallpapers, match }) => {
   const { title, overview, poster_path, rating, movie_id } = movieDetails;
   const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === movie_id)
     .wallpaper;
-  console.log(wallpapers);
   return (
     <>
       <Link to={`/${match.params[0]}`}>

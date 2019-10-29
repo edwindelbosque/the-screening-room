@@ -43,7 +43,6 @@ export class App extends Component {
       }
 
       setWallpapers(wallpapers);
-      console.log('wallys', wallpapers)
       setRandomWallpaper(wallpapers)
       setMovies(movieData);
     } catch ({ message }) {
