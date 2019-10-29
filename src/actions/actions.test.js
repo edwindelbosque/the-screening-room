@@ -53,7 +53,7 @@ describe('actions', () => {
       type: 'HAS_ERROR'
     };
 
-    const result = actions.hasError(errMsg);
+    const result = actions.setError(errMsg);
 
     expect(result).toEqual(expectedAction);
   });
