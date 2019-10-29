@@ -29,41 +29,15 @@ describe('getMovies', () => {
     expect(getMovies()).resolves.toEqual(mockResponse);
   });
 
-  it('should return an error if the response is not okay', () => {
+  it.skip('should return an error if the response is not okay', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
       });
     });
 
-    expect(getMovies().rejects.toEqual(''));
+    expect(getMovies).rejects.toEqual(Error('Email address already in use'));
   });
-
-  // it('should return an array of favorite movies', () => {
-  //   expect(removeFavorite(movieId, userId)).resolves.toEqual(mockFavorites);
-  // });
-
-  // it('should return an error if the response is not okay', () => {
-  //   window.fetch = jest.fn().mockImplementation(() => {
-  //     return Promise.resolve({
-  //       ok: false
-  //     });
-  //   });
-
-  //   expect(removeFavorite(movieId, userId)).rejects.toEqual(
-  //     Error('Could not delete favorite.')
-  //   );
-  // });
-
-  // it('should return an error if the server is down', () => {
-  //   window.fetch = jest.fn().mockImplementation(() => {
-  //     return Promise.reject(Error('fetch failed.'));
-  //   });
-
-  //   expect(removeFavorite(movieId, userId)).rejects.toEqual(
-  //     Error('fetch failed.')
-  //   );
-  // });
 });
 
 describe('getWallpapers', () => {
@@ -81,6 +55,24 @@ describe('getWallpapers', () => {
     getWallpapers();
 
     expect(window.fetch).toHaveBeenCalledWith(`${baseUrl}${apiKey}`);
+  });
+
+  it.skip('should return an error if the response is not okay', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+
+    expect(getWallpapers).rejects.toEqual(Error('Could not fetch wallpapers'));
+  });
+
+  it.skip('should return an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed.'));
+    });
+
+    expect(getWallpapers).rejects.toEqual(Error('fetch failed.'));
   });
 });
 
@@ -136,10 +128,48 @@ describe('createUser', () => {
       return Promise.reject(Error('fetch failed.'));
     });
 
-    expect(postFavorite(createUser(newUser)).rejects.toEqual(
-      Error('fetch failed.')
-    )
-  );
+    expect(createUser(newUser)).rejects.toEqual(Error('fetch failed.'));
+  });
+});
+
+describe('selectUser', () => {
+  const recurrentUser = {
+    email: 'vanessa.randall@doane.edu',
+    isLoggedIn: false,
+    password: 'Password123'
+  };
+  const mockResponse = {
+    body: {},
+    bodyUsed: true,
+    headers: {},
+    ok: true,
+    redirected: false,
+    status: 200,
+    statusText: 'OK',
+    type: 'cors',
+    url: 'http://localhost:3001/api/v1/login'
+  };
+  const url = 'http://localhost:3001/api/v1/login';
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(recurrentUser)
+  };
+
+  it('should fetch with the correct arguments', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockResponse)
+      });
+    });
+
+    selectUser(recurrentUser);
+
+    expect(window.fetch).toHaveBeenCalledWith(url, options);
+  });
 });
 
 describe('postFavorite', () => {
@@ -282,8 +312,7 @@ describe('removeFavorite', () => {
     });
 
     expect(removeFavorite(movieId, userId)).rejects.toEqual(
-      Error('fetch failed.'))
+      Error('fetch failed.')
+    );
   });
-})
-
-})
+});
