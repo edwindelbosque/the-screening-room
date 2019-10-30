@@ -7,12 +7,14 @@ Ever been curious about what movies are currently out in theaters and wish you c
 
 As a result of building out this project, we developed some muscle memory building out applications with Redux. We also got a much more practice doing network requests with a backend and fetching a nested API from 'TheMovieDB'.
 
+## Check out our live app in Heroku [here](https://the-screening-room.herokuapp.com/)!
+
 ## Developers
 - [vrandall66](https://github.com/vrandall66)
 - [ec-myers](https://github.com/ec-myers)
 - [edwindelbosque](https://github.com/edwindelbosque)
 
-## How to install
+## How to install into your computer
 
 1. Fork and clone down this repository.
 2. In your Terminal, access the directory of this repository.
@@ -20,8 +22,6 @@ As a result of building out this project, we developed some muscle memory buildi
 4. Once it has finished installing, run `npm start`.
 5. Follow the instructions [here](https://github.com/turingschool-examples/favorites-tracker-api) to get the database up and running.
 6. Check out your broswer.
-
-Optionally - you can follow step 5 above and then view the application live [here](https://screening-room.herokuapp.com/). Please note, to interact with the functionality you must first have the database up and running.
 
 ## Screenshot
 
@@ -34,6 +34,7 @@ Optionally - you can follow step 5 above and then view the application live [her
 - Made informed design decisions to create a user-friendly application.
 - Became comfortable with different network requests like GET, POST, & DELETE.
 - Got to user PostgresSQL to make network requests to the server.
+- Deployment of a Nodejs database into Heroku.
 - Solidified concepts with React to create clean and re-useable components.
 - Became comfortable with Redux’s lifecycle, creating actions, reducers, and connecting them to React components.
 - Understood and solidified concepts with React components, asynchronous code, and Redux testing.
@@ -45,7 +46,9 @@ Optionally - you can follow step 5 above and then view the application live [her
 - Redux
 - React Router
 - PostgreSQL
+- Nodejs
 - TheMovieDB API
 - Jest & Enzyme testing suite
 - SASS (SCSS)
 - HTML
+- Heroku
