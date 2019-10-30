@@ -49,7 +49,7 @@ export const getWallpapers = async () => {
 };
 
 export const createUser = async newUser => {
-  const url = 'http://localhost:3001/api/v1/users';
+  const url = 'https://the-screening-room-db.herokuapp.com/api/v1/users';
   const options = {
     method: 'POST',
     headers: {
@@ -65,7 +65,7 @@ export const createUser = async newUser => {
 };
 
 export const selectUser = async recurrentUser => {
-  const url = 'http://localhost:3001/api/v1/login';
+  const url = 'https://the-screening-room-db.herokuapp.com/api/v1/login';
   const options = {
     method: 'POST',
     headers: {
@@ -81,7 +81,7 @@ export const selectUser = async recurrentUser => {
 };
 
 export const getFavorites = async userId => {
-  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Unable to fetch favorites');
@@ -99,7 +99,7 @@ export const postFavorite = async (movie, userId) => {
     vote_average: movie.rating,
     overview: movie.overview
   };
-  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
     headers: {
@@ -116,7 +116,7 @@ export const postFavorite = async (movie, userId) => {
 };
 
 export const removeFavorite = async (movieId, userId) => {
-  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movieId}`;
+  const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites/${movieId}`;
   const options = {
     method: 'DELETE',
     headers: {
