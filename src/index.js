@@ -14,7 +14,9 @@ const store = createStore(rootReducer, loadState(), composeWithDevTools());
 
 store.subscribe(() => {
 	saveState({
-		user: store.getState().user
+		user: store.getState().user,
+		movies: store.getState().movies,
+		wallpapers: store.getState().wallpapers
 	});
 });
 
