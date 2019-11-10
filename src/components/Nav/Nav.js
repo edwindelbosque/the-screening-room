@@ -78,7 +78,9 @@ export const Nav = ({
 				{user.name && (
 					<div className='welcome-banner'>
 						<div className='banner-peak'></div>
-						<p>Welcome, {user.name.split(' ')[0]}</p>
+						<p>
+							<span>Welcome,</span> {user.name.split(' ')[0]}
+						</p>
 					</div>
 				)}
 			</header>
