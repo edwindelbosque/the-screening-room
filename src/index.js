@@ -13,18 +13,18 @@ import { loadState, saveState } from './localStorage';
 const store = createStore(rootReducer, loadState(), composeWithDevTools());
 
 store.subscribe(() => {
-  saveState({
-    user: store.getState().user
-  })
-})
+	saveState({
+		user: store.getState().user
+	});
+});
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<Router>
+			<App />
+		</Router>
+	</Provider>,
+	document.getElementById('root')
 );
 
 serviceWorker.unregister();
