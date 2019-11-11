@@ -19,7 +19,8 @@ export const Nav = ({
 	setError,
 	favorites,
 	resetMoviesFavorites,
-	setRandomWallpaper
+	setRandomWallpaper,
+	searchResults
 }) => {
 	const handleLogoutClick = () => {
 		logoutCurrentUser();
@@ -44,6 +45,15 @@ export const Nav = ({
 						activeClassName='nav-active'>
 						<button className='link hover-home'>Home</button>
 					</NavLink>
+					{searchResults.length !== 0 && (
+						<NavLink
+							exact
+							to='/search'
+							className='Nav__button link-wrapper'
+							activeClassName='nav-active'>
+							<button className='link hover-home'>Search</button>
+						</NavLink>
+					)}
 					<NavLink
 						to='/favorites'
 						className='Nav__button link-wrapper'
@@ -92,9 +102,10 @@ export const mapStateToProps = ({
 	movies,
 	user,
 	setRandomWallpaper,
-	favorites
+	favorites,
+	searchResults
 }) => {
-	return { movies, user, setRandomWallpaper, favorites };
+	return { movies, user, setRandomWallpaper, favorites, searchResults };
 };
 
 export const mapDispatchToProps = dispatch => {

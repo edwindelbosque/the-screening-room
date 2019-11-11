@@ -7,16 +7,18 @@ import { favorites } from './favorites';
 import { setUser } from './user';
 import { emailErrMsg } from './hasEmailErrMsg';
 import { setRandomWallpaper } from './setRandomWallpaper';
+import { searchResults } from './searchResults';
 
 const rootReducer = combineReducers({
-  movies,
-  wallpapers,
-  errMsg,
-  setLoading,
-  favorites,
-  emailErrMsg,
-  user: setUser,
-  setRandomWallpaper
+	movies,
+	wallpapers,
+	errMsg,
+	setLoading,
+	favorites,
+	emailErrMsg,
+	user: setUser,
+	setRandomWallpaper,
+	searchResults
 });
 
 export default rootReducer;

@@ -40,6 +40,29 @@ export const getSearch = async search => {
 	return data;
 };
 
+export const cleanSearch = results => {
+	const cleanResults = results.results.map(result => {
+		const {
+			id,
+			title,
+			overview,
+			poster_path,
+			release_date,
+			vote_average
+		} = result;
+		return {
+			title,
+			movie_id: id,
+			overview,
+			poster_path: `${imageBaseUrl}${poster_path}`,
+			release_date,
+			rating: vote_average,
+			favorite: false
+		};
+	});
+	return cleanResults;
+};
+
 export const getWallpapers = async () => {
 	const response = await fetch(`${baseUrl}${apiKey}`);
 	const data = await response.json();

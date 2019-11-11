@@ -106,12 +106,11 @@ export class App extends Component {
 			<main className='main'>
 				<Nav logoutCurrentUser={this.logoutCurrentUser} />
 				<Route
-					path='/(movies|favorites)/:id'
+					path='/(movies|favorites|search)/:id'
 					render={({ match }) => {
 						const movieDetails = this.props.movies.find(
 							movie => movie.movie_id === parseInt(match.params.id)
 						);
-						console.log('hi', match);
 						return (
 							<SelectedMovie
 								movieDetails={movieDetails}
@@ -145,6 +144,16 @@ export class App extends Component {
 						/>
 					)}
 				/>
+				<Route
+					path='/search'
+					render={() => (
+						<Container
+							movies={this.props.searchResults}
+							type='search'
+							updateFavorites={this.updateFavorites}
+						/>
+					)}
+				/>
 				<Footer />
 			</main>
 		);
@@ -157,14 +166,16 @@ export const mapStateToProps = ({
 	hasError,
 	isLoading,
 	user,
-	favorites
+	favorites,
+	searchResults
 }) => ({
 	movies,
 	wallpapers,
 	hasError,
 	isLoading,
 	user,
-	favorites
+	favorites,
+	searchResults
 });
 
 export const mapDispatchToProps = dispatch => {

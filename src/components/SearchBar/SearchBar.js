@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './SearchBar.scss';
-import { getSearch } from '../../apiCalls/apiCalls';
+import { getSearch, cleanSearch } from '../../apiCalls/apiCalls';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setSearchResults } from '../../actions/index';
+import { NavLink } from 'react-router-dom';
 
 class SearchBar extends Component {
 	constructor() {
@@ -18,9 +22,10 @@ class SearchBar extends Component {
 		});
 	};
 
-	handleSubmit = e => {
-		e.preventDefault();
-		getSearch(this.state.search);
+	handleSubmit = async () => {
+		const results = await getSearch(this.state.search);
+		const cleanResults = cleanSearch(results);
+		this.props.setSearchResults(cleanResults);
 	};
 
 	render() {
@@ -32,12 +37,21 @@ class SearchBar extends Component {
 					value={this.state.search}
 					onChange={e => this.handleChange(e)}
 				/>
-				<button className='search-button' onClick={e => this.handleSubmit(e)}>
-					Search
-				</button>
+				<NavLink exact to='/search'>
+					<button className='search-button' onClick={this.handleSubmit}>
+						Search
+					</button>
+				</NavLink>
 			</form>
 		);
 	}
 }
 
-export default SearchBar;
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({ setSearchResults }, dispatch);
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(SearchBar);
