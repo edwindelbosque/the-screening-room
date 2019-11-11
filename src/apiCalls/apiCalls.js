@@ -41,7 +41,10 @@ export const getSearch = async search => {
 };
 
 export const cleanSearch = results => {
-	const cleanResults = results.results.map(result => {
+	const filteredResults = results.results.filter(
+		movie => movie.poster_path !== null
+	);
+	const cleanResults = filteredResults.map(result => {
 		const {
 			id,
 			title,
@@ -60,6 +63,7 @@ export const cleanSearch = results => {
 			favorite: false
 		};
 	});
+
 	return cleanResults;
 };
 

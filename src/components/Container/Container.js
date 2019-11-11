@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import SearchBar from '../SearchBar/SearchBar';
 
 export const Container = ({ movies, updateFavorites, type }) => {
-	const allMovies = movies.map((movie, index) => (
+	const allMovies = movies.map(movie => (
 		<MovieCard
-			key={index}
+			key={movie.movie_id}
 			type={type}
 			movie={movie}
 			updateFavorites={updateFavorites}
