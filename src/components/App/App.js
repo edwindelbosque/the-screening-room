@@ -108,9 +108,11 @@ export class App extends Component {
 				<Route
 					path='/(movies|favorites|search)/:id'
 					render={({ match }) => {
-						const movieDetails = this.props.movies.find(
+						const { movies, searchResults } = this.props;
+						const movieDetails = [...movies, ...searchResults].find(
 							movie => movie.movie_id === parseInt(match.params.id)
 						);
+						console.log(searchResults, movies, movieDetails);
 						return (
 							<SelectedMovie
 								movieDetails={movieDetails}

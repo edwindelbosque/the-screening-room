@@ -30,7 +30,7 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<form>
+			<form className='SearchBar'>
 				<input
 					placeholder='Search movies'
 					name='search'
