@@ -8,6 +8,8 @@ import { setUser } from './user';
 import { emailErrMsg } from './hasEmailErrMsg';
 import { setRandomWallpaper } from './setRandomWallpaper';
 import { searchResults } from './searchResults';
+import { favoriteWallpapers } from './favoriteWallpapers';
+import { searchWallpapers } from './searchWallpapers';
 
 const rootReducer = combineReducers({
 	movies,
@@ -18,7 +20,9 @@ const rootReducer = combineReducers({
 	emailErrMsg,
 	user: setUser,
 	setRandomWallpaper,
-	searchResults
+	searchResults,
+	favoriteWallpapers,
+	searchWallpapers
 });
 
 export default rootReducer;

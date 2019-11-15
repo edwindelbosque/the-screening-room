@@ -8,6 +8,16 @@ export const setWallpapers = wallpapers => ({
 	wallpapers
 });
 
+export const setFavoriteWallpapers = wallpapers => ({
+	type: 'SET_FAVORITE_WALLPAPERS',
+	wallpapers
+});
+
+export const setSearchWallpapers = wallpapers => ({
+	type: 'SET_SEARCH_WALLPAPERS',
+	wallpapers
+});
+
 export const setLoading = bool => ({
 	type: 'IS_LOADING',
 	bool
