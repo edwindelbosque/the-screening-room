@@ -51,7 +51,7 @@ export const MovieCard = ({
         <div
           className={`button-container ${
             favorite ? 'button-container-active' : ''
-          }`}
+            }`}
           onClick={handleClick}
         >
           <div className={favorite ? 'stick-1-active' : 'stick-1'}></div>
@@ -62,10 +62,11 @@ export const MovieCard = ({
   );
 };
 
-export const mapStateToProps = ({ movies, favorites, user }) => ({
+export const mapStateToProps = ({ movies, favorites, user, searchResults }) => ({
   movies,
   favorites,
-  user
+  user,
+  searchResults
 });
 
 export const mapDispatchToProps = dispatch => {
