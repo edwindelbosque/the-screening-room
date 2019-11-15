@@ -10,8 +10,7 @@ class SearchBar extends Component {
 	constructor() {
 		super();
 		this.state = {
-			search: '',
-			isComplete: false
+			search: ''
 		};
 	}
 
@@ -23,10 +22,24 @@ class SearchBar extends Component {
 	};
 
 	handleSubmit = async () => {
-		const results = await getSearch(this.state.search);
-		const cleanResults = cleanSearch(results);
-		this.props.setSearchResults(cleanResults);
-		this.props.setSearchWallpapers(await getSearchWallpapers(cleanResults));
+		if (this.state.search) {
+			const results = await getSearch(this.state.search);
+			const cleanResults = cleanSearch(results);
+			const { favorites, setSearchResults, setSearchWallpapers } = this.props;
+			const markedFavorites = this.markFavorites(cleanResults, favorites);
+			setSearchResults(markedFavorites);
+			setSearchWallpapers(await getSearchWallpapers(cleanResults));
+		}
+	};
+
+	markFavorites = (movies, favorites) => {
+		return movies.map(movie => {
+			return favorites.find(
+				favorite => favorite.movie_id === movie.movie_id
+			)
+				? { ...movie, favorite: true }
+				: { ...movie, favorite: false };
+		});
 	};
 
 	render() {
@@ -48,11 +61,15 @@ class SearchBar extends Component {
 	}
 }
 
+const mapStateToProps = ({ favorites }) => ({
+	favorites
+})
+
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators({ setSearchResults, setSearchWallpapers }, dispatch);
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(SearchBar);
