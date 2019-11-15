@@ -16,7 +16,7 @@ export const MovieCard = ({
   type,
   setFavorites,
   setError,
-  history
+  history,
 }) => {
   const { title, poster_path, favorite, movie_id } = movie;
   const isFavorite = favorites
@@ -62,8 +62,7 @@ export const MovieCard = ({
   );
 };
 
-export const mapStateToProps = ({ movies, favorites, user, searchResults }) => ({
-  movies,
+export const mapStateToProps = ({ favorites, user, searchResults }) => ({
   favorites,
   user,
   searchResults
@@ -84,7 +83,6 @@ export default withRouter(
 );
 
 MovieCard.propTypes = {
-  movies: PropTypes.array,
   favorites: PropTypes.array,
   user: PropTypes.object,
   toggleFavorite: PropTypes.func,
