@@ -51,7 +51,7 @@ export const Nav = ({
 							to='/search'
 							className='Nav__button link-wrapper'
 							activeClassName='nav-active'>
-							<button className='link hover-home'>Search</button>
+							<button className='link hover-1'>Searches</button>
 						</NavLink>
 					)}
 					<NavLink
@@ -63,8 +63,8 @@ export const Nav = ({
 							{favorites.length ? (
 								<p className='favorite-counter'>{favorites.length}</p>
 							) : (
-								''
-							)}
+									''
+								)}
 						</button>
 					</NavLink>
 					{user.name ? (
@@ -77,13 +77,13 @@ export const Nav = ({
 							</button>
 						</NavLink>
 					) : (
-						<NavLink
-							to='/signup'
-							className='Nav__button link-wrapper'
-							activeClassName='nav-active'>
-							<button className='link hover-1'>Account</button>
-						</NavLink>
-					)}
+							<NavLink
+								to='/signup'
+								className='Nav__button link-wrapper'
+								activeClassName='nav-active'>
+								<button className='link hover-1'>Account</button>
+							</NavLink>
+						)}
 				</div>
 				{user.name && (
 					<div className='welcome-banner'>
