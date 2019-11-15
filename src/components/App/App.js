@@ -123,7 +123,7 @@ export class App extends Component {
               <SelectedMovie
                 movieDetails={movieDetails}
                 match={match}
-                wallpapers={[...this.props.wallpapers, ...this.props.favoriteWallpapers]}
+                wallpapers={[...this.props.wallpapers, ...this.props.favoriteWallpapers, ...this.props.searchWallpapers]}
               />
             );
           }}
@@ -176,7 +176,8 @@ export const mapStateToProps = ({
   user,
   favorites,
   searchResults,
-  favoriteWallpapers
+  favoriteWallpapers,
+  searchWallpapers
 }) => ({
   movies,
   wallpapers,
@@ -185,7 +186,8 @@ export const mapStateToProps = ({
   user,
   favorites,
   searchResults,
-  favoriteWallpapers
+  favoriteWallpapers,
+  searchWallpapers
 });
 
 export const mapDispatchToProps = dispatch => {

@@ -116,7 +116,7 @@ export const getSearchWallpapers = async searchMovies => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`)
     const data = await response.json();
     console.log('hi', data);
-    return data.backdrop_path;
+    return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id }
   });
   return Promise.all(searchWallpapers);
 }
@@ -125,7 +125,6 @@ export const getFavoriteWallpapers = async favoriteMovies => {
   const searchWallpapers = favoriteMovies.map(async movie => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`)
     const data = await response.json();
-    console.log('hi', data);
     return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id }
   });
   return Promise.all(searchWallpapers);

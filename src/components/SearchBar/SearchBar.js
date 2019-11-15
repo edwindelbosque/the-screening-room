@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './SearchBar.scss';
-import { getSearch, cleanSearch } from '../../apiCalls/apiCalls';
+import { getSearch, cleanSearch, getSearchWallpapers } from '../../apiCalls/apiCalls';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setSearchResults } from '../../actions/index';
+import { setSearchResults, setSearchWallpapers } from '../../actions/index';
 import { NavLink } from 'react-router-dom';
 
 class SearchBar extends Component {
@@ -26,6 +26,7 @@ class SearchBar extends Component {
 		const results = await getSearch(this.state.search);
 		const cleanResults = cleanSearch(results);
 		this.props.setSearchResults(cleanResults);
+		this.props.setSearchWallpapers(await getSearchWallpapers(cleanResults));
 	};
 
 	render() {
@@ -48,7 +49,7 @@ class SearchBar extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators({ setSearchResults }, dispatch);
+	return bindActionCreators({ setSearchResults, setSearchWallpapers }, dispatch);
 };
 
 export default connect(
