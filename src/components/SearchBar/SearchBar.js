@@ -50,6 +50,7 @@ class SearchBar extends Component {
 					name='search'
 					value={this.state.search}
 					onChange={e => this.handleChange(e)}
+					autocomplete="off"
 				/>
 				<NavLink exact to='/search'>
 					<button className='search-button' onClick={this.handleSubmit}>
