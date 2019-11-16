@@ -19,7 +19,8 @@ export const Nav = ({
 	setError,
 	favorites,
 	resetMoviesFavorites,
-	setRandomWallpaper
+	setRandomWallpaper,
+	searchResults
 }) => {
 	const handleLogoutClick = () => {
 		logoutCurrentUser();
@@ -44,6 +45,15 @@ export const Nav = ({
 						activeClassName='nav-active'>
 						<button className='link hover-home'>Home</button>
 					</NavLink>
+					{searchResults.length !== 0 && (
+						<NavLink
+							exact
+							to='/search'
+							className='Nav__button link-wrapper'
+							activeClassName='nav-active'>
+							<button className='link hover-1'>Searches</button>
+						</NavLink>
+					)}
 					<NavLink
 						to='/favorites'
 						className='Nav__button link-wrapper'
@@ -53,8 +63,8 @@ export const Nav = ({
 							{favorites.length ? (
 								<p className='favorite-counter'>{favorites.length}</p>
 							) : (
-								''
-							)}
+									''
+								)}
 						</button>
 					</NavLink>
 					{user.name ? (
@@ -67,17 +77,21 @@ export const Nav = ({
 							</button>
 						</NavLink>
 					) : (
-						<NavLink
-							to='/signup'
-							className='Nav__button link-wrapper'
-							activeClassName='nav-active'>
-							<button className='link hover-1'>Account</button>
-						</NavLink>
-					)}
+							<NavLink
+								to='/signup'
+								className='Nav__button link-wrapper'
+								activeClassName='nav-active'>
+								<button className='link hover-1'>Account</button>
+							</NavLink>
+						)}
 				</div>
 				{user.name && (
 					<div className='welcome-banner'>
-						<p>Welcome, {user.name.split(' ')[0]}</p>
+						<div className='banner-peak'></div>
+						<p>
+							<span>Welcome,</span> {user.name.split(' ')[0]}
+							<span>!</span>
+						</p>
 					</div>
 				)}
 			</header>
@@ -89,9 +103,10 @@ export const mapStateToProps = ({
 	movies,
 	user,
 	setRandomWallpaper,
-	favorites
+	favorites,
+	searchResults
 }) => {
-	return { movies, user, setRandomWallpaper, favorites };
+	return { movies, user, setRandomWallpaper, favorites, searchResults };
 };
 
 export const mapDispatchToProps = dispatch => {

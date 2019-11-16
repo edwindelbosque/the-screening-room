@@ -16,7 +16,9 @@ store.subscribe(() => {
 	saveState({
 		user: store.getState().user,
 		movies: store.getState().movies,
-		wallpapers: store.getState().wallpapers
+		wallpapers: store.getState().wallpapers,
+		searchWallpapers: store.getState().searchWallpapers,
+		searchResults: store.getState().searchResults
 	});
 });
 
