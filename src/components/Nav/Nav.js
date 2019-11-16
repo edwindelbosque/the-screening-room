@@ -5,7 +5,8 @@ import {
 	setUser,
 	setError,
 	resetFavorites,
-	resetMoviesFavorites
+	resetMoviesFavorites,
+	setSearchResults
 } from '../../actions/index';
 import './Nav.scss';
 import { connect } from 'react-redux';
@@ -20,12 +21,14 @@ export const Nav = ({
 	favorites,
 	resetMoviesFavorites,
 	setRandomWallpaper,
-	searchResults
+	searchResults,
+	setSearchResults
 }) => {
 	const handleLogoutClick = () => {
 		logoutCurrentUser();
 		resetMoviesFavorites();
 		resetFavorites({});
+		setSearchResults([])
 		setError('');
 	};
 
@@ -54,7 +57,7 @@ export const Nav = ({
 							<button className='link hover-1'>Searches</button>
 						</NavLink>
 					)}
-					<NavLink
+					{user.name && <NavLink
 						to='/favorites'
 						className='Nav__button link-wrapper'
 						activeClassName='nav-active'>
@@ -66,7 +69,7 @@ export const Nav = ({
 									''
 								)}
 						</button>
-					</NavLink>
+					</NavLink>}
 					{user.name ? (
 						<NavLink
 							to='/login'
@@ -111,7 +114,7 @@ export const mapStateToProps = ({
 
 export const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
-		{ setUser, setError, resetFavorites, resetMoviesFavorites },
+		{ setUser, setError, resetFavorites, resetMoviesFavorites, setSearchResults },
 		dispatch
 	);
 };
