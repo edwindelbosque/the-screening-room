@@ -36,7 +36,6 @@ export const getSearch = async search => {
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
   );
   const data = response.json();
-  console.log(data);
   return data;
 };
 
@@ -115,7 +114,6 @@ export const getSearchWallpapers = async searchMovies => {
   const searchWallpapers = searchMovies.map(async movie => {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`)
     const data = await response.json();
-    console.log('hi', data);
     return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id }
   });
   return Promise.all(searchWallpapers);

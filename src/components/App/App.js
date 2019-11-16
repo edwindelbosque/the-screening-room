@@ -60,7 +60,6 @@ export class App extends Component {
         const favoriteMovieIds = await getFavorites(user.id);
         const favorites = await getFavoriteMovies(favoriteMovieIds.favorites);
         setFavoriteWallpapers(await getFavoriteWallpapers(favorites));
-        console.log(favorites);
         const markedMovies = await this.markFavorites(fetchedMovies, favorites);
         setMovies(markedMovies);
         await setFavorites(favorites);
@@ -118,7 +117,6 @@ export class App extends Component {
             const movieDetails = [...movies, ...searchResults, ...favorites].find(
               movie => movie.movie_id === parseInt(match.params.id)
             );
-            console.log(searchResults, movies, movieDetails);
             return (
               <SelectedMovie
                 movieDetails={movieDetails}
