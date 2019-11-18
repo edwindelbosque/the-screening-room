@@ -25,6 +25,8 @@ As a result of building out this project, we developed some muscle memory buildi
 
 ## Screenshot
 
+<img width="1440"  src="https://user-images.githubusercontent.com/48811985/69099728-6453d380-0a53-11ea-9bfd-785ed9fb3aa0.png">
+
 ![](https://user-images.githubusercontent.com/48811985/67738764-ca76a900-fa07-11e9-8ddb-0fc6a5aa1e9f.png)
 
 ![](https://user-images.githubusercontent.com/48811985/67738963-93ed5e00-fa08-11e9-93f0-1a99421b6b39.png)
