@@ -29,6 +29,10 @@ As a result of building out this project, we developed some muscle memory buildi
 
 ![](https://user-images.githubusercontent.com/48811985/67738963-93ed5e00-fa08-11e9-93f0-1a99421b6b39.png)
 
+## Kanban Board Workflow
+
+<img width="1440" src="https://user-images.githubusercontent.com/48811985/69099523-d841ac00-0a52-11ea-9d2c-b50844f9d734.png">
+
 ## Learnings
 
 - Made informed design decisions to create a user-friendly application.
