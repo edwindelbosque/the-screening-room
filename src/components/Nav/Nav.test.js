@@ -23,6 +23,7 @@ describe('Nav', () => {
         'https://image.tmdb.org/t/p/original/a6cDxdwaQIFjSkXf7uskg78ZyTq.jpg'
     }
   ];
+  let searchResults = [{}, {}]
 
   beforeEach(() => {
     wrapper = shallow(
@@ -31,6 +32,7 @@ describe('Nav', () => {
         movies={movies} 
         user={user} 
         favorites={favorites}
+        searchResults={searchResults}
       />
     );
   });

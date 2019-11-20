@@ -16,7 +16,7 @@ export const MovieCard = ({
   type,
   setFavorites,
   setError,
-  history,
+  history
 }) => {
   const { title, poster_path, favorite, movie_id } = movie;
   const isFavorite = favorites
@@ -51,7 +51,7 @@ export const MovieCard = ({
         <div
           className={`button-container ${
             favorite ? 'button-container-active' : ''
-            }`}
+          }`}
           onClick={handleClick}
         >
           <div className={favorite ? 'stick-1-active' : 'stick-1'}></div>
@@ -76,10 +76,7 @@ export const mapDispatchToProps = dispatch => {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MovieCard)
+  connect(mapStateToProps, mapDispatchToProps)(MovieCard)
 );
 
 MovieCard.propTypes = {

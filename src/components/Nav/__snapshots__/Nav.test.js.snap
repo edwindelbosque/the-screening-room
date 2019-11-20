@@ -27,23 +27,19 @@ exports[`Nav should match the snapshot 1`] = `
         <button
           className="link hover-home"
         >
-          Home
+          Browse
         </button>
       </NavLink>
       <NavLink
         activeClassName="nav-active"
         className="Nav__button link-wrapper"
-        to="/favorites"
+        exact={true}
+        to="/search"
       >
         <button
           className="link hover-1"
         >
-          Favorites
-          <p
-            className="favorite-counter"
-          >
-            1
-          </p>
+          Searches
         </button>
       </NavLink>
       <NavLink

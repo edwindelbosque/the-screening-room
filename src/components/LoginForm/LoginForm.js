@@ -53,7 +53,7 @@ export class LoginForm extends Component {
   };
 
   findUserFavorites = async user => {
-    const { setFavorites } = this.props;
+    const { setFavorites, setError } = this.props;
     if (user.id) {
       try {
         let favorites = await getFavorites(user.id);
@@ -149,10 +149,7 @@ export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ setUser, setFavorites, setError }, dispatch);
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
 LoginForm.propTypes = {
   movies: PropTypes.array,
@@ -160,5 +157,5 @@ LoginForm.propTypes = {
   isLoading: PropTypes.bool,
   setUser: PropTypes.func,
   setFavorites: PropTypes.func,
-  hasError: PropTypes.func
-}
+  setError: PropTypes.func
+};

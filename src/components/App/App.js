@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import Nav from "../Nav/Nav";
-import AccessModal from "../AccessModal/AccessModal";
-import Container from "../Container/Container";
-import SelectedMovie from "../SelectedMovie/SelectedMovie";
-import Footer from "../Footer/Footer";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import Nav from '../Nav/Nav';
+import AccessModal from '../AccessModal/AccessModal';
+import Container from '../Container/Container';
+import SelectedMovie from '../SelectedMovie/SelectedMovie';
+import Footer from '../Footer/Footer';
 import {
   getMovies,
   getWallpapers,
@@ -13,7 +13,7 @@ import {
   getFavorites,
   getFavoriteMovies,
   getFavoriteWallpapers
-} from "../../apiCalls/apiCalls";
+} from '../../apiCalls/apiCalls';
 import {
   setMovies,
   setWallpapers,
@@ -24,35 +24,41 @@ import {
   setUser,
   setRandomWallpaper,
   setFavoriteWallpapers
-} from "../../actions";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { PropTypes } from "prop-types";
-import "./App.scss";
+} from '../../actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { PropTypes } from 'prop-types';
+import './App.scss';
 
 export class App extends Component {
   componentDidMount = async () => {
     const {
       setWallpapers,
-      hasError,
+      setError,
       setRandomWallpaper,
-      setLoading
+      isLoading
     } = this.props;
     try {
-      setLoading(true);
+      isLoading(true);
       const wallpapers = await getWallpapers();
       await this.loadMovieData();
       setWallpapers(wallpapers);
       setRandomWallpaper(wallpapers);
-      setLoading(false);
+      isLoading(false);
     } catch ({ message }) {
-      hasError(message);
-      setLoading(false);
+      setError(message);
+      isLoading(false);
     }
   };
 
   loadMovieData = async () => {
-    const { setMovies, setFavorites, hasError, user, setFavoriteWallpapers } = this.props;
+    const {
+      setMovies,
+      setFavorites,
+      setError,
+      user,
+      setFavoriteWallpapers
+    } = this.props;
     const fetchedMovies = await getMovies();
 
     if (user.id) {
@@ -64,7 +70,7 @@ export class App extends Component {
         setMovies(markedMovies);
         await setFavorites(favorites);
       } catch ({ message }) {
-        hasError(message);
+        setError(message);
       }
     } else {
       setMovies(fetchedMovies);
@@ -73,22 +79,20 @@ export class App extends Component {
 
   markFavorites = (movies, favorites) => {
     return movies.map(movie => {
-      return favorites.find(
-        favorite => favorite.movie_id === movie.movie_id
-      )
+      return favorites.find(favorite => favorite.movie_id === movie.movie_id)
         ? { ...movie, favorite: true }
         : { ...movie, favorite: false };
     });
   };
 
   updateFavorites = async (movie, isFavorite) => {
-    const { user, addFavorite, setFavorites, hasError } = this.props;
+    const { user, addFavorite, setFavorites, setError } = this.props;
     if (!isFavorite) {
       try {
         let favoritesData = await postFavorite(movie, user.id);
         addFavorite(favoritesData);
       } catch ({ message }) {
-        hasError(message);
+        setError(message);
       }
     } else {
       try {
@@ -96,7 +100,7 @@ export class App extends Component {
         let newFavorites = await getFavorites(user.id);
         setFavorites(newFavorites.favorites);
       } catch ({ message }) {
-        hasError(message);
+        setError(message);
       }
     }
   };
@@ -108,54 +112,61 @@ export class App extends Component {
 
   render() {
     return (
-      <main className="main">
+      <main className='main'>
         <Nav logoutCurrentUser={this.logoutCurrentUser} />
         <Route
-          path="/(movies|favorites|search)/:id"
+          path='/(movies|favorites|search)/:id'
           render={({ match }) => {
             const { movies, searchResults, favorites } = this.props;
-            const movieDetails = [...movies, ...searchResults, ...favorites].find(
-              movie => movie.movie_id === parseInt(match.params.id)
-            );
+            const movieDetails = [
+              ...movies,
+              ...searchResults,
+              ...favorites
+            ].find(movie => movie.movie_id === parseInt(match.params.id));
             return (
               <SelectedMovie
+                key={movieDetails.movie_id}
                 movieDetails={movieDetails}
                 match={match}
-                wallpapers={[...this.props.wallpapers, ...this.props.favoriteWallpapers, ...this.props.searchWallpapers]}
+                wallpapers={[
+                  ...this.props.wallpapers,
+                  ...this.props.favoriteWallpapers,
+                  ...this.props.searchWallpapers
+                ]}
               />
             );
           }}
         />
         <Route
-          path="/(|movies|signup|login)"
+          path='/(|movies|signup|login)'
           render={() => (
             <Container
               movies={this.props.movies}
-              type="movies"
+              type='movies'
               updateFavorites={this.updateFavorites}
             />
           )}
         />
         <Route
-          path="/(login|signup)"
+          path='/(login|signup)'
           render={() => <AccessModal loadMovieData={this.loadMovieData} />}
         />
         <Route
-          path="/favorites"
+          path='/favorites'
           render={() => (
             <Container
               movies={this.props.favorites}
-              type="favorites"
+              type='favorites'
               updateFavorites={this.updateFavorites}
             />
           )}
         />
         <Route
-          path="/search"
+          path='/search'
           render={() => (
             <Container
               movies={this.props.searchResults}
-              type="search"
+              type='search'
               updateFavorites={this.updateFavorites}
             />
           )}
@@ -169,7 +180,7 @@ export class App extends Component {
 export const mapStateToProps = ({
   movies,
   wallpapers,
-  hasError,
+  errMsg,
   isLoading,
   user,
   favorites,
@@ -179,7 +190,7 @@ export const mapStateToProps = ({
 }) => ({
   movies,
   wallpapers,
-  hasError,
+  errMsg,
   isLoading,
   user,
   favorites,
@@ -209,7 +220,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   movies: PropTypes.array,
   wallpapers: PropTypes.array,
-  hasError: PropTypes.bool,
+  errMsg: PropTypes.bool,
   isLoading: PropTypes.bool,
   user: PropTypes.object,
   favorites: PropTypes.array,

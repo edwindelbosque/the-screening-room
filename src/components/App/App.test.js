@@ -25,11 +25,11 @@ describe('App', () => {
 
 describe('mapStateToProps', () => {
   it('should return an object with', () => {
-    let movies, wallpapers, setError, isLoading, user, favorites;
+    let movies, wallpapers, errMsg, isLoading, user, favorites;
     const mockState = {
       movies,
       wallpapers,
-      setError,
+      errMsg,
       isLoading,
       user,
       favorites
@@ -38,7 +38,7 @@ describe('mapStateToProps', () => {
     const expected = {
       movies,
       wallpapers,
-      setError,
+      errMsg,
       isLoading,
       user,
       favorites
@@ -84,7 +84,7 @@ describe('mapDispatchToProps', () => {
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
 
-  it('calls dispatch with setError', () => {
+  it('calls dispatch with errMsg', () => {
     const errMsg = {
       message: 'message'
     };

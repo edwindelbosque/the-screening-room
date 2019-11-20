@@ -1,6 +1,6 @@
 import { errMsg } from './errMsg';
 
-describe('hasError', () => {
+describe('errMsg', () => {
   it('should return the initial state', () => {
     const expected = '';
 
@@ -9,13 +9,13 @@ describe('hasError', () => {
     expect(result).toEqual(expected);
   });
 
-    it('should not output the case of HAS_ERROR action type', () => {
-      const initialState = '';
-      const wrongAction = {
-        type: 'WRONG_ACTION',
-        movies: [{}, {}, {}]
-      };
+  it('should not output the case of HAS_ERROR action type', () => {
+    const initialState = '';
+    const wrongAction = {
+      type: 'WRONG_ACTION',
+      movies: [{}, {}, {}]
+    };
 
-      expect(errMsg(initialState, wrongAction)).toEqual(initialState);
-    })
+    expect(errMsg(initialState, wrongAction)).toEqual(initialState);
+  });
 });

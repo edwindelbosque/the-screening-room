@@ -4,6 +4,7 @@ exports[`Container should match the All Movies snapshot 1`] = `
 <main
   className="Container"
 >
+  <Connect(SearchBar) />
   <withRouter(Connect(MovieCard))
     key="0"
     movie={
