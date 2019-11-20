@@ -8,4 +8,12 @@ describe('favorites', () => {
 
     expect(result).toEqual(expected);
   });
+
+  it('should reset favorites in state', () => {
+    const expected = [];
+    const actionType = { type: 'RESET_FAVORITES' };
+    const result = favorites(expected, actionType);
+
+    expect(result).toEqual(expected);
+  });
 });

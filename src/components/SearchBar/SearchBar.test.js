@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SearchBar, mapStateToProps } from './SearchBar';
-// import { setSearchResults, setSearchWallpapers } from '../../actions/index'
 
 describe('SearchBar', () => {
   let wrapper;
