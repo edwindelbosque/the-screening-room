@@ -85,7 +85,7 @@ export const Nav = ({
 							to='/login'
 							className='Nav__button link-wrapper'
 							activeClassName='nav-active'>
-							<button onClick={handleLogoutClick}>
+							<button className="NavLink__button--logout" onClick={handleLogoutClick}>
 								<span className='logout-button'>Logout</span>
 							</button>
 						</NavLink>

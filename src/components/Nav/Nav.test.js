@@ -1,35 +1,32 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Nav } from './Nav';
+import {
+  setError,
+  resetFavorites,
+  resetMoviesFavorites,
+  setSearchResults
+} from '../../actions/index';
 
 describe('Nav', () => {
   let wrapper;
-  const favorites = [{id: 2, title: 'Joker'}]
+  let handleCategory = jest.fn();
   let logoutCurrentUser = jest.fn();
+  let searchResults = [{}, {}, {}];
   let user = {
-    name: ''
+    name: 'Vanessa Randall',
+    email: 'vanessa.randall@doane.edu',
+    id: 2
   };
-  let movies = [
-    {
-      wallpaper:
-        'https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg'
-    },
-    {
-      wallpaper:
-        'https://image.tmdb.org/t/p/original/skvI4rYFrKXS73BJxWGH54Omlvv.jpg'
-    },
-    {
-      wallpaper:
-        'https://image.tmdb.org/t/p/original/a6cDxdwaQIFjSkXf7uskg78ZyTq.jpg'
-    }
-  ];
+  let favorites = [{}, {}, {}];
 
   beforeEach(() => {
     wrapper = shallow(
-      <Nav 
-        logoutCurrentUser={logoutCurrentUser} 
-        movies={movies} 
-        user={user} 
+      <Nav
+        logoutCurrentUser={logoutCurrentUser}
+        handleCategory={handleCategory}
+        searchResults={searchResults}
+        user={user}
         favorites={favorites}
       />
     );
@@ -37,5 +34,16 @@ describe('Nav', () => {
 
   it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it.skip('should call logoutCurrentUser on handleLogoutClick', () => {
+    let logoutCurrentUser = jest.fn();
+
+    wrapper.find('.NavLink__button--logout').simulate('click');
+    expect(logoutCurrentUser).toHaveBeenCalled();
+    expect(resetMoviesFavorites).toHaveBeenCalled();
+    expect(resetFavorites).toHaveBeenCalled();
+    expect(setSearchResults).toHaveBeenCalled();
+    expect(setError).toHaveBeenCalled();
   });
 });
