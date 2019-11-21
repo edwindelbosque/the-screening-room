@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrailerPlayer should match the snapshot 1`] = `
+<div
+  className="video"
+  style={
+    Object {
+      "height": 0,
+      "paddingBottom": "53%",
+      "paddingTop": 25,
+      "position": "relative",
+    }
+  }
+>
+  <iframe
+    allowFullScreen={true}
+    frameBorder="0"
+    src="https://www.youtube.com/embed/string?controls=0;&autoplay=1"
+    style={
+      Object {
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+    title="string"
+  />
+</div>
+`;

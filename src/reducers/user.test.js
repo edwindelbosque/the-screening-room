@@ -9,13 +9,17 @@ describe('user', () => {
   });
 
   it('should set user', () => {
+    const initialState = {};
     const expected = {
       id: 2,
       name: 'Vanessa Randall',
       email: 'vanessalrandall@doane.edu'
     };
-    const actionType = 'USER';
-    const result = setUser(expected, actionType);
+    const action = {
+      type: 'USER',
+      user: expected
+    };
+    const result = setUser(initialState, action);
     expect(result).toEqual(expected);
   });
 

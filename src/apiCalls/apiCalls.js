@@ -2,29 +2,42 @@ const baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=';
 const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 const apiKey = '149174d30ba0677b5219f8786eaaaaa7';
 
-export const apiHandler = async (method) => {
+export const apiHandler = async method => {
   if (method === 'trending-tv-today') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`)
+    return await getMovies(
+      `https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`
+    );
   }
   if (method === 'trending-tv-week') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`)
+    return await getMovies(
+      `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`
+    );
   }
   if (method === 'playing-now') {
     return await getMovies();
   }
   if (method === 'trending-movie-today') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+    return await getMovies(
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`
+    );
   }
   if (method === 'trending-movie-week') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+    return await getMovies(
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`
+    );
   }
   if (method === 'top-rated') {
-    return await getMovies(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
+    return await getMovies(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`
+    );
   }
 };
 
 export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
   const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('Could not fetch movies.');
+  }
   const data = await response.json();
   const results = data.results;
   const cleanedMovies = await results.map(async result => {
@@ -48,19 +61,18 @@ export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
       favorite: false
     };
   });
-  if (!response.ok) {
-    throw new Error("Could not fetch movies.");
-  }
   return await Promise.all(cleanedMovies);
 };
 
 export const getTrailer = async movieId => {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`);
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`
+  );
   const data = await response.json();
   if (!response.ok) {
-    return undefined
+     throw new Error('Could not fetch trailers.');
   } else {
-    return data.results.length ? data.results[0].key : null
+    return data.results.length ? data.results[0].key : null;
   }
 };
 
@@ -68,13 +80,21 @@ export const getSearch = async search => {
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
   );
+    if (!response.ok) {
+      throw new Error('Could not fetch movies.');
+    }
   const data = response.json();
   return data;
 };
 
 export const getFavoriteMovies = async favoriteMovies => {
   const movies = favoriteMovies.map(async movie => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`)
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`
+    );
+      if (!response.ok) {
+        throw new Error('Could not fetch watch list.');
+      }
     const data = await response.json();
     const {
       id,
@@ -95,7 +115,7 @@ export const getFavoriteMovies = async favoriteMovies => {
     };
   });
   return Promise.all(movies);
-}
+};
 
 export const cleanSearch = results => {
   const filteredResults = results.results.filter(
@@ -128,6 +148,9 @@ export const cleanSearch = results => {
 
 export const getWallpapers = async (url = `${baseUrl}${apiKey}`) => {
   const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Could not fetch wallpapers');
+    }
   const data = await response.json();
   const results = data.results;
   const wallpaper = await results.map(async result => {
@@ -137,58 +160,65 @@ export const getWallpapers = async (url = `${baseUrl}${apiKey}`) => {
       id: id
     };
   });
-  if (!response.ok) {
-    throw new Error("Could not fetch wallpapers");
-  }
   return await Promise.all(wallpaper);
 };
 
 export const getSearchWallpapers = async searchMovies => {
   const searchWallpapers = searchMovies.map(async movie => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`)
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`
+    );
+      if (!response.ok) {
+        throw new Error('Could not fetch wallpapers');
+      }
     const data = await response.json();
-    return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id }
+    return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id };
   });
   return Promise.all(searchWallpapers);
-}
+};
 
 export const getFavoriteWallpapers = async favoriteMovies => {
   const searchWallpapers = favoriteMovies.map(async movie => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`)
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie.movie_id}?api_key=149174d30ba0677b5219f8786eaaaaa7`
+    );
+      if (!response.ok) {
+        throw new Error('Could not fetch wallpapers');
+      }
     const data = await response.json();
-    return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id }
+    return { wallpaper: `${imageBaseUrl}${data.backdrop_path}`, id: data.id };
   });
   return Promise.all(searchWallpapers);
-}
+};
 
 export const createUser = async newUser => {
-  const url = "https://the-screening-room-db.herokuapp.com/api/v1/users";
+  const url = 'https://the-screening-room-db.herokuapp.com/api/v1/users';
   const options = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(newUser)
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error("Email address already in use");
+    throw new Error('Email address already in use');
   }
   return response.json();
 };
 
 export const selectUser = async recurrentUser => {
-  const url = "https://the-screening-room-db.herokuapp.com/api/v1/login";
+  const url = 'https://the-screening-room-db.herokuapp.com/api/v1/login';
   const options = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(recurrentUser)
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error("Email and password do not match");
+    throw new Error('Email and password do not match');
   }
   return response.json();
 };
@@ -197,7 +227,7 @@ export const getFavorites = async userId => {
   const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites`;
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error("Unable to fetch favorites");
+    throw new Error('Unable to fetch favorites');
   }
   const favorites = await response.json();
   return favorites;
@@ -214,15 +244,15 @@ export const postFavorite = async (movie, userId) => {
   };
   const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites`;
   const options = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(cleanedMovie)
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error("Please log in to add favorites.");
+    throw new Error('Please log in to add favorites.');
   }
   const newFavorite = await response.json();
   return newFavorite;
@@ -231,34 +261,44 @@ export const postFavorite = async (movie, userId) => {
 export const removeFavorite = async (movieId, userId) => {
   const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites/${movieId}`;
   const options = {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     }
   };
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error("Could not delete favorite.");
+    throw new Error('Could not delete favorite.');
   }
 };
 
-export const apiWallpaperHandler = async (method) => {
+export const apiWallpaperHandler = async method => {
   if (method === 'trending-tv-today') {
-    return await getWallpapers(`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`)
+    return await getWallpapers(
+      `https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`
+    );
   }
   if (method === 'trending-tv-week') {
-    return await getWallpapers(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`)
+    return await getWallpapers(
+      `https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`
+    );
   }
   if (method === 'playing-now') {
     return await getWallpapers();
   }
   if (method === 'trending-movie-today') {
-    return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/day?api_key=${apiKey}`)
+    return await getWallpapers(
+      `https://api.themoviedb.org/3/trending/movies/day?api_key=${apiKey}`
+    );
   }
   if (method === 'trending-movie-week') {
-    return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`)
+    return await getWallpapers(
+      `https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`
+    );
   }
   if (method === 'top-rated') {
-    return await getWallpapers(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
+    return await getWallpapers(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`
+    );
   }
 };

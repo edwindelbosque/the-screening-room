@@ -23,7 +23,7 @@ exports[`SelectedMovie should match the snapshot 1`] = `
         className="SelectedMovie__header"
       >
         <img
-          alt="Favorite icon"
+          alt="Wallpaper"
           className="SelectedMovie__img--favorite"
           src="path2"
         />
@@ -39,7 +39,9 @@ exports[`SelectedMovie should match the snapshot 1`] = `
           className="movie-text"
         >
           <h2>
-            Maleficent: Mistress of Evil
+            <span>
+              Maleficent: Mistress of Evil
+            </span>
           </h2>
           <h3
             className="SelectedMovie__h3"
@@ -51,9 +53,17 @@ exports[`SelectedMovie should match the snapshot 1`] = `
           className="movie-details"
         >
           <h4>
-            Rating: 
+            Rating 
             <span>
               7.2
+            </span>
+          </h4>
+          <h4
+            className="release-date"
+          >
+            Released 
+            <span>
+              2019
             </span>
           </h4>
         </div>

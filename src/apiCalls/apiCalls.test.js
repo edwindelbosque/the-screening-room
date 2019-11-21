@@ -85,12 +85,12 @@ describe('createUser', () => {
   };
   const mockResponse = {
     type: 'cors',
-    url: 'http://localhost:3001/api/v1/users',
+    url: 'https://the-screening-room-db.herokuapp.com/api/v1/users',
     redirected: false,
     status: 201,
     ok: true
   };
-  const url = 'http://localhost:3001/api/v1/users';
+  const url = 'https://the-screening-room-db.herokuapp.com/api/v1/users';
   const options = {
     method: 'POST',
     headers: {
@@ -147,9 +147,9 @@ describe('selectUser', () => {
     status: 200,
     statusText: 'OK',
     type: 'cors',
-    url: 'http://localhost:3001/api/v1/login'
+    url: 'https://the-screening-room-db.herokuapp.com/api/v1/login'
   };
-  const url = 'http://localhost:3001/api/v1/login';
+  const url = 'https://the-screening-room-db.herokuapp.com/api/v1/login';
   const options = {
     method: 'POST',
     headers: {
@@ -191,7 +191,8 @@ describe('getFavorites', () => {
         "Jack Malik is a struggling singer-songwriter in an English seaside town whose dreams of fame are rapidly fading, despite the fierce devotion and support of his childhood best friend, Ellie. After a freak bus accident during a mysterious global blackout, Jack wakes up to discover that he's the only person on Earth who can remember The Beatles."
     }
   ];
-  const url = 'http://localhost:3001/api/v1/users/1/moviefavorites';
+  const url =
+    'https://the-screening-room-db.herokuapp.com/api/v1/users/1/moviefavorites';
   const userId = 1;
 
   beforeEach(() => {
@@ -254,7 +255,7 @@ describe('postFavorite', () => {
   });
 
   it('should fetch with the correct arguments', () => {
-    const url = `http://localhost:3001/api/v1/users/2/moviefavorites`;
+    const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/2/moviefavorites`;
     const expected = [
       url,
       {
@@ -340,7 +341,7 @@ describe('removeFavorite', () => {
   });
 
   it('should call fetch with the correct URL and options', () => {
-    const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movieId}`;
+    const url = `https://the-screening-room-db.herokuapp.com/api/v1/users/${userId}/moviefavorites/${movieId}`;
     const options = {
       method: 'DELETE',
       headers: {
