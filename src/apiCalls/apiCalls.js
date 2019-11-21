@@ -3,20 +3,20 @@ const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 const apiKey = '149174d30ba0677b5219f8786eaaaaa7';
 
 export const apiHandler = async (method) => {
-  if (method === 'trending-today') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+  if (method === 'trending-tv-today') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`)
   }
-  if (method === 'trending-week') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+  if (method === 'trending-tv-week') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`)
   }
   if (method === 'playing-now') {
     return await getMovies();
   }
-  if (method === 'trending-today') {
-
+  if (method === 'trending-movie-today') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/movies/day?api_key=${apiKey}`)
   }
-  if (method === 'trending-today') {
-
+  if (method === 'trending-movie-week') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`)
   }
 };
 
@@ -24,21 +24,24 @@ export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
   const response = await fetch(url);
   const data = await response.json();
   const results = data.results;
+  console.log(url);
   const cleanedMovies = await results.map(async result => {
     const {
       id,
       title,
+      name,
       overview,
       poster_path,
       release_date,
+      first_air_date,
       vote_average
     } = result;
     return {
-      title,
+      title: title ? title : name,
       movie_id: id,
       overview,
       poster_path: `${imageBaseUrl}${poster_path}`,
-      release_date,
+      release_date: release_date ? release_date : first_air_date,
       rating: vote_average,
       favorite: false
     };
@@ -228,19 +231,19 @@ export const removeFavorite = async (movieId, userId) => {
 };
 
 export const apiWallpaperHandler = async (method) => {
-  if (method === 'trending-today') {
-    return await getWallpapers(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+  if (method === 'trending-tv-today') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`)
   }
-  if (method === 'trending-week') {
-    return await getWallpapers(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+  if (method === 'trending-tv-week') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`)
   }
   if (method === 'playing-now') {
     return await getWallpapers();
   }
-  if (method === 'trending-today') {
-
+  if (method === 'trending-movie-today') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/day?api_key=${apiKey}`)
   }
-  if (method === 'trending-today') {
-
+  if (method === 'trending-movie-week') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`)
   }
 };

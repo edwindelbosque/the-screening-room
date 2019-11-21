@@ -45,14 +45,15 @@ export const Nav = ({
 					<NavLink
 						exact
 						to='/'
-						className='Nav__button link-wrapper'
+						className='Nav__button link-wrapper dropdown'
 						activeClassName='nav-active'>
-						<button className='link hover-home'>
+						<button>
 							<select onChange={(e) => handleCategory(e.target.value)}>
-								<option>Browse</option>
-								<option value='trending-today'>Trending Today</option>
-								<option value='trending-week'>Trending Week</option>
 								<option value='playing-now'>Playing Now</option>
+								<option value='trending-tv-today'>Trending TV Shows Today</option>
+								<option value='trending-tv-week'>Trending TV Shows This Week</option>
+								<option value='trending-movie-today'>Trending Movies Today</option>
+								<option value='trending-movie-week'>Trending Movies This Week</option>
 							</select>
 						</button>
 					</NavLink>
@@ -62,7 +63,7 @@ export const Nav = ({
 							to='/search'
 							className='Nav__button link-wrapper'
 							activeClassName='nav-active'>
-							<button className='link hover-1'>Searches</button>
+							<button className='link hover-home'>Search</button>
 						</NavLink>
 					)}
 					{user.name && <NavLink
