@@ -41,6 +41,29 @@
     color: rgb(255, 255, 255);
     font-size: 29px;
     z-index: 1;
+
+    span {
+      background: rgb(34, 34, 34);
+      padding: 6px 15px;
+      border-radius: 2px;
+    }
+  }
+
+  .release-date {
+    font-size: 20px;
+    margin-top: 0px;
+    color: rgb(255, 255, 255);
+    text-align: right;
+    span {      
+      background: rgb(61, 61, 61);
+      font-weight: 800;
+      color: white;
+      font-size: 20px;
+      padding: 5px 13px;
+      border-radius: 2px;
+      width: 70px;
+      display: inline-block;
+    }
   }
 
   h3 {
@@ -60,13 +83,23 @@
   }
 
   h4 {
-    color: rgb(63, 63, 63);
-    font-weight: 500;
+    margin-top: 1px;
+    color: rgb(61, 61, 61);
+    font-weight: 600;
     padding-bottom: 5px;
     width: 200px;
-
+    font-size: 20px;
+    text-align: right;
+    
     span {
-      font-weight: 300;
+      background: rgb(9, 145, 163);
+      font-weight: 800;
+      color: white;
+      font-size: 25px;
+      padding: 3px 15px;
+      border-radius: 2px;
+      width: 70px;
+      display: inline-block;
     }
   }
 

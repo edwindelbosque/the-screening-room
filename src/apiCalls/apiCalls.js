@@ -2,33 +2,66 @@ const baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=';
 const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 const apiKey = '149174d30ba0677b5219f8786eaaaaa7';
 
-export const getMovies = async () => {
-  const response = await fetch(`${baseUrl}${apiKey}`);
+export const apiHandler = async (method) => {
+  if (method === 'trending-tv-today') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`)
+  }
+  if (method === 'trending-tv-week') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`)
+  }
+  if (method === 'playing-now') {
+    return await getMovies();
+  }
+  if (method === 'trending-movie-today') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+  }
+  if (method === 'trending-movie-week') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+  }
+  if (method === 'top-rated') {
+    return await getMovies(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
+  }
+};
+
+export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
+  const response = await fetch(url);
   const data = await response.json();
   const results = data.results;
   const cleanedMovies = await results.map(async result => {
     const {
       id,
       title,
+      name,
       overview,
       poster_path,
       release_date,
+      first_air_date,
       vote_average
     } = result;
     return {
-      title,
+      title: title ? title : name,
       movie_id: id,
       overview,
       poster_path: `${imageBaseUrl}${poster_path}`,
-      release_date,
+      release_date: release_date ? release_date : first_air_date,
       rating: vote_average,
       favorite: false
-    };3
+    };
   });
   if (!response.ok) {
     throw new Error('Could not fetch movies.');
   }
   return await Promise.all(cleanedMovies);
+};
+
+export const getTrailer = async movieId => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`);
+  const data = await response.json();
+  if (!response.ok) {
+    return undefined
+  } else {
+    return data.results.length ? data.results[0].key : null
+  }
 };
 
 export const getSearch = async search => {
@@ -95,8 +128,8 @@ export const cleanSearch = results => {
   return cleanResults;
 };
 
-export const getWallpapers = async () => {
-  const response = await fetch(`${baseUrl}${apiKey}`);
+export const getWallpapers = async (url = `${baseUrl}${apiKey}`) => {
+  const response = await fetch(url);
   const data = await response.json();
   const results = data.results;
   const wallpaper = await results.map(async result => {
@@ -214,4 +247,25 @@ export const removeFavorite = async (movieId, userId) => {
     throw new Error('Could not delete favorite.');
   }
   return response.json();
+};
+
+export const apiWallpaperHandler = async (method) => {
+  if (method === 'trending-tv-today') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/tv/day?api_key=${apiKey}`)
+  }
+  if (method === 'trending-tv-week') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`)
+  }
+  if (method === 'playing-now') {
+    return await getWallpapers();
+  }
+  if (method === 'trending-movie-today') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/day?api_key=${apiKey}`)
+  }
+  if (method === 'trending-movie-week') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`)
+  }
+  if (method === 'top-rated') {
+    return await getWallpapers(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
+  }
 };

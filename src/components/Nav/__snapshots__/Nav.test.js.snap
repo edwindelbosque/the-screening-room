@@ -20,14 +20,45 @@ exports[`Nav should match the snapshot 1`] = `
     >
       <NavLink
         activeClassName="nav-active"
-        className="Nav__button link-wrapper"
+        className="Nav__button link-wrapper dropdown"
         exact={true}
         to="/"
       >
-        <button
-          className="link hover-home"
-        >
-          Browse
+        <button>
+          <select
+            onChange={[Function]}
+          >
+            <option
+              value="playing-now"
+            >
+              Playing Now
+            </option>
+            <option
+              value="top-rated"
+            >
+              Top Rated
+            </option>
+            <option
+              value="trending-tv-today"
+            >
+              Trending TV Shows Today
+            </option>
+            <option
+              value="trending-tv-week"
+            >
+              Trending TV Shows This Week
+            </option>
+            <option
+              value="trending-movie-today"
+            >
+              Trending Movies Today
+            </option>
+            <option
+              value="trending-movie-week"
+            >
+              Trending Movies This Week
+            </option>
+          </select>
         </button>
       </NavLink>
       <NavLink
@@ -37,9 +68,9 @@ exports[`Nav should match the snapshot 1`] = `
         to="/search"
       >
         <button
-          className="link hover-1"
+          className="link hover-home"
         >
-          Searches
+          Search
         </button>
       </NavLink>
       <NavLink

@@ -25,9 +25,13 @@ As a result of building out this project, we developed some muscle memory buildi
 
 ## Screenshot
 
-![](https://user-images.githubusercontent.com/48811985/67738764-ca76a900-fa07-11e9-8ddb-0fc6a5aa1e9f.png)
+<img width="1440" src="https://user-images.githubusercontent.com/48811985/69329710-8020ca80-0c49-11ea-80f3-d424a57a10e6.png">
 
-![](https://user-images.githubusercontent.com/48811985/67738963-93ed5e00-fa08-11e9-93f0-1a99421b6b39.png)
+<img width="1440" src="https://user-images.githubusercontent.com/48811985/69330178-5fa54000-0c4a-11ea-94dd-5aedb548d609.png">
+
+## Kanban Board Workflow
+
+<img width="1440" src="https://user-images.githubusercontent.com/48811985/69099523-d841ac00-0a52-11ea-9d2c-b50844f9d734.png">
 
 ## Learnings
 

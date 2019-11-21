@@ -12,7 +12,9 @@ import {
   removeFavorite,
   getFavorites,
   getFavoriteMovies,
-  getFavoriteWallpapers
+  getFavoriteWallpapers,
+  apiHandler,
+  apiWallpaperHandler
 } from '../../apiCalls/apiCalls';
 import {
   setMovies,
@@ -36,18 +38,18 @@ export class App extends Component {
       setWallpapers,
       setError,
       setRandomWallpaper,
-      isLoading
+      setLoading
     } = this.props;
     try {
-      isLoading(true);
+      setLoading(true);
       const wallpapers = await getWallpapers();
       await this.loadMovieData();
       setWallpapers(wallpapers);
       setRandomWallpaper(wallpapers);
-      isLoading(false);
+      setLoading(false);
     } catch ({ message }) {
       setError(message);
-      isLoading(false);
+      setLoading(false);
     }
   };
 
@@ -110,10 +112,21 @@ export class App extends Component {
     setUser({});
   };
 
+  handleCategory = async method => {
+    const { favorites, setMovies, setWallpapers } = this.props;
+    const fetchedMovies = await apiHandler(method);
+    const markedMovies = await this.markFavorites(fetchedMovies, favorites);
+    setMovies(markedMovies);
+    setWallpapers(await apiWallpaperHandler(method));
+  };
+
   render() {
     return (
       <main className='main'>
-        <Nav logoutCurrentUser={this.logoutCurrentUser} />
+        <Nav
+          logoutCurrentUser={this.logoutCurrentUser}
+          handleCategory={this.handleCategory}
+        />
         <Route
           path='/(movies|favorites|search)/:id'
           render={({ match }) => {
