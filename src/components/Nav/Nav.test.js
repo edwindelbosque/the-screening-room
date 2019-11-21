@@ -6,12 +6,14 @@ describe('Nav', () => {
   let wrapper;
   let handleCategory = jest.fn();
   let logoutCurrentUser = jest.fn();
+  let searchResults = [{}, {}, {}]
 
   beforeEach(() => {
     wrapper = shallow(
       <Nav 
         logoutCurrentUser={logoutCurrentUser} 
         handleCategory={handleCategory}
+        searchResults={searchResults}
       />
     );
   });
