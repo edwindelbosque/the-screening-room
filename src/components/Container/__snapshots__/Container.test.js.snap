@@ -4,8 +4,8 @@ exports[`Container should match the All Movies snapshot 1`] = `
 <main
   className="Container"
 >
+  <Connect(SearchBar) />
   <withRouter(Connect(MovieCard))
-    key="0"
     movie={
       Object {
         "id": 1,
@@ -15,7 +15,6 @@ exports[`Container should match the All Movies snapshot 1`] = `
     updateFavorites={[MockFunction]}
   />
   <withRouter(Connect(MovieCard))
-    key="1"
     movie={
       Object {
         "id": 2,
@@ -25,7 +24,6 @@ exports[`Container should match the All Movies snapshot 1`] = `
     updateFavorites={[MockFunction]}
   />
   <withRouter(Connect(MovieCard))
-    key="2"
     movie={
       Object {
         "id": 3,

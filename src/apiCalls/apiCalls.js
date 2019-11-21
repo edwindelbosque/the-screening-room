@@ -2,8 +2,26 @@ const baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=';
 const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
 const apiKey = '149174d30ba0677b5219f8786eaaaaa7';
 
-export const getMovies = async () => {
-  const response = await fetch(`${baseUrl}${apiKey}`);
+export const apiHandler = async (method) => {
+  if (method === 'trending-today') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+  }
+  if (method === 'trending-week') {
+    return await getMovies(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+  }
+  if (method === 'playing-now') {
+    return await getMovies();
+  }
+  if (method === 'trending-today') {
+
+  }
+  if (method === 'trending-today') {
+
+  }
+};
+
+export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
+  const response = await fetch(url);
   const data = await response.json();
   const results = data.results;
   const cleanedMovies = await results.map(async result => {
@@ -93,8 +111,8 @@ export const cleanSearch = results => {
   return cleanResults;
 };
 
-export const getWallpapers = async () => {
-  const response = await fetch(`${baseUrl}${apiKey}`);
+export const getWallpapers = async (url = `${baseUrl}${apiKey}`) => {
+  const response = await fetch(url);
   const data = await response.json();
   const results = data.results;
   const wallpaper = await results.map(async result => {
@@ -206,5 +224,23 @@ export const removeFavorite = async (movieId, userId) => {
   const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error("Could not delete favorite.");
+  }
+};
+
+export const apiWallpaperHandler = async (method) => {
+  if (method === 'trending-today') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
+  }
+  if (method === 'trending-week') {
+    return await getWallpapers(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+  }
+  if (method === 'playing-now') {
+    return await getWallpapers();
+  }
+  if (method === 'trending-today') {
+
+  }
+  if (method === 'trending-today') {
+
   }
 };

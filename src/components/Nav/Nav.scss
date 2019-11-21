@@ -34,6 +34,25 @@
 	}
 }
 
+	option {
+		font-size: 30px;
+
+	}
+
+	select {
+		width: 120px;
+		height: 30px;
+		font-size: 1em;
+		background: rgb(2, 133, 89);
+		border: none;
+		font-weight: 600;
+		color: white;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
 .hover-home {
 	&:after {
 		content: '';

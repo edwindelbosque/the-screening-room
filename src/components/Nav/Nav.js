@@ -22,7 +22,8 @@ export const Nav = ({
 	resetMoviesFavorites,
 	setRandomWallpaper,
 	searchResults,
-	setSearchResults
+	setSearchResults,
+	handleCategory
 }) => {
 	const handleLogoutClick = () => {
 		logoutCurrentUser();
@@ -46,7 +47,14 @@ export const Nav = ({
 						to='/'
 						className='Nav__button link-wrapper'
 						activeClassName='nav-active'>
-						<button className='link hover-home'>Browse</button>
+						<button className='link hover-home'>
+							<select onChange={(e) => handleCategory(e.target.value)}>
+								<option>Browse</option>
+								<option value='trending-today'>Trending Today</option>
+								<option value='trending-week'>Trending Week</option>
+								<option value='playing-now'>Playing Now</option>
+							</select>
+						</button>
 					</NavLink>
 					{searchResults.length !== 0 && (
 						<NavLink
