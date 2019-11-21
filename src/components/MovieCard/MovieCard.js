@@ -28,6 +28,7 @@ export const MovieCard = ({
       toggleFavorite(title);
       await updateFavorites(movie, isFavorite);
       const favoriteMovies = await getFavorites(user.id);
+      console.log(favoriteMovies.favorites)
       setFavorites(favoriteMovies.favorites);
     } else {
       setError('Please log in to add favorites.');

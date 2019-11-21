@@ -20,7 +20,7 @@ class SelectedMovie extends Component {
 
   render() {
     const { wallpapers, movieDetails, match } = this.props;
-    const { title, overview, poster_path, rating, movie_id, release_date } = movieDetails;
+    const { title, overview, poster_path, rating, movie_id, release_date, vote_average } = movieDetails;
     const movieWallpaper = wallpapers.find(wallpaper => wallpaper.id === movie_id)
       .wallpaper;
     return (
@@ -54,7 +54,7 @@ class SelectedMovie extends Component {
               </div>
               <div className="movie-details">
                 <h4>
-                  Rating <span>{rating}</span>
+                  Rating <span>{rating || vote_average}</span>
                 </h4>
                 <h4 className='release-date'>
                   Released <span>{release_date.slice(0, 4)}</span>
