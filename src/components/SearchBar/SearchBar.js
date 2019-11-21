@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { setSearchResults, setSearchWallpapers } from '../../actions/index';
 import { NavLink } from 'react-router-dom';
 
-class SearchBar extends Component {
+export class SearchBar extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -67,11 +67,11 @@ class SearchBar extends Component {
 	}
 }
 
-const mapStateToProps = ({ favorites }) => ({
+export const mapStateToProps = ({ favorites }) => ({
 	favorites
 })
 
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
 	return bindActionCreators({ setSearchResults, setSearchWallpapers }, dispatch);
 };
 
