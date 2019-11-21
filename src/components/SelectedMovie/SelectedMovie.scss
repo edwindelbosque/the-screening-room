@@ -52,14 +52,16 @@
   .release-date {
     font-size: 20px;
     margin-top: 0px;
-    color: rgb(255, 255, 255);
+    font-size: 21px;
+    color: rgb(56, 56, 56);
     text-align: right;
     span {      
       background: rgb(61, 61, 61);
       font-weight: 800;
       color: white;
+      text-align: center;
       font-size: 20px;
-      padding: 5px 13px;
+      padding: 7px 13px;
       border-radius: 2px;
       width: 70px;
       display: inline-block;
@@ -68,9 +70,20 @@
 
   h3 {
     margin-top: 30px;
-    font-size: 17px;
+    font-size: 15px;
     color: rgb(48, 48, 48);
     font-weight: 500;
+  }
+
+  .SelectedMovie__h3 {
+    background: rgba(235, 235, 235, 0);
+    color: rgb(58, 58, 58);
+    border-radius: 2px;
+    padding: 0px 10px;
+    height: 188px;
+    width: 102%;
+    margin-left: 0px;
+    overflow: scroll;
   }
 
   .movie-details {
@@ -78,7 +91,7 @@
     flex-direction: column;
     margin-left: 32px;
     position: relative;
-    top: 165px;
+    top: 123px;
     font-weight: 300;
   }
 
@@ -92,10 +105,11 @@
     text-align: right;
     
     span {
-      background: rgb(9, 145, 163);
+      background: linear-gradient(to right bottom, rgb(206, 1, 1), rgb(255, 68, 99));
       font-weight: 800;
       color: white;
       font-size: 25px;
+      text-align: center;
       padding: 3px 15px;
       border-radius: 2px;
       width: 70px;

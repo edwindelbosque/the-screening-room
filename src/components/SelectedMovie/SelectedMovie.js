@@ -56,9 +56,9 @@ class SelectedMovie extends Component {
                 <h4>
                   Rating <span>{rating}</span>
                 </h4>
-                <h5 className='release-date'>
-                  <span>{release_date.slice(0, 4)}</span>
-                </h5>
+                <h4 className='release-date'>
+                  Released <span>{release_date.slice(0, 4)}</span>
+                </h4>
               </div>
             </div>
           </div>
