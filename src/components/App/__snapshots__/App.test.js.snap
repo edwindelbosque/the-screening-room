@@ -5,6 +5,7 @@ exports[`App should match the snapshot 1`] = `
   className="main"
 >
   <Connect(Nav)
+    handleCategory={[Function]}
     logoutCurrentUser={[Function]}
   />
   <Route
