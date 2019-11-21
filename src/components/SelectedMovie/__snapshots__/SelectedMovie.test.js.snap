@@ -1,3 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SelectedMovie should match the snapshot 1`] = `undefined`;
+exports[`SelectedMovie should match the snapshot 1`] = `
+<Fragment>
+  <Link
+    to="/location1"
+  >
+    <div
+      className="modal-backdrop-white"
+    >
+      <div
+        className="modal-backdrop"
+      />
+    </div>
+  </Link>
+  <main
+    className="SelectedMovie movie-modal"
+  >
+    <div
+      className="SelectedMovie__div--container"
+    >
+      <header
+        className="SelectedMovie__header"
+      >
+        <img
+          alt="Wallpaper"
+          className="SelectedMovie__img--favorite"
+          src="path2"
+        />
+        <img
+          alt="Close window icon"
+          className="SelectedMovie__img--close"
+        />
+      </header>
+      <div
+        className="bottom-container"
+      >
+        <div
+          className="movie-text"
+        >
+          <h2>
+            <span>
+              Maleficent: Mistress of Evil
+            </span>
+          </h2>
+          <h3
+            className="SelectedMovie__h3"
+          >
+            Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.
+          </h3>
+        </div>
+        <div
+          className="movie-details"
+        >
+          <h4>
+            Rating 
+            <span>
+              7.2
+            </span>
+          </h4>
+          <h5
+            className="release-date"
+          >
+            <span>
+              2019
+            </span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </main>
+</Fragment>
+`;

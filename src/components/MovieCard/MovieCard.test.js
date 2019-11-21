@@ -74,14 +74,14 @@ describe('MovieCard', () => {
 describe('mockStateToProps', () => {
   it('should return an object with the movies data array', () => {
     const mockState = {
-      movies: [{ id: 1 }, { id: 2 }, { id: 3 }],
       favorites: [{ id: 1 }, { id: 2 }],
-      user: { name: 'Edwin', id: 33, email: 'edwindelbosquer@gmail.com' }
+      user: { name: 'Edwin', id: 33, email: 'edwindelbosquer@gmail.com' },
+      searchResults: [{}, {}, {}]
     };
     const expected = {
-      movies: [{ id: 1 }, { id: 2 }, { id: 3 }],
       favorites: [{ id: 1 }, { id: 2 }],
-      user: { name: 'Edwin', id: 33, email: 'edwindelbosquer@gmail.com' }
+      user: { name: 'Edwin', id: 33, email: 'edwindelbosquer@gmail.com' },
+      searchResults: [{}, {}, {}]
     };
 
     const mappedProps = mapStateToProps(mockState);
