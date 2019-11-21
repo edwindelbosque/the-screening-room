@@ -13,10 +13,13 @@ export const apiHandler = async (method) => {
     return await getMovies();
   }
   if (method === 'trending-movie-today') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/movies/day?api_key=${apiKey}`)
+    return await getMovies(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
   }
   if (method === 'trending-movie-week') {
-    return await getMovies(`https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`)
+    return await getMovies(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`)
+  }
+  if (method === 'top-rated') {
+    return await getMovies(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
   }
 };
 
@@ -24,7 +27,6 @@ export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
   const response = await fetch(url);
   const data = await response.json();
   const results = data.results;
-  console.log(url);
   const cleanedMovies = await results.map(async result => {
     const {
       id,
@@ -50,6 +52,16 @@ export const getMovies = async (url = `${baseUrl}${apiKey}`) => {
     throw new Error("Could not fetch movies.");
   }
   return await Promise.all(cleanedMovies);
+};
+
+export const getTrailer = async movieId => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`);
+  const data = await response.json();
+  if (!response.ok) {
+    return undefined
+  } else {
+    return data.results.length ? data.results[0].key : null
+  }
 };
 
 export const getSearch = async search => {
@@ -245,5 +257,8 @@ export const apiWallpaperHandler = async (method) => {
   }
   if (method === 'trending-movie-week') {
     return await getWallpapers(`https://api.themoviedb.org/3/trending/movies/week?api_key=${apiKey}`)
+  }
+  if (method === 'top-rated') {
+    return await getWallpapers(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
   }
 };

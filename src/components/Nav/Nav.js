@@ -50,6 +50,7 @@ export const Nav = ({
 						<button>
 							<select onChange={(e) => handleCategory(e.target.value)}>
 								<option value='playing-now'>Playing Now</option>
+								<option value='top-rated'>Top Rated</option>
 								<option value='trending-tv-today'>Trending TV Shows Today</option>
 								<option value='trending-tv-week'>Trending TV Shows This Week</option>
 								<option value='trending-movie-today'>Trending Movies Today</option>
