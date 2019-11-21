@@ -15,7 +15,7 @@ exports[`TrailerPlayer should match the snapshot 1`] = `
   <iframe
     allowFullScreen={true}
     frameBorder="0"
-    src="https://www.youtube.com/embed/string?controls=0;&autoplay=1"
+    src="https://www.youtube.com/embed/string?modestbranding=1&controls=0&autoplay=1&iv_load_policy=3&&showinfo=0"
     style={
       Object {
         "height": "100%",
