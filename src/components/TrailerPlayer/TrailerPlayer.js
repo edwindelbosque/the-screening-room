@@ -5,8 +5,8 @@ export const TrailerPlayer = ({ youtubeId }) => {
     <div
       className='video'
       style={{
-        position: 'relative',
-        paddingBottom: '48%',
+        position: "relative",
+        paddingBottom: "53%",
         paddingTop: 25,
         height: 0
       }}
@@ -23,7 +23,6 @@ export const TrailerPlayer = ({ youtubeId }) => {
         src={`https://www.youtube.com/embed/${youtubeId}?controls=0;&autoplay=1`}
         frameBorder='0'
         allowFullScreen
-        autoPlay
       />
     </div>
   );

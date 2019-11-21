@@ -58,13 +58,14 @@ exports[`SelectedMovie should match the snapshot 1`] = `
               7.2
             </span>
           </h4>
-          <h5
+          <h4
             className="release-date"
           >
+            Released 
             <span>
               2019
             </span>
-          </h5>
+          </h4>
         </div>
       </div>
     </div>

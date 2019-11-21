@@ -10,7 +10,19 @@ export class SearchBar extends Component {
 	constructor() {
 		super();
 		this.state = {
-			search: ''
+			search: '',
+			placeholders: [
+				'The Dark Knight',
+				'Across the Universe',
+				'Shawshank Redemption',
+				'The Godfather',
+				'Gravity',
+				'2001 Space Odyssey',
+				'Fightclub',
+				'Avengers: Endgame',
+				'Spirited Away',
+				'Pulp Fiction'
+			][Math.floor(Math.random() * 10)]
 		};
 	}
 
@@ -46,7 +58,7 @@ export class SearchBar extends Component {
 		return (
 			<form className='SearchBar'>
 				<input
-					placeholder='Search movies'
+					placeholder={`ex. ${this.state.placeholders}`}
 					name='search'
 					value={this.state.search}
 					onChange={e => this.handleChange(e)}

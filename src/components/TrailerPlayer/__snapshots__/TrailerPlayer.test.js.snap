@@ -6,7 +6,7 @@ exports[`TrailerPlayer should match the snapshot 1`] = `
   style={
     Object {
       "height": 0,
-      "paddingBottom": "48%",
+      "paddingBottom": "53%",
       "paddingTop": 25,
       "position": "relative",
     }
@@ -14,7 +14,6 @@ exports[`TrailerPlayer should match the snapshot 1`] = `
 >
   <iframe
     allowFullScreen={true}
-    autoPlay={true}
     frameBorder="0"
     src="https://www.youtube.com/embed/string?controls=0;&autoplay=1"
     style={
