@@ -12,6 +12,7 @@ import './Nav.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './Nav.scss';
+import Fade from 'react-reveal/Fade';
 
 export const Nav = ({
 	logoutCurrentUser,
@@ -40,7 +41,9 @@ export const Nav = ({
 	return (
 		<div className='Nav__container' style={navBackdrop}>
 			<header className='Nav'>
-				<h1>The Screening Room</h1>
+				<Fade top>
+					<h1>The Screening Room</h1>
+				</Fade>
 				<div className='Nav__ul'>
 					<NavLink
 						exact
@@ -80,23 +83,25 @@ export const Nav = ({
 								)}
 						</button>
 					</NavLink>}
-					{user.name ? (
-						<NavLink
-							to='/login'
-							className='Nav__button link-wrapper'
-							activeClassName='nav-active'>
-							<button className="NavLink__button--logout" onClick={handleLogoutClick}>
-								<span className='logout-button'>Logout</span>
-							</button>
-						</NavLink>
-					) : (
+					<Fade cascade top>
+						{user.name ? (
 							<NavLink
-								to='/signup'
+								to='/login'
 								className='Nav__button link-wrapper'
 								activeClassName='nav-active'>
-								<button className='link hover-1'>Account</button>
+								<button className="NavLink__button--logout" onClick={handleLogoutClick}>
+									<span className='logout-button'>Logout</span>
+								</button>
 							</NavLink>
-						)}
+						) : (
+								<NavLink
+									to='/signup'
+									className='Nav__button link-wrapper'
+									activeClassName='nav-active'>
+									<button className='link hover-1'>Account</button>
+								</NavLink>
+							)}
+					</Fade>
 				</div>
 				{user.name && (
 					<div className='welcome-banner'>

@@ -6,6 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { toggleFavorite, setFavorites, setError } from '../../actions';
 import { getFavorites } from '../../apiCalls/apiCalls';
 import PropTypes from 'prop-types';
+import Fade from 'react-reveal/Fade';
 
 export const MovieCard = ({
   movie,
@@ -37,29 +38,31 @@ export const MovieCard = ({
   };
 
   return (
-    <div className='MovieCard__div--container'>
-      <Link to={`${type}/${movie_id}`}>
-        <img
-          className='MovieCard__img--poster'
-          src={poster_path}
-          alt='Official movie poster'
-        />
-      </Link>
-      <footer
-        className={`MovieCard__footer ${favorite ? 'footer-active' : ''}`}
-      >
-        <h3 className='MovieCard__h3--title'>{title}</h3>
-        <div
-          className={`button-container ${
-            favorite ? 'button-container-active' : ''
-            }`}
-          onClick={handleClick}
+    <Fade bottom duration={500}>
+      <div className='MovieCard__div--container'>
+        <Link to={`${type}/${movie_id}`}>
+          <img
+            className='MovieCard__img--poster'
+            src={poster_path}
+            alt='Official movie poster'
+          />
+        </Link>
+        <footer
+          className={`MovieCard__footer ${favorite ? 'footer-active' : ''}`}
         >
-          <div className={favorite ? 'stick-1-active' : 'stick-1'}></div>
-          <div className={favorite ? 'stick-2-active' : 'stick-2'}></div>
-        </div>
-      </footer>
-    </div>
+          <h3 className='MovieCard__h3--title'>{title}</h3>
+          <div
+            className={`button-container ${
+              favorite ? 'button-container-active' : ''
+              }`}
+            onClick={handleClick}
+          >
+            <div className={favorite ? 'stick-1-active' : 'stick-1'}></div>
+            <div className={favorite ? 'stick-2-active' : 'stick-2'}></div>
+          </div>
+        </footer>
+      </div>
+    </Fade>
   );
 };
 
