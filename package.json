@@ -10,7 +10,7 @@
   "dependencies": {
     "@progress/kendo-react-dropdowns": "^3.7.0",
     "eslint": "^6.6.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "poetic": "^1.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
